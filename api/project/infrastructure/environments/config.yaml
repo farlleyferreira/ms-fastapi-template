@@ -1,0 +1,26 @@
+environments:
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "farlley_ferreira"
+    password: "mstemplate123"
+  mongo:
+    host: "localhost"
+    port: 27017
+    username: "root"
+    password: "mstemplate123"
+    database: "ms-template"
+  redis:
+    host: "localhost"
+    port: 6379
+    password: "mstemplate123"
+  elk:
+    hosts:
+      - host: "localhost"
+        port: 9200
+    username: "elastic"
+    password: "mstemplate123"
+  apm:
+    server_url: "http://localhost:8200"
+    service_name: "ms-template"
+    environment: "development"
