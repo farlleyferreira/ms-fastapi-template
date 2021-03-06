@@ -1,4 +1,5 @@
-volumes/
+volumes/*
+!volumes/.gitkeep 
 .vscode/
 .pytest_cache/
 __pycache__/
