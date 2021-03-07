@@ -21,7 +21,7 @@ def test_apm_connection_error():
         Then: Obtenho falha
     """
     apm = Apm()
-    apm.apm_config = ""
+    apm.apm_config = {}
     client = apm.client
 
     assert type(client) != type(Client())

@@ -9,5 +9,7 @@ class SystemStatus(enum.Enum):
 
 class ApiHealth(enum.Enum):
     success = SystemStatus.GREEN, "It's all fine, good job!"
-    warning = SystemStatus.YELLOW, "WARNING: We have one or more problem, check logfiles please!!!"
-    danger = SystemStatus.RED, "Ops!!! houston we have a problem!!! A huge problem!!! check all drivers connection!!!"
+    warning = SystemStatus.YELLOW, "WARNING: We have one or more problem," + \
+        " check logfiles please!!!"
+    danger = SystemStatus.RED, "Ops!!! houston we have a problem!!! " + \
+        "A huge problem!!! check all drivers connection!!!"

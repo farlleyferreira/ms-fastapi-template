@@ -1,5 +1,5 @@
 
-from datetime import datetime as datetime
+from datetime import datetime
 from typing import Literal
 
 from project.infrastructure.constants.Enumerators import SystemStatus as status
@@ -9,15 +9,21 @@ from project.infrastructure.drivers.mongo.adapter import MongoAdapter
 from project.infrastructure.drivers.redis.adapter import RedisAdapter
 from project.infrastructure.drivers.rabbitmq.adapter import RabbitMqAdapter
 from project.infrastructure.drivers.elasticsearch.adapter import ElkAdapter
-from project.infrastructure.drivers.elasticsearch.adapter import ElkAdapter
-from project.infrastructure.drivers.apm.adapter import ApmAdapter
 
 
 class Lifecheck:
+    """[summary]
+    """
+
     def __init__(self, request_headers):
         self.request_headers = request_headers
 
     async def get_life_status(self):
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
 
         mongo_status = await self.get_mongo_database_status()
         redis_status = await self.get_redis_database_status()
@@ -48,6 +54,14 @@ class Lifecheck:
         }
 
     def get_api_status(self, aplication_status: list):
+        """[summary]
+
+        Args:
+            aplication_status (list): [description]
+
+        Returns:
+            [type]: [description]
+        """
 
         is_ok = all(
             _status == status.GREEN for _status in aplication_status
@@ -65,21 +79,37 @@ class Lifecheck:
             return health.danger.value
 
     async def get_mongo_database_status(self) -> Literal:
+        """[summary]
+
+        Returns:
+            Literal: [description]
+        """
         is_ok_database = await MongoAdapter.get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
     async def get_redis_database_status(self) -> Literal:
+        """[summary]
+
+        Returns:
+            Literal: [description]
+        """
         is_ok_database = RedisAdapter.get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
     async def get_elk_database_status(self) -> Literal:
+        """[summary]
+
+        Returns:
+            Literal: [description]
+        """
         is_ok_database = ElkAdapter.get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
-    async def get_apm_status(self) -> Literal:
-        is_ok_monitoring = ApmAdapter.get_buildinfo()
-        return status.GREEN if is_ok_monitoring else status.RED
-
     async def get_queue_status(self) -> Literal:
+        """[summary]
+
+        Returns:
+            Literal: [description]
+        """
         is_ok_queue = await RabbitMqAdapter.get_buildinfo()
         return status.GREEN if is_ok_queue else status.RED

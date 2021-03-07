@@ -1,7 +1,8 @@
-import yaml
 import errno
 from os import path, strerror
 from project.infrastructure.monitoring_layer.aplication_general_log import Log
+import yaml
+
 
 log = Log()
 
@@ -9,7 +10,7 @@ log = Log()
 class Configs:
 
     @staticmethod
-    def get_by_key(key) -> any:
+    def get_by_key(key) -> dict:
 
         try:
             config_path = "./project/infrastructure/environments/config.yaml"
@@ -27,7 +28,7 @@ class Configs:
             config = open(config_path)
             config_dict = yaml.load(config, Loader=yaml.FullLoader)
             environments = config_dict["environments"]
-            return environments[key] if key in environments else None
+            return environments[key] if key in environments else {}
 
         except Exception as error:
             log.record.error(

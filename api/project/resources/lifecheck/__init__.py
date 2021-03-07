@@ -1,1 +1,1 @@
-#pragma: no cover
+# pragma: no cover

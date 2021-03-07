@@ -1,4 +1,3 @@
-from elasticsearch.client import Elasticsearch
 from project.infrastructure.drivers.apm.connector import Apm
 
 

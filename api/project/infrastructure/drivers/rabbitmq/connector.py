@@ -10,7 +10,7 @@ log = Log()
 class RabbitMq:
 
     def __init__(self) -> None:
-        self.mongo_config = Configs.get_by_key("rabbitmq")
+        self.mongo_config: dict = Configs.get_by_key("rabbitmq")
 
     async def connection(self):
         try:
@@ -27,7 +27,7 @@ class RabbitMq:
 
         except Exception as error:
 
-            Monitor.send_kpi_message("RabbitMQ client error", error)
+            Monitor.send_kpi_message("RabbitMQ client error", str(error))
             log.record.error(
                 "RabbitMQ connection error, check your server and credentials",
                 exc_info=error

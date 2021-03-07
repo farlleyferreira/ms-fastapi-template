@@ -1,16 +1,15 @@
-from typing import Any
 from project.infrastructure.drivers.mongo.connector import Mongo
 
 
 class MongoAdapter:
 
     @staticmethod
-    def get_database() -> any:
+    def get_database():
         mongo = Mongo()
         return mongo.client()
 
     @staticmethod
-    def get_collection(collection: str) -> any:
+    def get_collection(collection: str):
         mongo = Mongo()
         client = mongo.client()
         return client[collection]

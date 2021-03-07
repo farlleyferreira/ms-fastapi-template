@@ -1,5 +1,4 @@
 import motor.motor_asyncio as async_mongo
-import pymongo.errors as MongoErrors
 from project.infrastructure.environments.loader import Configs
 from project.infrastructure.monitoring_layer.aplication_general_log import Log
 from project.infrastructure.monitoring_layer.aplication_kpi import Monitor
@@ -10,9 +9,17 @@ log = Log()
 class Mongo:
 
     def __init__(self) -> None:
-        self.mongo_config = Configs.get_by_key("mongo")
+        self.mongo_config: dict = Configs.get_by_key("mongo")
 
     def client(self):
+        """[summary]
+
+        Raises:
+            error: [description]
+
+        Returns:
+            [type]: [description]
+        """
         try:
 
             host: str = self.mongo_config["host"]
@@ -28,7 +35,7 @@ class Mongo:
 
         except Exception as error:
 
-            Monitor.send_kpi_message("MongoDB client error", error)
+            Monitor.send_kpi_message("MongoDB client error", str(error))
             log.record.error(
                 "MongoDB connection error, check your server and credentials",
                 exc_info=error

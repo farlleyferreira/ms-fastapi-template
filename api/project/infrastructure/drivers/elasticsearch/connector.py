@@ -28,7 +28,7 @@ class Elk:
 
         except Exception as error:
 
-            Monitor.send_kpi_message("elk client error", error)
+            Monitor.send_kpi_message("elk client error", str(error))
             log.record.error(
                 "ELK connection error, check your server and credentials",
                 exc_info=error

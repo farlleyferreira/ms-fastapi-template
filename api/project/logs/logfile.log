@@ -661,3 +661,40 @@ Traceback (most recent call last):
   File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 16, in client
     server_url = self.apm_config["server_url"]
 TypeError: string indices must be integers
+connector.py - 2021-03-06 20:08:06,513 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 16, in client
+    server_url = self.apm_config["server_url"]
+TypeError: string indices must be integers
+connector.py - 2021-03-06 20:10:00,529 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 16, in client
+    server_url = self.apm_config["server_url"]
+TypeError: string indices must be integers
+routers.py - 2021-03-06 21:24:39,228 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:24:39,740 - INFO: starting up aplication!!!
+connector.py - 2021-03-06 21:35:24,548 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 16, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+routers.py - 2021-03-06 21:38:04,566 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:38:09,851 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:38:11,326 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:38:13,312 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:38:49,734 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:38:53,177 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:39:18,353 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:39:19,261 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:42:37,186 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:42:44,115 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:47:01,756 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:47:16,075 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:47:26,574 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:47:42,697 - INFO: starting up aplication!!!
+routers.py - 2021-03-06 21:51:55,443 - INFO: starting up aplication!!!
+connector.py - 2021-03-06 21:52:54,110 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 16, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
