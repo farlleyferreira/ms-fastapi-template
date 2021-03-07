@@ -31,10 +31,10 @@ class Configs:
                 )
                 raise error
 
-            config = open(config_path)
-            config_dict = yaml.load(config, Loader=yaml.FullLoader)
-            environments = config_dict["environments"]
-            return environments[key] if key in environments else {}
+            with open(config_path, 'r') as stream:
+                config_dict = yaml.safe_load(stream)
+                environments = config_dict["environments"]
+                return environments[key] if key in environments else {}
 
         except Exception as error:
             log.record.error(

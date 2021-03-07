@@ -1,4 +1,6 @@
 environments:
+  api_configs:
+    host: "0.0.0.0"
   rabbitmq:
     host: "localhost"
     port: 5672
