@@ -9,16 +9,22 @@ log = Log()
 class Mongo:
 
     def __init__(self) -> None:
+        """
+            Na inicialização da classe de conexão com o Mongo,
+        as configurações de ambiente são carregadas em tempo de execução,
+        e servidas sob o contexto da instancia.
+        """
         self.mongo_config: dict = Configs.get_by_key("mongo")
 
     def client(self):
-        """[summary]
+        """
+            Cria uma conexão com o Mongo
 
         Raises:
-            error: [description]
+            error: Exception
 
         Returns:
-            [type]: [description]
+            Mongo.Database
         """
         try:
 

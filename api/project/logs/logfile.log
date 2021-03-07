@@ -2772,3 +2772,225 @@ Traceback (most recent call last):
   File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 36, in get_by_key
     environments = config_dict["environments"]
 TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-07 11:38:19,183 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 31, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 11:38:19,236 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-07 11:38:19,244 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-07 11:38:19,330 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 25, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 11:38:19,432 - ERROR: RabbitMQ connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 18, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-07 11:38:19,464 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 11:38:19,465 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 32, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 11:38:19,467 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 36, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-07 14:18:33,676 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 14:18:33,719 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-07 14:18:33,726 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-07 14:18:33,762 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 14:18:33,864 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-07 14:18:33,893 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 14:18:33,893 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 14:18:33,895 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-07 14:18:58,216 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 14:18:58,269 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-07 14:18:58,278 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-07 14:18:58,316 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 14:18:58,403 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-07 14:18:58,432 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 14:18:58,432 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 14:18:58,434 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-07 17:36:14,230 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 17:36:14,299 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-07 17:36:14,319 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-07 17:36:14,384 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 17:36:14,507 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-07 17:36:14,547 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 17:36:14,548 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 17:36:14,551 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-07 17:39:19,953 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 17:39:20,019 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-07 17:39:20,038 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-07 17:39:20,092 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 17:39:20,195 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-07 17:39:20,236 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 17:39:20,236 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 17:39:20,240 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-07 17:41:40,685 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 17:41:40,752 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-07 17:41:40,772 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-07 17:41:40,828 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-07 17:41:40,935 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-07 17:41:40,975 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 17:41:40,975 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-07 17:41:40,978 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable

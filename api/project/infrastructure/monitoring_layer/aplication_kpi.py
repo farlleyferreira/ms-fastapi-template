@@ -2,16 +2,17 @@ from project.infrastructure.drivers.apm.adapter import ApmAdapter
 
 
 class Monitor:
-    """[summary]
-    """
 
     @staticmethod
     def send_kpi_message(message: str, body=None) -> None:
-        """[summary]
+        """
+            Envia mensagem para o elastic APM
 
         Args:
-            message (str): [description]
-            body (str, optional): [description]. Defaults to None.
+            message: str
+            body (str, optional): Caso desejar poderá ser enviado
+            um objeto baseado no contexto da aplicação
+
         """
         client = ApmAdapter.get_client()
         client.capture_message(
@@ -23,19 +24,21 @@ class Monitor:
 
     @staticmethod
     def begin_transaction(name: str) -> None:
-        """[summary]
+        """
+            Inicia captura de transação
 
         Args:
-            name (str): [description]
+            name (str): nome da transação
         """
         ApmAdapter.get_client().begin_transaction(name)
 
     @staticmethod
     def end_transaction(name: str, status: str) -> None:
-        """[summary]
+        """
+            Finaliza captura de transação
 
         Args:
-            name (str): [description]
-            status (str): [description]
+            name (str): nome da transação
+            status (str): status da transação
         """
         ApmAdapter.get_client().end_transaction(name, status)

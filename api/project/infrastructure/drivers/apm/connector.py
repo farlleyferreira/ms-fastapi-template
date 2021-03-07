@@ -9,9 +9,23 @@ log = Log()
 class Apm:
 
     def __init__(self) -> None:
+        """
+            Na inicialização da classe de conexão com o apm,
+        as configurações de ambiente são carregadas em tempo
+        de execução, e servidas sob o contexto da instancia.
+        """
         self.apm_config = Configs.get_by_key("apm")
 
     def client(self):
+        """
+            Cria uma conexão com o elastic apm
+
+        Raises:
+            error: Exception
+
+        Returns:
+            elasticapm.Client
+        """
         try:
             server_url = self.apm_config["server_url"]
             service_name = self.apm_config["service_name"]
@@ -34,7 +48,7 @@ class Apm:
 
         except Exception as error:
             log.record.error(
-                "Redis connection error, check your server and credentials",
+                "Apm connection error, check your server and credentials",
                 exc_info=error
             )
             raise error

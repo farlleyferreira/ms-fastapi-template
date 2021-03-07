@@ -5,17 +5,25 @@ class MongoAdapter:
 
     @staticmethod
     def get_database():
+        """
+            Instancia um client de conexão entre a
+        aplicação e o Mongo
+
+        Returns:
+            Mongo.Database
+        """
         mongo = Mongo()
         return mongo.client()
 
     @staticmethod
-    def get_collection(collection: str):
-        mongo = Mongo()
-        client = mongo.client()
-        return client[collection]
-
-    @staticmethod
     async def get_buildinfo() -> bool:
+        """
+            Verifica se a conexão está ou não
+        efetuada com sucesso
+
+        Returns:
+            bool
+        """
         try:
             mongo = Mongo()
             client = mongo.client()

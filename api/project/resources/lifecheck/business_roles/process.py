@@ -18,10 +18,12 @@ class Lifecheck:
         self.request_headers = request_headers
 
     async def get_life_status(self):
-        """[summary]
+        """
+            Carrega o status de saude das conexão com
+        os principais drivers do projeto.
 
         Returns:
-            [type]: [description]
+            life_status: dict
         """
 
         mongo_status = await self.get_mongo_database_status()
@@ -38,7 +40,7 @@ class Lifecheck:
 
         referer = self.request_headers["Referer"] if 'Referer' in self.request_headers else ""
 
-        return {
+        life_status = {
             "aplication_message": api_message,
             "aplication_name": "FastApi microservice template",
             "response_at": datetime.now(),
@@ -51,15 +53,14 @@ class Lifecheck:
                 "elk_status": elk_status,
             }
         }
+        return life_status
 
     def get_api_status(self, aplication_status: list):
-        """[summary]
-
-        Args:
-            aplication_status (list): [description]
+        """
+            Calcula o status de saude da aplicação.
 
         Returns:
-            [type]: [description]
+            health: tuple
         """
 
         is_ok = all(
@@ -78,37 +79,41 @@ class Lifecheck:
             return health.danger.value
 
     async def get_mongo_database_status(self):
-        """[summary]
+        """
+            Verifica o status de vida do Mongo
 
         Returns:
-            Literal: [description]
+            status:Literal (GREEN, RED)
         """
         is_ok_database = await MongoAdapter.get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
     async def get_redis_database_status(self):
-        """[summary]
+        """
+            Verifica o status de vida do Redis
 
         Returns:
-            Literal: [description]
+            status:Literal (GREEN, RED)
         """
         is_ok_database = RedisAdapter.get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
     async def get_elk_database_status(self):
-        """[summary]
+        """
+            Verifica o status de vida do Elk
 
         Returns:
-            Literal: [description]
+            status:Literal (GREEN, RED)
         """
         is_ok_database = ElkAdapter.get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
     async def get_queue_status(self):
-        """[summary]
+        """
+            Verifica o status de vida do Rabbit MQ
 
         Returns:
-            Literal: [description]
+            status:Literal (GREEN, RED)
         """
         is_ok_queue = await RabbitMqAdapter.get_buildinfo()
         return status.GREEN if is_ok_queue else status.RED

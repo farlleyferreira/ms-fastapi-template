@@ -12,6 +12,22 @@ base_path = "./project/infrastructure/environments/config.yaml"
 class Configs:
     @staticmethod
     def get_by_key(key, config_path: str = base_path) -> dict:
+        """
+            Busca uma configuralção baseado em uma chave e/ou
+        caminho alternativo
+
+        Args:
+            key: string
+            config_path (str, optional): Caminho alternativo
+        valor padrão: basepath
+
+        Raises:
+            error: FileNotFoundError
+            error: Exception
+
+        Returns:
+            environments: dict
+        """
 
         try:
 
@@ -38,7 +54,7 @@ class Configs:
 
         except Exception as error:
             log.record.error(
-                "MongoDB connection error, check your server and credentials",
+                "environments connection error, check environments config",
                 exc_info=error
             )
             raise error

@@ -7,24 +7,25 @@ from project.infrastructure.monitoring_layer.aplication_kpi import Monitor
 log = Log()
 
 
-class Redis(object):
-    """[summary]
-
-    Args:
-        object ([type]): [description]
-    """
+class Redis:
 
     def __init__(self):
+        """
+            Na inicialização da classe de conexão com o Redis,
+        as configurações de ambiente são carregadas em tempo de execução,
+        e servidas sob o contexto da instancia.
+        """
         self.redis_config: dict = Configs.get_by_key("redis")
 
     def client(self):
-        """[summary]
+        """
+            Cria uma conexão com o RabbitMQ
 
         Raises:
-            error: [description]
+            error: Exception
 
         Returns:
-            [type]: [description]
+            Redis
         """
         try:
 

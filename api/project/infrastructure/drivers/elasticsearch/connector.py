@@ -9,22 +9,24 @@ log = Log()
 
 
 class Elk:
-    """[summary]
-    """
 
     def __init__(self) -> None:
-        """[summary]
+        """
+            Na inicialização da classe de conexão com o elasticsearch,
+        as configurações de ambiente são carregadas em tempo de execução,
+        e servidas sob o contexto da instancia.
         """
         self.elasticsearch_config = Configs.get_by_key("elk")
 
     def client(self) -> Elasticsearch:
-        """[summary]
+        """
+            Cria uma conexão com o elasticsearch
 
         Raises:
-            error: [description]
+            error: Exception
 
         Returns:
-            Elasticsearch: [description]
+            Elasticsearch
         """
         try:
 

@@ -10,9 +10,23 @@ log = Log()
 class RabbitMq:
 
     def __init__(self) -> None:
+        """
+            Na inicialização da classe de conexão com o RabbitMQ,
+        as configurações de ambiente são carregadas em tempo de execução,
+        e servidas sob o contexto da instancia.
+        """
         self.rabbit_mq_config: dict = Configs.get_by_key("rabbitmq")
 
     async def connection(self):
+        """
+            Cria uma conexão com o RabbitMQ
+
+        Raises:
+            error: Exception
+
+        Returns:
+            Coroutine[Any, Any, ConnectionType@connect]
+        """
         try:
 
             host: str = self.rabbit_mq_config["host"]
@@ -32,7 +46,7 @@ class RabbitMq:
         except Exception as error:
 
             log.record.error(
-                "RabbitMQ connection error, check your server and credentials",
+                "RabbitMQ connection error, check your server and configurations",
                 exc_info=error
             )
             Monitor.send_kpi_message("RabbitMQ client error", str(error))
