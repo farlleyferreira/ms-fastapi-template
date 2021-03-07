@@ -11,10 +11,11 @@ from project.infrastructure.drivers.elasticsearch.adapter import ElkAdapter
 
 
 class Lifecheck:
-    """[summary]
-    """
 
     def __init__(self, request_headers):
+        """
+            Regras de negocio para o processo de verificação de status do projeto
+        """
         self.request_headers = request_headers
 
     async def get_life_status(self):
@@ -55,7 +56,8 @@ class Lifecheck:
         }
         return life_status
 
-    def get_api_status(self, aplication_status: list):
+    @staticmethod
+    def get_api_status(aplication_status: list):
         """
             Calcula o status de saude da aplicação.
 
