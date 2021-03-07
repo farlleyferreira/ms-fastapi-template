@@ -11,9 +11,6 @@ class ElkAdapter:
 
     @staticmethod
     def get_buildinfo() -> bool:
-        try:
-            elk = Elk()
-            client: Elasticsearch = elk.client()
-            return client.ping()
-        except Exception:
-            return False
+        elk = Elk()
+        client: Elasticsearch = elk.client()
+        return client.ping()

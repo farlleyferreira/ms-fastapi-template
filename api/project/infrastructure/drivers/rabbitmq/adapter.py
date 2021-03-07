@@ -68,6 +68,4 @@ class RabbitMqAdapter:
         connection = await rabbit_mq.connection()
         is_closed = connection.is_closed
         await connection.close()
-        if is_closed:
-            return False
-        return True
+        return not is_closed

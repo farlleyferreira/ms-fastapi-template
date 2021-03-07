@@ -6,24 +6,30 @@ import yaml
 
 log = Log()
 
+base_path = "./project/infrastructure/environments/config.yaml"
+
 
 class Configs:
-
     @staticmethod
-    def get_by_key(key) -> dict:
+    def get_by_key(key, config_path: str = base_path) -> dict:
 
         try:
-            config_path = "./project/infrastructure/environments/config.yaml"
 
             path_exists = path.exists(config_path)
 
             if not path_exists:
 
-                raise FileNotFoundError(
+                error = FileNotFoundError(
                     errno.ENOENT,
                     strerror(errno.ENOENT),
                     config_path
                 )
+
+                log.record.error(
+                    "environments connection error, check environments config",
+                    exc_info=error
+                )
+                raise error
 
             config = open(config_path)
             config_dict = yaml.load(config, Loader=yaml.FullLoader)

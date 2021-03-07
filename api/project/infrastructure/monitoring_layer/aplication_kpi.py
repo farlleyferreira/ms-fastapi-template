@@ -6,7 +6,7 @@ class Monitor:
     """
 
     @staticmethod
-    def send_kpi_message(message: str, body: str = None) -> None:
+    def send_kpi_message(message: str, body=None) -> None:
         """[summary]
 
         Args:

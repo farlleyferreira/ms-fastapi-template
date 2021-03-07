@@ -35,10 +35,10 @@ class Mongo:
 
         except Exception as error:
 
-            Monitor.send_kpi_message("MongoDB client error", str(error))
             log.record.error(
                 "MongoDB connection error, check your server and credentials",
                 exc_info=error
             )
+            Monitor.send_kpi_message("MongoDB client error", str(error))
 
             raise error

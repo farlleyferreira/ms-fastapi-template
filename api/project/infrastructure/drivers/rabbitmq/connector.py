@@ -10,27 +10,31 @@ log = Log()
 class RabbitMq:
 
     def __init__(self) -> None:
-        self.mongo_config: dict = Configs.get_by_key("rabbitmq")
+        self.rabbit_mq_config: dict = Configs.get_by_key("rabbitmq")
 
     async def connection(self):
         try:
 
-            host: str = self.mongo_config["host"]
-            port: int = self.mongo_config["port"]
-            username: str = self.mongo_config["username"]
-            password: str = self.mongo_config["password"]
+            host: str = self.rabbit_mq_config["host"]
+            port: int = self.rabbit_mq_config["port"]
+            username: str = self.rabbit_mq_config["username"]
+            password: str = self.rabbit_mq_config["password"]
 
-            uri: str = f'amqp://{username}:{password}@{host}:{port}'
-            connection = await aio_pika.connect(uri)
+            connection = await aio_pika.connect(
+                host=host,
+                port=port,
+                login=username,
+                password=password
+            )
 
             return connection
 
         except Exception as error:
 
-            Monitor.send_kpi_message("RabbitMQ client error", str(error))
             log.record.error(
                 "RabbitMQ connection error, check your server and credentials",
                 exc_info=error
             )
+            Monitor.send_kpi_message("RabbitMQ client error", str(error))
 
             raise error

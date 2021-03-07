@@ -1,6 +1,5 @@
 
 from datetime import datetime
-from typing import Literal
 
 from project.infrastructure.constants.Enumerators import SystemStatus as status
 from project.infrastructure.constants.Enumerators import ApiHealth as health
@@ -78,7 +77,7 @@ class Lifecheck:
         else:
             return health.danger.value
 
-    async def get_mongo_database_status(self) -> Literal:
+    async def get_mongo_database_status(self):
         """[summary]
 
         Returns:
@@ -87,7 +86,7 @@ class Lifecheck:
         is_ok_database = await MongoAdapter.get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
-    async def get_redis_database_status(self) -> Literal:
+    async def get_redis_database_status(self):
         """[summary]
 
         Returns:
@@ -96,7 +95,7 @@ class Lifecheck:
         is_ok_database = RedisAdapter.get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
-    async def get_elk_database_status(self) -> Literal:
+    async def get_elk_database_status(self):
         """[summary]
 
         Returns:
@@ -105,7 +104,7 @@ class Lifecheck:
         is_ok_database = ElkAdapter.get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
-    async def get_queue_status(self) -> Literal:
+    async def get_queue_status(self):
         """[summary]
 
         Returns:

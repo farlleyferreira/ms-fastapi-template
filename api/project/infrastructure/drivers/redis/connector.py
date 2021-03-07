@@ -15,7 +15,7 @@ class Redis(object):
     """
 
     def __init__(self):
-        self.mongo_config: dict = Configs.get_by_key("redis")
+        self.redis_config: dict = Configs.get_by_key("redis")
 
     def client(self):
         """[summary]
@@ -28,9 +28,9 @@ class Redis(object):
         """
         try:
 
-            host: str = self.mongo_config["host"]
-            port: int = self.mongo_config["port"]
-            password: str = self.mongo_config["password"]
+            host: str = self.redis_config["host"]
+            port: int = self.redis_config["port"]
+            password: str = self.redis_config["password"]
 
             client = redis.Redis(host=host, port=port, password=password)
             client.ping()
@@ -39,9 +39,10 @@ class Redis(object):
 
         except Exception as error:
 
-            Monitor.send_kpi_message("Redis client error", str(error))
             log.record.error(
                 "Redis connection error, check your server and credentials",
                 exc_info=error
             )
+            Monitor.send_kpi_message("Redis client error", str(error))
+
             raise error
