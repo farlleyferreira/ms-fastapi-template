@@ -211,7 +211,7 @@
 >   |   |   |   |   - logs
 >   |   |   |   - repositories
 >   |   |   |   - resources
->   |   |   |   - routers.py
+>   |   |   |   - routers
 >   |   |   - tests
 >   |   |   |   - helpers
 >   |   |   |   - infrastructure
@@ -223,17 +223,12 @@
 >   |   |   |   |   - logs
 >   |   |   |   - repositories
 >   |   |   |   - resources
->   |   |   - .coveragerc
 >   |   |   - dockerfile
 >   |   |   - makefile
 >   |   |   - requirements.txt
->   |   |   - setup.cfg
->   |   |   - setup.py
+>   |   |   - setup
 >   |   - worker
 >   |   - volumes
->   |   - .gitignore
->   |   - .deepsource.toml
->   |   - .whitesource
 >   |   - docker-compose.yml
 >
 > ```
@@ -242,56 +237,9 @@
 >
 > #### Api :electric_plug:
 >
-> ```file
->
->   - project
->   |   - helpers
->   |   - infrastructure
->   |   |   - constants
->   |   |   - drivers
->   |   |   - environments
->   |   |   - monitoring_layer
->   |   |   - open_api
->   |   |   - logs
->   |   - repositories
->   |   - resources
->   |   - routers.py
->   - tests
->   - .coveragerc
->   - dockerfile
->   - makefile
->   - requirements.txt
->   - setup.cfg
->   - setup.py
->
-> ```
->
 > #### Workers :construction_worker:
 >
 > #### Tests :hammer:
->
-> ```filee
->
->   - project
->   - tests
->   |   - helpers
->   |   - infrastructure
->   |   |   - constants
->   |   |   - drivers
->   |   |   - environments
->   |   |   - monitoring_layer
->   |   |   - open_api
->   |   |   - logs
->   |   - repositories
->   |   - resources
->   - .coveragerc
->   - dockerfile
->   - makefile
->   - requirements.txt
->   - setup.cfg
->   - setup.py
->
-> ```
 >
 > #### Observações: :information_source:
 >
