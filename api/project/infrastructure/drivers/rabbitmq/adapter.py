@@ -1,25 +1,12 @@
 from project.infrastructure.drivers.rabbitmq.connector import RabbitMq
 
 
-class RabbitMqAdapter:
+class RabbitMqAdapter(RabbitMq):
 
-    @staticmethod
-    async def get_connection():
-        """
-            Instancia um client de conexão entre a
-        aplicação e o RabbitMq
+    def __init__(self) -> None:
+        super().__init__()
 
-        Returns:
-            Coroutine[Any, Any, ConnectionType@connect]
-        """
-
-        rabbit_mq = RabbitMq()
-        connection = await rabbit_mq.connection()
-
-        return connection
-
-    @staticmethod
-    async def get_buildinfo() -> bool:
+    async def get_buildinfo(self) -> bool:
         """
             Verifica se a conexão está ou não
         efetuada com sucesso
@@ -27,8 +14,7 @@ class RabbitMqAdapter:
         Returns:
             bool
         """
-        rabbit_mq = RabbitMq()
-        connection = await rabbit_mq.connection()
+        connection = await self.connection()
         is_closed = connection.is_closed
         await connection.close()
         return not is_closed

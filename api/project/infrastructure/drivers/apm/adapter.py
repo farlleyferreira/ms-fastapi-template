@@ -1,17 +1,7 @@
 from project.infrastructure.drivers.apm.connector import Apm
 
 
-class ApmAdapter:
+class ApmAdapter(Apm):
 
-    @staticmethod
-    def get_client():
-        """
-            Instancia um client de conexão entre a
-        aplicação e o elasticsearch apm
-
-        Returns:
-            [elasticapm.Client]
-        """
-        apm = Apm()
-        client = apm.client()
-        return client
+    def __init__(self) -> None:
+        super().__init__()

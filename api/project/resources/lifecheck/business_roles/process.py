@@ -87,7 +87,7 @@ class Lifecheck:
         Returns:
             status:Literal (GREEN, RED)
         """
-        is_ok_database = await MongoAdapter.get_buildinfo()
+        is_ok_database = await MongoAdapter().get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
     async def get_redis_database_status(self):
@@ -97,7 +97,7 @@ class Lifecheck:
         Returns:
             status:Literal (GREEN, RED)
         """
-        is_ok_database = RedisAdapter.get_buildinfo()
+        is_ok_database = RedisAdapter().get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
     async def get_elk_database_status(self):
@@ -107,7 +107,7 @@ class Lifecheck:
         Returns:
             status:Literal (GREEN, RED)
         """
-        is_ok_database = ElkAdapter.get_buildinfo()
+        is_ok_database = ElkAdapter().get_buildinfo()
         return status.GREEN if is_ok_database else status.RED
 
     async def get_queue_status(self):
@@ -117,5 +117,5 @@ class Lifecheck:
         Returns:
             status:Literal (GREEN, RED)
         """
-        is_ok_queue = await RabbitMqAdapter.get_buildinfo()
+        is_ok_queue = await RabbitMqAdapter().get_buildinfo()
         return status.GREEN if is_ok_queue else status.RED

@@ -1,22 +1,12 @@
 from project.infrastructure.drivers.redis.connector import Redis
 
 
-class RedisAdapter:
+class RedisAdapter(Redis):
 
-    @staticmethod
-    def get_database():
-        """
-            Instancia um client de conexão entre a
-        aplicação e o Redis
+    def __init__(self) -> None:
+        super().__init__()
 
-        Returns:
-            Redis
-        """
-        redis = Redis()
-        return redis.client()
-
-    @staticmethod
-    def get_buildinfo() -> bool:
+    def get_buildinfo(self) -> bool:
         """
             Verifica se a conexão está ou não
         efetuada com sucesso
@@ -24,8 +14,7 @@ class RedisAdapter:
         Returns:
             bool
         """
-        redis = Redis()
-        client = redis.client()
+        client = self.client()
         if client.ping():
             return True
         return False
