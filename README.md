@@ -47,7 +47,7 @@
 > <p style="text-align: justify">
 > Este projeto está estruturado em docker, utilizamos o <i><b>docker-compose</b></i> para montar o processo de startup dos serviços os
 > quais a aplicação necessita para rodar. A configuração desses serviços bem como sua estrutura, serão melhor discutidos na seção 
-> <a href="#patterns">Padrões e estrutura adotados</a>.
+> <a href="#patterns">Estrutura e padrões adotados</a>.
 > </p>
 >
 > <i><b>Para rodar todas as aplicações via docker-compose.</b></i>
@@ -64,7 +64,7 @@
 >   <i><b>Obs</b></i>:
 >   <a>
 >    Neste arquivo estão as configurações de ambiente do nosso projeto e não, eu optei por não criar um arquivo .ENV por 
->    motivos que discutiremos melhor na seção <a href="#patterns">Padrões e estrutura adotados</a>.
+>    motivos que discutiremos melhor na seção <a href="#patterns">Estrutura e padrões adotados</a>.
 >    </a>
 >   </p>
 > </p>
@@ -194,32 +194,105 @@
 
 ## <a id="patterns">Estrutura e padrões adotados</a> :european_castle:
 
-#### Objetivo: :mag:
-
-#### Metodologia: :chart_with_upwards_trend:
-
-#### Observações: :books:
-
-## Api :electric_plug:
-
-#### Objetivo: :mag:
-
-#### Metodologia: :chart_with_upwards_trend:
-
-#### Observações: :books:
-
-## Workers :construction_worker:
-
-#### Objetivo: :mag:
-
-#### Metodologia: :chart_with_upwards_trend:
-
-#### Observações: :books:
-
-## Tests :hammer:
-
-#### Objetivo: :mag:
-
-#### Metodologia: :chart_with_upwards_trend:
-
-#### Observações: :books:
+> ### Estrutura: :mag:
+>
+> ```file
+>
+>   - ms-fastapi-template
+>   |   - api
+>   |   |   - project
+>   |   |   |   - helpers
+>   |   |   |   - infrastructure
+>   |   |   |   |   - constants
+>   |   |   |   |   - drivers
+>   |   |   |   |   - environments
+>   |   |   |   |   - monitoring_layer
+>   |   |   |   |   - open_api
+>   |   |   |   |   - logs
+>   |   |   |   - repositories
+>   |   |   |   - resources
+>   |   |   |   - routers.py
+>   |   |   - tests
+>   |   |   |   - helpers
+>   |   |   |   - infrastructure
+>   |   |   |   |   - constants
+>   |   |   |   |   - drivers
+>   |   |   |   |   - environments
+>   |   |   |   |   - monitoring_layer
+>   |   |   |   |   - open_api
+>   |   |   |   |   - logs
+>   |   |   |   - repositories
+>   |   |   |   - resources
+>   |   |   - .coveragerc
+>   |   |   - dockerfile
+>   |   |   - makefile
+>   |   |   - requirements.txt
+>   |   |   - setup.cfg
+>   |   |   - setup.py
+>   |   - worker
+>   |   - volumes
+>   |   - .gitignore
+>   |   - .deepsource.toml
+>   |   - .whitesource
+>   |   - docker-compose.yml
+>
+> ```
+>
+> ### Padrões adotados: :chart_with_upwards_trend:
+>
+> #### Api :electric_plug:
+>
+> ```file
+>
+>   - project
+>   |   - helpers
+>   |   - infrastructure
+>   |   |   - constants
+>   |   |   - drivers
+>   |   |   - environments
+>   |   |   - monitoring_layer
+>   |   |   - open_api
+>   |   |   - logs
+>   |   - repositories
+>   |   - resources
+>   |   - routers.py
+>   - tests
+>   - .coveragerc
+>   - dockerfile
+>   - makefile
+>   - requirements.txt
+>   - setup.cfg
+>   - setup.py
+>
+> ```
+>
+> #### Workers :construction_worker:
+>
+> #### Tests :hammer:
+>
+> ```filee
+>
+>   - project
+>   - tests
+>   |   - helpers
+>   |   - infrastructure
+>   |   |   - constants
+>   |   |   - drivers
+>   |   |   - environments
+>   |   |   - monitoring_layer
+>   |   |   - open_api
+>   |   |   - logs
+>   |   - repositories
+>   |   - resources
+>   - .coveragerc
+>   - dockerfile
+>   - makefile
+>   - requirements.txt
+>   - setup.cfg
+>   - setup.py
+>
+> ```
+>
+> #### Observações: :information_source:
+>
+> ### Bibliografia: :books:

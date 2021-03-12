@@ -14,7 +14,7 @@ class Monitor:
             um objeto baseado no contexto da aplicação
 
         """
-        client = ApmAdapter.get_client()
+        client = ApmAdapter().client()
         client.capture_message(
             param_message={
                 'message': message,
@@ -30,7 +30,7 @@ class Monitor:
         Args:
             name (str): nome da transação
         """
-        ApmAdapter.get_client().begin_transaction(name)
+        ApmAdapter().client().begin_transaction(name)
 
     @staticmethod
     def end_transaction(name: str, status: str) -> None:
@@ -41,4 +41,4 @@ class Monitor:
             name (str): nome da transação
             status (str): status da transação
         """
-        ApmAdapter.get_client().end_transaction(name, status)
+        ApmAdapter().client().end_transaction(name, status)

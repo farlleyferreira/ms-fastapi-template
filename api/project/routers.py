@@ -6,7 +6,7 @@ from project.resources.lifecheck.controllers.main_controller import router as li
 
 
 app = FastAPI()
-apm = ApmAdapter.get_client()
+apm = ApmAdapter().client()
 
 # app middlewares
 app.add_middleware(ElasticAPM, client=apm)

@@ -1,22 +1,12 @@
 from project.infrastructure.drivers.mongo.connector import Mongo
 
 
-class MongoAdapter:
+class MongoAdapter(Mongo):
 
-    @staticmethod
-    def get_database():
-        """
-            Instancia um client de conexão entre a
-        aplicação e o Mongo
+    def __init__(self) -> None:
+        super().__init__()
 
-        Returns:
-            Mongo.Database
-        """
-        mongo = Mongo()
-        return mongo.client()
-
-    @staticmethod
-    async def get_buildinfo() -> bool:
+    async def get_buildinfo(self) -> bool:
         """
             Verifica se a conexão está ou não
         efetuada com sucesso
@@ -25,8 +15,7 @@ class MongoAdapter:
             bool
         """
         try:
-            mongo = Mongo()
-            client = mongo.client()
+            client = self.client()
             buildinfo = await client.command("buildinfo")
             return bool(buildinfo["ok"])
         except Exception:

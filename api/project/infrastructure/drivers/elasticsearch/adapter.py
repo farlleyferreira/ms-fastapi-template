@@ -2,22 +2,12 @@ from elasticsearch.client import Elasticsearch
 from project.infrastructure.drivers.elasticsearch.connector import Elk
 
 
-class ElkAdapter:
+class ElkAdapter(Elk):
 
-    @staticmethod
-    def get_client() -> Elasticsearch:
-        """
-            Instancia um client de conexão entre a
-        aplicação e o elasticsearch
+    def __init__(self) -> None:
+        super().__init__()
 
-        Returns:
-            Elasticsearch
-        """
-        elk = Elk()
-        return elk.client()
-
-    @staticmethod
-    def get_buildinfo() -> bool:
+    def get_buildinfo(self) -> bool:
         """
             Verifica se a conexão está ou não
         efetuada com sucesso
@@ -25,6 +15,5 @@ class ElkAdapter:
         Returns:
             bool
         """
-        elk = Elk()
-        client: Elasticsearch = elk.client()
+        client: Elasticsearch = self.client()
         return client.ping()
