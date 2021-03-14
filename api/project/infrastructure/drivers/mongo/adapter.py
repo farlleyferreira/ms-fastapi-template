@@ -14,9 +14,6 @@ class MongoAdapter(Mongo):
         Returns:
             bool
         """
-        try:
-            client = self.client()
-            buildinfo = await client.command("buildinfo")
-            return bool(buildinfo["ok"])
-        except Exception:
-            return False
+        client = self.client()
+        buildinfo = await client.command("buildinfo")
+        return bool(buildinfo["ok"])

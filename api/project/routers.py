@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from elasticapm.contrib.starlette import ElasticAPM
 from project.infrastructure.open_api.open_api_schema import Schema
 from project.infrastructure.drivers.apm.adapter import ApmAdapter
-from project.resources.lifecheck.controllers.main_controller import router as lifecheckapi
+from project.resources.lifecheck.controller import router as lifecheckapi
 
 
 app = FastAPI()
