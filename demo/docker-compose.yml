@@ -1,0 +1,127 @@
+version: "3.3"
+
+services:
+  apm-server:
+    image: docker.elastic.co/apm/apm-server:7.11.1
+    ports:
+      - "8200:8200"
+      - "8201:8200"
+    environment:
+      - apm-server.host=0.0.0.0
+      - apm-server.frontend.enabled=true
+      - setup.template.settings.index.number_of_shards=1
+      - setup.template.settings.index.codec=best_compression
+      - output.elasticsearch.hosts=["elasticsearch:9200"]
+    command: [
+        "apm-server", 
+        "-e", 
+        "-E", "output.elasticsearch.username=elastic", 
+        "-E", "output.elasticsearch.password=mstemplate123", 
+    ]
+    networks:
+      - app-tier
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - xpack.security.enabled=true
+      - xpack.security.audit.enabled=true
+      - xpack.monitoring.collection.enabled=true
+      - ELASTIC_PASSWORD=mstemplate123
+    ulimits:
+      memlock:
+        hard: -1
+        soft: -1
+    volumes:
+      - ./volumes/elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - app-tier
+    healthcheck:
+      interval: 20s
+      retries: 10
+      test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.11.1
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME="elastic"
+      - ELASTICSEARCH_PASSWORD="mstemplate123"
+      - xpack.monitoring.ui.container.elasticsearch.enabled=true
+    ports:
+      - 5601:5601
+    networks:
+      - app-tier
+    healthcheck:
+      interval: 10s
+      retries: 20
+      test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:5601/api/status
+
+  rabbit:
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=mqadmin
+      - RABBITMQ_DEFAULT_USER=farlley_ferreira
+      - RABBITMQ_DEFAULT_PASS=mstemplate123
+      - CLUSTERED=true
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./volumes/rabbitmq:/var/lib/rabbitmq
+    networks:
+      - app-tier
+
+  redis:
+    image: "redis"
+    command: redis-server --requirepass mstemplate123
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./volumes/redis/redis-data:/var/lib/redis
+      - ./volumes/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      - app-tier
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mstemplate123
+    ports:
+      - "27017:27017"
+    volumes:
+      - /home/renatogroffe/Desenvolvimento/Docker/Volumes/MongoDB:/data/db
+    networks:
+      - app-tier
+
+  web:
+    build: ./api
+    volumes:
+      - .:/code
+    ports:
+      - "5000:5000"
+    depends_on:
+      - elasticsearch
+      - mongo
+      - redis
+      - rabbit
+    networks:
+      - app-tier
+
+networks:
+  app-tier:
+    driver: bridge
