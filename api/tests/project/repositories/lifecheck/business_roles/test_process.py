@@ -1,4 +1,4 @@
-from project.repositories.lifecheck.business_rule.health_status import Lifecheck
+from project.repositories.lifecheck.business_rules.health_status import Lifecheck
 from project.infrastructure.constants.Enumerators import SystemStatus as status
 from project.infrastructure.constants.Enumerators import ApiHealth as health
 

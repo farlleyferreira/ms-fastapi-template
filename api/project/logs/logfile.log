@@ -2994,3 +2994,638 @@ Traceback (most recent call last):
   File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
     environments = config_dict["environments"]
 TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 13:45:09,599 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\redis\connection.py", line 559, in connect
+    sock = self._connect()
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\redis\connection.py", line 615, in _connect
+    raise err
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\redis\connection.py", line 603, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 37, in client
+    client.ping()
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\redis\client.py", line 1378, in ping
+    return self.execute_command('PING')
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\elasticapm\instrumentation\packages\base.py", line 205, in call_if_sampling
+    return wrapped(*args, **kwargs)
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\redis\client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\redis\connection.py", line 1192, in get_connection
+    connection.connect()
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\redis\connection.py", line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to localhost:6379. Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+connector.py - 2021-03-18 13:45:10,125 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:45:10,184 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 13:45:10,200 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 13:45:10,247 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:45:14,343 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 228, in connect
+    self.reader, self.writer = await asyncio.open_connection(
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\streams.py", line 52, in open_connection
+    transport, _ = await loop.create_connection(
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\base_events.py", line 1061, in create_connection
+    raise exceptions[0]
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\base_events.py", line 1041, in create_connection
+    sock = await self._connect_sock(
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\base_events.py", line 955, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\proactor_events.py", line 702, in sock_connect
+    return await self._proactor.connect(sock, address)
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\windows_events.py", line 812, in _poll
+    value = callback(transferred, key, ov)
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\windows_events.py", line 599, in finish_connect
+    ov.getresult()
+ConnectionRefusedError: [WinError 1225] O computador remoto recusou a conexão de rede
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 37, in connection
+    connection = await aio_pika.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 333, in connect
+    await connection.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 120, in connect
+    self.connection = await asyncio.wait_for(
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\tasks.py", line 440, in wait_for
+    return await fut
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 105, in _make_connection
+    connection = await aiormq.connect(self.url, **kwargs)
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 542, in connect
+    await connection.connect(client_properties or {})
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 168, in wrap
+    return await self.create_task(func(self, *args, **kwargs))
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 25, in __inner
+    return await self.task
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 232, in connect
+    raise ConnectionError(*e.args) from e
+ConnectionError: [WinError 1225] O computador remoto recusou a conexão de rede
+connector.py - 2021-03-18 13:45:14,603 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 13:45:14,635 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:45:14,635 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:45:14,638 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 13:45:28,621 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 238, in connect
+    res = await self.__receive_frame()
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 327, in __receive_frame
+    frame_header = await self.reader.readexactly(1)
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 1 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 37, in connection
+    connection = await aio_pika.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 333, in connect
+    await connection.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 120, in connect
+    self.connection = await asyncio.wait_for(
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\tasks.py", line 440, in wait_for
+    return await fut
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 105, in _make_connection
+    connection = await aiormq.connect(self.url, **kwargs)
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 542, in connect
+    await connection.connect(client_properties or {})
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 168, in wrap
+    return await self.create_task(func(self, *args, **kwargs))
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 25, in __inner
+    return await self.task
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 242, in connect
+    raise exc.IncompatibleProtocolError(*e.args) from e
+aiormq.exceptions.IncompatibleProtocolError: 0 bytes read on a total of 1 expected bytes
+connector.py - 2021-03-18 13:45:43,717 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:45:43,786 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 13:45:43,806 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 13:45:43,855 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:45:43,899 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 238, in connect
+    res = await self.__receive_frame()
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 327, in __receive_frame
+    frame_header = await self.reader.readexactly(1)
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 1 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 37, in connection
+    connection = await aio_pika.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 333, in connect
+    await connection.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 120, in connect
+    self.connection = await asyncio.wait_for(
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\tasks.py", line 440, in wait_for
+    return await fut
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 105, in _make_connection
+    connection = await aiormq.connect(self.url, **kwargs)
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 542, in connect
+    await connection.connect(client_properties or {})
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 168, in wrap
+    return await self.create_task(func(self, *args, **kwargs))
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 25, in __inner
+    return await self.task
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 242, in connect
+    raise exc.IncompatibleProtocolError(*e.args) from e
+aiormq.exceptions.IncompatibleProtocolError: 0 bytes read on a total of 1 expected bytes
+connector.py - 2021-03-18 13:45:44,270 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 13:45:44,302 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:45:44,304 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:45:44,304 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 13:45:44,364 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 238, in connect
+    res = await self.__receive_frame()
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 327, in __receive_frame
+    frame_header = await self.reader.readexactly(1)
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 1 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 37, in connection
+    connection = await aio_pika.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 333, in connect
+    await connection.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 120, in connect
+    self.connection = await asyncio.wait_for(
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\tasks.py", line 440, in wait_for
+    return await fut
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 105, in _make_connection
+    connection = await aiormq.connect(self.url, **kwargs)
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 542, in connect
+    await connection.connect(client_properties or {})
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 168, in wrap
+    return await self.create_task(func(self, *args, **kwargs))
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 25, in __inner
+    return await self.task
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 242, in connect
+    raise exc.IncompatibleProtocolError(*e.args) from e
+aiormq.exceptions.IncompatibleProtocolError: 0 bytes read on a total of 1 expected bytes
+connector.py - 2021-03-18 13:46:03,829 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:46:03,892 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 13:46:03,910 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 13:46:03,960 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:46:04,006 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 238, in connect
+    res = await self.__receive_frame()
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 327, in __receive_frame
+    frame_header = await self.reader.readexactly(1)
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 1 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 37, in connection
+    connection = await aio_pika.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 333, in connect
+    await connection.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 120, in connect
+    self.connection = await asyncio.wait_for(
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\tasks.py", line 440, in wait_for
+    return await fut
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 105, in _make_connection
+    connection = await aiormq.connect(self.url, **kwargs)
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 542, in connect
+    await connection.connect(client_properties or {})
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 168, in wrap
+    return await self.create_task(func(self, *args, **kwargs))
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 25, in __inner
+    return await self.task
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 242, in connect
+    raise exc.IncompatibleProtocolError(*e.args) from e
+aiormq.exceptions.IncompatibleProtocolError: 0 bytes read on a total of 1 expected bytes
+connector.py - 2021-03-18 13:46:04,359 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 13:46:04,395 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:46:04,395 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:46:04,398 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 13:46:04,475 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 238, in connect
+    res = await self.__receive_frame()
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 327, in __receive_frame
+    frame_header = await self.reader.readexactly(1)
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 1 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 37, in connection
+    connection = await aio_pika.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 333, in connect
+    await connection.connect(
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 120, in connect
+    self.connection = await asyncio.wait_for(
+  File "d:\programs\anaconda\envs\mstemplate\lib\asyncio\tasks.py", line 440, in wait_for
+    return await fut
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aio_pika\connection.py", line 105, in _make_connection
+    connection = await aiormq.connect(self.url, **kwargs)
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 542, in connect
+    await connection.connect(client_properties or {})
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 168, in wrap
+    return await self.create_task(func(self, *args, **kwargs))
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\base.py", line 25, in __inner
+    return await self.task
+  File "d:\programs\anaconda\envs\mstemplate\lib\site-packages\aiormq\connection.py", line 242, in connect
+    raise exc.IncompatibleProtocolError(*e.args) from e
+aiormq.exceptions.IncompatibleProtocolError: 0 bytes read on a total of 1 expected bytes
+connector.py - 2021-03-18 13:46:33,426 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:46:33,493 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 13:46:33,513 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 13:46:33,560 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:46:33,738 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 13:46:33,775 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:46:33,775 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:46:33,778 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 13:46:50,780 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:46:50,837 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 13:46:50,853 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 13:46:50,906 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 13:46:51,020 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 13:46:51,063 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:46:51,063 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 13:46:51,066 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 18:53:53,026 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:53:53,065 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 18:53:53,072 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 18:53:53,137 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:53:53,231 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 18:53:53,255 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:53:53,256 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:53:53,258 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 18:54:01,282 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:54:01,338 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 18:54:01,356 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 18:54:01,405 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:54:01,504 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 18:54:01,541 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:54:01,541 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:54:01,545 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 18:54:25,427 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:54:25,467 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 18:54:25,476 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 18:54:25,506 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:54:25,590 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 18:54:25,619 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:54:25,619 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:54:25,621 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 18:54:54,746 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:54:54,783 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 18:54:54,790 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 18:54:54,817 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:54:54,900 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 18:54:54,928 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:54:54,928 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:54:54,930 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 18:55:20,824 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:55:20,866 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 18:55:20,874 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 18:55:20,900 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:55:20,981 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 18:55:21,009 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:55:21,009 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:55:21,011 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "d:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
+connector.py - 2021-03-18 18:57:07,773 - ERROR: Redis connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\redis\connector.py", line 32, in client
+    host: str = self.redis_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:57:07,833 - ERROR: Apm connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\apm\connector.py", line 30, in client
+    server_url = self.apm_config["server_url"]
+KeyError: 'server_url'
+connector.py - 2021-03-18 18:57:07,851 - ERROR: ELK connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\elasticsearch\connector.py", line 33, in client
+    hosts = self.elasticsearch_config["hosts"]
+KeyError: 'hosts'
+connector.py - 2021-03-18 18:57:07,903 - ERROR: MongoDB connection error, check your server and credentials
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\mongo\connector.py", line 31, in client
+    host: str = self.mongo_config["host"]
+KeyError: 'host'
+connector.py - 2021-03-18 18:57:08,005 - ERROR: RabbitMQ connection error, check your server and configurations
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\drivers\rabbitmq\connector.py", line 32, in connection
+    host: str = self.rabbit_mq_config["host"]
+KeyError: 'host'
+loader.py - 2021-03-18 18:57:08,043 - ERROR: environments connection error, check environments config
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:57:08,043 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 48, in get_by_key
+    raise error
+FileNotFoundError: [Errno 2] No such file or directory: 'unknow_path'
+loader.py - 2021-03-18 18:57:08,047 - ERROR: environments connection error, check environments config
+Traceback (most recent call last):
+  File "D:\projetos\ferreira giovanni Investimentos\back end\ms-template\api\project\infrastructure\environments\loader.py", line 52, in get_by_key
+    environments = config_dict["environments"]
+TypeError: 'NoneType' object is not subscriptable
