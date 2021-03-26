@@ -1,5 +1,3 @@
-from bson.objectid import ObjectId
-from pydantic.utils import Obj
 import pytest
 from datetime import datetime
 from project.repositories.person.business_rules.manage_physical_person import ManagePhysicalPerson

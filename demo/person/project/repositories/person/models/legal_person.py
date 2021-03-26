@@ -1,28 +1,28 @@
 import re
-from typing import List, Optional
+from typing import Optional
 from pydantic import BaseModel, Field, validator
 from project.helpers.pydantic_typo import MongoId
 
 
 class LegalPerson(BaseModel):
     id: Optional[MongoId] = Field(default=None, alias='_id')
-    status: str
     business_name: str
     fantasy_name: str
+    status: str
     sponsor_business_document_id: str
     business_document_id: str
-    mail: str
+    email: str
     phone: str
 
     @validator('business_name')
     def validate_name(cls, v):
-        if len(v) <= 0:
+        if len(v) == 0:
             raise ValueError('business name must be valid')
         return v
 
     @validator('fantasy_name')
-    def validate_last_name(cls, v):
-        if len(v) <= 0:
+    def validate_fantasy_name(cls, v):
+        if len(v) == 0:
             raise ValueError('fantasy name must be valid')
         return v
 
