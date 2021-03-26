@@ -26,7 +26,7 @@ output_data = {}
 
 @pytest.mark.asyncio
 async def test_save_physical_person():
-    save_result = await manage_physical_person.save(physical_person)
+    save_result = await manage_physical_person.save_physical_person(physical_person)
     assert save_result.id
     output_data["id"] = str(save_result.id)
 
@@ -34,78 +34,78 @@ async def test_save_physical_person():
 def test_compose_response():
     data = base_data.copy()
     data["_id"] = output_data["id"]
-    save_result = ManagePhysicalPerson.compose_response(data)
+    save_result = ManagePhysicalPerson.compose_response_physical_person(data)
     assert save_result.id
 
 
 def test_compose_response_whithout_id():
     data = base_data.copy()
-    save_result = ManagePhysicalPerson.compose_response(data)
+    save_result = ManagePhysicalPerson.compose_response_physical_person(data)
     assert save_result
 
 
 @pytest.mark.asyncio
 async def test_save_physical_person_has_exist():
-    with pytest.raises(RuntimeError):
+    with pytest.raises(Exception):
         same_physical_person = PhysicalPerson(**base_data)
-        await manage_physical_person.save(same_physical_person)
+        await manage_physical_person.save_physical_person(same_physical_person)
 
 
 @pytest.mark.asyncio
 async def test_save_physical_person_email_has_exist():
-    with pytest.raises(RuntimeError):
+    with pytest.raises(Exception):
         another_base_data = base_data.copy()
         another_base_data["name"] = "antonio"
         another_base_data["personal_document_id"] = "22233344455"
         another_physical_person = PhysicalPerson(**another_base_data)
-        await manage_physical_person.save(another_physical_person)
+        await manage_physical_person.save_physical_person(another_physical_person)
 
 
 @pytest.mark.asyncio
 async def test_save_physical_person_document_has_exist():
-    with pytest.raises(RuntimeError):
+    with pytest.raises(Exception):
         another_base_data = base_data.copy()
         another_base_data["name"] = "antonio"
         another_base_data["email"] = "antonio.neto@teste.com"
         another_physical_person = PhysicalPerson(**another_base_data)
-        await manage_physical_person.save(another_physical_person)
+        await manage_physical_person.save_physical_person(another_physical_person)
 
 
 @pytest.mark.asyncio
 async def test_update_physical_person():
-    await manage_physical_person.update(output_data["id"], {"email": "joao.silva@teste.com"})
+    await manage_physical_person.update_physical_person(output_data["id"], {"email": "joao.silva@teste.com"})
 
 
 @pytest.mark.asyncio
 async def test_update_physical_person_type_error():
     with pytest.raises(TypeError):
-        await manage_physical_person.update("0", {"email": "joao.silva2@teste.com"})
+        await manage_physical_person.update_physical_person("0", {"email": "joao.silva2@teste.com"})
 
 
 @pytest.mark.asyncio
 @pytest.mark.asyncio
 async def test_get_by_id_physical_person():
-    get_result = await manage_physical_person.get_by_id(output_data["id"])
+    get_result = await manage_physical_person.get_physical_person_by_id(output_data["id"])
     assert output_data["id"] == str(get_result.id)
 
 
 @pytest.mark.asyncio
 async def test_get_by_id_physical_person_type_error():
-    with pytest.raises(RuntimeError):
-        await manage_physical_person.get_by_id("0")
+    with pytest.raises(Exception):
+        await manage_physical_person.get_physical_person_by_id("0")
 
 
 @pytest.mark.asyncio
 @pytest.mark.asyncio
 async def test_get_by_query_physical_person():
-    get_result = await manage_physical_person.get_by_query({"email": "joao.silva@teste.com"})
+    get_result = await manage_physical_person.get_physical_person_by_query({"email": "joao.silva@teste.com"})
     assert len(get_result) == 1
 
 
 @pytest.mark.asyncio
 @pytest.mark.asyncio
 async def test_get_by_query_physical_person_with_date():
-    get_result = await manage_physical_person.get_by_query({
+    get_result = await manage_physical_person.get_physical_person_by_query({
         "initial_date": "1988-01-01",
         "end_date": "2001-01-01"
     })
@@ -114,14 +114,14 @@ async def test_get_by_query_physical_person_with_date():
 
 @pytest.mark.asyncio
 async def test_get_by_query_physical_person_type_error():
-    get_result = await manage_physical_person.get_by_query({"color": (1, 2, 3)})
+    get_result = await manage_physical_person.get_physical_person_by_query({"color": (1, 2, 3)})
     assert len(get_result) == 0
 
 
 @pytest.mark.asyncio
 async def test_get_by_query_physical_person_type_error_fetch():
-    with pytest.raises(RuntimeError):
-        await manage_physical_person.get_by_query(
+    with pytest.raises(Exception):
+        await manage_physical_person.get_physical_person_by_query(
             {
                 "initial_date": True,
                 "end_date": False
@@ -132,7 +132,7 @@ async def test_get_by_query_physical_person_type_error_fetch():
 @pytest.mark.asyncio
 @pytest.mark.asyncio
 async def test_delete_physical_person():
-    delete_result = await manage_physical_person.delete(output_data["id"])
+    delete_result = await manage_physical_person.delete_physical_person(output_data["id"])
     assert delete_result
 
 
@@ -140,4 +140,4 @@ async def test_delete_physical_person():
 @pytest.mark.asyncio
 async def test_delete_physical_person_error():
     with pytest.raises(TypeError):
-        await manage_physical_person.delete("0")
+        await manage_physical_person.delete_physical_person("0")

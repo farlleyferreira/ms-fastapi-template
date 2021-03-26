@@ -15,8 +15,7 @@ router = APIRouter()
 
 @router.get(
     "/by/id/{id}",
-    response_model=PhysicalPersonResponse,
-    tags=["person"]
+    response_model=PhysicalPersonResponse
 )
 async def get_by_id(id: str):
     """
@@ -25,13 +24,12 @@ async def get_by_id(id: str):
             - id [str(ObjectId)] = "605dcc895dbd779d5e66bd90"
     """
     manage_physical_person = ManagePhysicalPerson()
-    physical_person = await manage_physical_person.get_by_id(id)
+    physical_person = await manage_physical_person.get_physical_person_by_id(id)
     return physical_person.dict()
 
 
 @router.get(
     "by/qs",
-    tags=["person"],
     response_model=List[PhysicalPersonResponse],
     responses={204: {"model": None}},
 )
@@ -60,8 +58,7 @@ async def get_by_query(filter: PhysicalPersonQueryString = Depends(PhysicalPerso
     input_filter = filter.dict(exclude_none=True)
 
     manage_physical_person = ManagePhysicalPerson()
-    list_of_physical_person = await manage_physical_person.get_by_query(input_filter)
-    print("list_of_physical_person", list_of_physical_person)
+    list_of_physical_person = await manage_physical_person.get_physical_person_by_query(input_filter)
 
     if len(list_of_physical_person):
         return list_of_physical_person
@@ -70,8 +67,7 @@ async def get_by_query(filter: PhysicalPersonQueryString = Depends(PhysicalPerso
 
 @router.post(
     "/",
-    response_model=PhysicalPersonResponse,
-    tags=["person"]
+    response_model=PhysicalPersonResponse
 )
 async def save_physical_person(request: PhysicalPersonInput):
     """
@@ -79,14 +75,13 @@ async def save_physical_person(request: PhysicalPersonInput):
     """
     manage_physical_person = ManagePhysicalPerson()
     physical_person = PhysicalPerson(**request.dict())
-    physical_person = await manage_physical_person.save(physical_person)
+    physical_person = await manage_physical_person.save_physical_person(physical_person)
     return physical_person.dict()
 
 
 @router.put(
     "/{id}",
-    response_model=PhysicalPersonModified,
-    tags=["person"]
+    response_model=PhysicalPersonModified
 )
 async def update_physical_person(id: str, request: PhysicalPersonQueryString):
     """
@@ -113,14 +108,13 @@ async def update_physical_person(id: str, request: PhysicalPersonQueryString):
 
     update_object = request.dict(exclude_none=True)
     manage_physical_person = ManagePhysicalPerson()
-    itens_modified = await manage_physical_person.update(id, update_object)
+    itens_modified = await manage_physical_person.update_physical_person(id, update_object)
     return itens_modified
 
 
 @router.delete(
     "/by/{id}",
-    response_model=PhysicalPersonModified,
-    tags=["person"]
+    response_model=PhysicalPersonModified
 )
 async def delete(id: str):
     """
@@ -129,5 +123,5 @@ async def delete(id: str):
             - id [str(ObjectId)] = "605dcc895dbd779d5e66bd90"
     """
     manage_physical_person = ManagePhysicalPerson()
-    physical_person = await manage_physical_person.delete(id)
+    physical_person = await manage_physical_person.delete_physical_person(id)
     return physical_person

@@ -13,8 +13,11 @@ apm = ApmAdapter().client()
 app.add_middleware(ElasticAPM, client=apm)
 
 # app routes
-app.include_router(life_check_api, prefix="/health",)
-app.include_router(physical_person_api, prefix="/person",)
+app.include_router(life_check_api, prefix="/health", tags=["health"])
+app.include_router(physical_person_api, prefix="/person/physical", tags=["physical"])
+app.include_router(physical_person_api, prefix="/person/legal", tags=["legal"])
+app.include_router(physical_person_api, prefix="/person/billing_data", tags=["billing_data"])
+app.include_router(physical_person_api, prefix="/person/address", tags=["address"])
 
 
 schema = Schema(

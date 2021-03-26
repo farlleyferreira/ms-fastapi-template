@@ -1,32 +1,29 @@
 import re
 from typing import List, Optional
-from datetime import datetime
 from pydantic import BaseModel, Field, validator
 from project.helpers.pydantic_typo import MongoId
 
 
-class PhysicalPerson(BaseModel):
+class LegalPerson(BaseModel):
     id: Optional[MongoId] = Field(default=None, alias='_id')
-    name: str
-    last_name: str
     status: str
-    birthdate: datetime
-    gender: Optional[str]
-    personal_document_id: str
-    email: str
+    business_name: str
+    fantasy_name: str
+    sponsor_business_document_id: str
+    business_document_id: str
+    mail: str
     phone: str
-    age: Optional[int]
 
-    @validator('name')
+    @validator('business_name')
     def validate_name(cls, v):
         if len(v) <= 0:
-            raise ValueError('name must be valid')
+            raise ValueError('business name must be valid')
         return v
 
-    @validator('last_name')
+    @validator('fantasy_name')
     def validate_last_name(cls, v):
         if len(v) <= 0:
-            raise ValueError('last_name must be valid')
+            raise ValueError('fantasy name must be valid')
         return v
 
     @validator('status')
@@ -48,19 +45,14 @@ class PhysicalPerson(BaseModel):
             return v
         raise ValueError('phone must be valid')
 
-    @validator('personal_document_id')
-    def validate_personal_document_id(cls, v):
+    @validator('sponsor_business_document_id')
+    def validate_sponsor_business_document_id(cls, v):
         if not len(v) == 11:
-            raise ValueError('personal document must be a valid document')
+            raise ValueError('sponsor business document id document must be a valid document')
         return v
 
-    @validator('birthdate')
-    def validate_birthdate(cls, v, values):
-        age = datetime.now().year - v.year
-        values['birthdate'] = age
+    @validator('business_document_id')
+    def validate_business_document_id(cls, v):
+        if not len(v) == 14:
+            raise ValueError('business document id document must be a valid document')
         return v
-
-    @validator('age')
-    def validate_age(cls, v, values):
-        age = datetime.now().year - values['birthdate'].year
-        return age
