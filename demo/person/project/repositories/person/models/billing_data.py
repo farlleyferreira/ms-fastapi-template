@@ -18,7 +18,7 @@ class BillingData(BaseModel):
 
     @validator('person_id')
     def validate_person_id(cls, v):
-        if ObjectId.is_valid(v):
+        if not ObjectId.is_valid(v):
             raise ValueError('person id must be an valid id')
         return v
 
