@@ -47,6 +47,6 @@ class Elk:
                 "ELK connection error, check your server and credentials",
                 exc_info=sys.exc_info()
             )
-            Monitor.send_kpi_message("elk client error",  error)
+            Monitor.send_kpi_message("elk client error")
 
             raise error

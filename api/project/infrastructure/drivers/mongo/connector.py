@@ -35,6 +35,7 @@ class Mongo:
             database: str = self.mongo_config["database"]
 
             uri: str = f'mongodb://{username}:{password}@{host}:{port}'
+
             client = async_mongo.AsyncIOMotorClient(uri)
 
             return client[database]
@@ -45,6 +46,6 @@ class Mongo:
                 "MongoDB connection error, check your server and credentials",
                 exc_info=error
             )
-            Monitor.send_kpi_message("MongoDB client error", str(error))
+            Monitor.send_kpi_message("MongoDB client error")
 
             raise error

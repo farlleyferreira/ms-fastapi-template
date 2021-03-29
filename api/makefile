@@ -1,5 +1,8 @@
-test-coverage:
-	pytest --cov-report term-missing --cov=project/
+coverage:
+	python -m pytest -v --cov-report term-missing --cov=project/
+
+test:
+	python -m pytest
 
 list-requirements:
 	pip freeze

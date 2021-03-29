@@ -1,8 +1,8 @@
 
 from datetime import datetime
 
-from project.infrastructure.constants.Enumerators import SystemStatus as status
-from project.infrastructure.constants.Enumerators import ApiHealth as health
+from project.infrastructure.constants.HealthCheckStatus import SystemStatus as status
+from project.infrastructure.constants.HealthCheckStatus import ApiHealth as health
 
 from project.infrastructure.drivers.mongo.adapter import MongoAdapter
 from project.infrastructure.drivers.redis.adapter import RedisAdapter

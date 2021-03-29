@@ -2,7 +2,7 @@ import logging
 import logzero
 
 
-class Log:
+class Log:  # pragma: no cover
     def __init__(self):
         """[summary]
         """
