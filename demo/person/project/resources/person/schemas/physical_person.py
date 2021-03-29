@@ -1,5 +1,4 @@
 from datetime import datetime
-from project.repositories.person.models.physical_person import PhysicalPerson
 from project.helpers.pydantic_typo import MongoId
 from typing import Optional
 from pydantic import BaseModel

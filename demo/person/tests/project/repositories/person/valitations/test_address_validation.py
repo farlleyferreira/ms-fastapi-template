@@ -12,12 +12,13 @@ base_data = {
     "_id": ObjectId(),
     "status": "active",
     "person_id": str(ObjectId()),
-    "country": "str",
-    "state": "str",
-    "city": "str",
-    "street": "str",
-    "district": "str",
-    "zip_code": "str",
+    "country": "Latvéria",
+    "state": "Doomstadt",
+    "city": "Doomstadt",
+    "street": "42 avenue",
+    "district": "Norseheim",
+    "zip_code": "42B",
+    "number": "42424242",
     "type": "billing"
 }
 
@@ -78,6 +79,7 @@ async def test_this_address_is_inactive():
         "street": "str",
         "district": "str",
         "zip_code": "str",
+        "number": "str",
         "type": "billing"
     }
 

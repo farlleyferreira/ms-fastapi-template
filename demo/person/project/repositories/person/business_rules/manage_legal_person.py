@@ -32,30 +32,14 @@ class ManageLegalPerson:
             _error = traceback.format_exc()
             _message = "error to fetching legal person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
     async def get_legal_person_by_query(self, query: dict):
         try:
 
-            date_filter = {}
-            if "initial_date" in query:
-                initial_date = query["initial_date"]
-                date_filter["$gte"] = datetime.strptime(initial_date, "%Y-%m-%d")
-                del query["initial_date"]
-
-            if "end_date" in query:
-                end_date = query["end_date"]
-                date_filter["$lte"] = datetime.strptime(end_date, "%Y-%m-%d")
-                del query["end_date"]
-
-            custom_filter = {}
-            if date_filter:
-                custom_filter["birthdate"] = date_filter
-
-            custom_filter.update(query)
-            search_result: dict = await self.dao.get_by_filter(custom_filter)
+            search_result: dict = await self.dao.get_by_filter(query)
 
             if not len(search_result):
                 return []
@@ -72,7 +56,7 @@ class ManageLegalPerson:
             _error = traceback.format_exc()
             _message = "error to fetching list of legal person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -87,8 +71,8 @@ class ManageLegalPerson:
                 cause = "legal person has exist"
                 raise await self.raise_error_legal_person(_transaction, cause)
 
-            personal_document_id = _legal_person["business_document_id"]
-            if await validate.this_document_id_exist_in_store(personal_document_id):
+            business_document_id = _legal_person["business_document_id"]
+            if await validate.this_document_id_exist_in_store(business_document_id):
                 cause = "personal document id has exist in store"
                 raise await self.raise_error_legal_person(_transaction, cause)
 
@@ -107,7 +91,7 @@ class ManageLegalPerson:
             _error = traceback.format_exc()
             _message = "error to save legal person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -130,7 +114,7 @@ class ManageLegalPerson:
             _error = traceback.format_exc()
             _message = "error to update legal person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -152,7 +136,7 @@ class ManageLegalPerson:
             _error = traceback.format_exc()
             _message = "error to delete legal person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 

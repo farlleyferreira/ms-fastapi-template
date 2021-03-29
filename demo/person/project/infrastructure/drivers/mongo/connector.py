@@ -46,6 +46,6 @@ class Mongo:
                 "MongoDB connection error, check your server and credentials",
                 exc_info=error
             )
-            Monitor.send_kpi_message("MongoDB client error", str(error))
+            Monitor.send_kpi_message("MongoDB client error")
 
             raise error

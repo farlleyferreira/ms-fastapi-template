@@ -1,3 +1,4 @@
+from project.infrastructure.data_layer.data_layer_general import DataLayer
 import pytest
 from project.repositories.person.business_rules.manage_legal_person import ManageLegalPerson
 from project.repositories.person.models.legal_person import LegalPerson
@@ -51,8 +52,8 @@ async def test_save_legal_person_has_exist():
 async def test_save_legal_person_email_has_exist():
     with pytest.raises(Exception):
         another_base_data = base_data.copy()
-        another_base_data["name"] = "antonio"
-        another_base_data["personal_document_id"] = "22233344455"
+        another_base_data["business_name"] = "januario"
+        another_base_data["business_document_id"] = "55566377000188"
         another_legal_person = LegalPerson(**another_base_data)
         await manage_legal_person.save_legal_person(another_legal_person)
 
@@ -61,7 +62,7 @@ async def test_save_legal_person_email_has_exist():
 async def test_save_legal_person_document_has_exist():
     with pytest.raises(Exception):
         another_base_data = base_data.copy()
-        another_base_data["name"] = "antonio"
+        another_base_data["business_name"] = "januario"
         another_base_data["email"] = "antonio.neto@teste.com"
         another_legal_person = LegalPerson(**another_base_data)
         await manage_legal_person.save_legal_person(another_legal_person)
@@ -74,7 +75,7 @@ async def test_update_legal_person():
 
 @pytest.mark.asyncio
 async def test_update_legal_person_type_error():
-    with pytest.raises(TypeError):
+    with pytest.raises(Exception):
         await manage_legal_person.update_legal_person("0", {"email": "joao.silva2@teste.com"})
 
 
@@ -99,30 +100,17 @@ async def test_get_by_query_legal_person():
 
 
 @pytest.mark.asyncio
-@pytest.mark.asyncio
-async def test_get_by_query_legal_person_with_date():
-    get_result = await manage_legal_person.get_legal_person_by_query({
-        "initial_date": "1988-01-01",
-        "end_date": "2001-01-01"
-    })
-    assert len(get_result) == 0
-
-
-@pytest.mark.asyncio
 async def test_get_by_query_legal_person_type_error():
     get_result = await manage_legal_person.get_legal_person_by_query({"color": (1, 2, 3)})
     assert len(get_result) == 0
 
 
 @pytest.mark.asyncio
-async def test_get_by_query_legal_person_type_error_fetch():
+async def test_get_by_query_legal_person_error():
     with pytest.raises(Exception):
-        await manage_legal_person.get_legal_person_by_query(
-            {
-                "initial_date": True,
-                "end_date": False
-            }
-        )
+        manage_legal_person_error = ManageLegalPerson()
+        manage_legal_person_error.dao = DataLayer("")
+        await manage_legal_person_error.get_legal_person_by_query({})
 
 
 @pytest.mark.asyncio
@@ -135,5 +123,5 @@ async def test_delete_legal_person():
 @pytest.mark.asyncio
 @pytest.mark.asyncio
 async def test_delete_legal_person_error():
-    with pytest.raises(TypeError):
+    with pytest.raises(Exception):
         await manage_legal_person.delete_legal_person("0")

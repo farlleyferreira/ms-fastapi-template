@@ -8,13 +8,13 @@ manage_physical_person = ManagePhysicalPerson()
 
 base_data = {
     "status": "active",
-    "name": "João",
+    "name": "Anestesio",
     "last_name": "Da Silva Neto",
     "birthdate": datetime.strptime("1985-08-01", "%Y-%m-%d"),
     "gender": "",
-    "personal_document_id": "55599933311",
-    "email": "joao.neto@teste.com",
-    "phone": "+5534988887777",
+    "personal_document_id": "66399855071",
+    "email": "joao4neto@teste.com",
+    "phone": "+5534288887777",
 }
 
 physical_person = PhysicalPerson(**base_data)
@@ -54,7 +54,7 @@ async def test_save_physical_person_email_has_exist():
     with pytest.raises(Exception):
         another_base_data = base_data.copy()
         another_base_data["name"] = "antonio"
-        another_base_data["personal_document_id"] = "22233344455"
+        another_base_data["personal_document_id"] = "22299777773"
         another_physical_person = PhysicalPerson(**another_base_data)
         await manage_physical_person.save_physical_person(another_physical_person)
 
@@ -76,7 +76,7 @@ async def test_update_physical_person():
 
 @pytest.mark.asyncio
 async def test_update_physical_person_type_error():
-    with pytest.raises(TypeError):
+    with pytest.raises(Exception):
         await manage_physical_person.update_physical_person("0", {"email": "joao.silva2@teste.com"})
 
 
@@ -137,5 +137,5 @@ async def test_delete_physical_person():
 @pytest.mark.asyncio
 @pytest.mark.asyncio
 async def test_delete_physical_person_error():
-    with pytest.raises(TypeError):
+    with pytest.raises(Exception):
         await manage_physical_person.delete_physical_person("0")

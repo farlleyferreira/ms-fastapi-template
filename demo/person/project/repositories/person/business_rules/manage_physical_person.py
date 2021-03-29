@@ -32,7 +32,7 @@ class ManagePhysicalPerson:
             _error = traceback.format_exc()
             _message = "error to fetching physical person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -72,7 +72,7 @@ class ManagePhysicalPerson:
             _error = traceback.format_exc()
             _message = "error to fetching list of physical person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -107,7 +107,7 @@ class ManagePhysicalPerson:
             _error = traceback.format_exc()
             _message = "error to save physical person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -115,7 +115,7 @@ class ManagePhysicalPerson:
         try:
             _id: ObjectId = ObjectId(id)
 
-            update_result: dict = await self.dao.update({"_id": _id}, physical_person)
+            update_result = await self.dao.update({"_id": _id}, physical_person)
 
             matched_count = update_result.matched_count
             modified_count = update_result.modified_count
@@ -130,7 +130,7 @@ class ManagePhysicalPerson:
             _error = traceback.format_exc()
             _message = "error to update physical person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -152,7 +152,7 @@ class ManagePhysicalPerson:
             _error = traceback.format_exc()
             _message = "error to delete physical person"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 

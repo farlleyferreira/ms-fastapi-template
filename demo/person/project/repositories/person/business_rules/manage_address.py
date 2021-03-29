@@ -33,7 +33,7 @@ class ManageAddress:
             _error = traceback.format_exc()
             _message = "error to fetching address"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -57,7 +57,7 @@ class ManageAddress:
             _error = traceback.format_exc()
             _message = "error to fetching list of address"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -82,7 +82,7 @@ class ManageAddress:
             _error = traceback.format_exc()
             _message = "error to save address"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -105,7 +105,7 @@ class ManageAddress:
             _error = traceback.format_exc()
             _message = "error to update address"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -127,7 +127,7 @@ class ManageAddress:
             _error = traceback.format_exc()
             _message = "error to delete address"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 

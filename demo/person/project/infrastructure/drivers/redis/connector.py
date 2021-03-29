@@ -44,6 +44,6 @@ class Redis:
                 "Redis connection error, check your server and credentials",
                 exc_info=error
             )
-            Monitor.send_kpi_message("Redis client error", str(error))
+            Monitor.send_kpi_message("Redis client error")
 
             raise error

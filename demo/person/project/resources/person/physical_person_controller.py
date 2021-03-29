@@ -1,8 +1,9 @@
+import traceback
 from project.repositories.person.models.physical_person import PhysicalPerson
 from typing import List
-from fastapi import APIRouter
 from fastapi.param_functions import Depends
-from starlette.responses import Response
+from starlette.responses import JSONResponse, Response
+from fastapi import APIRouter, HTTPException
 from project.resources.person.schemas.physical_person import PhysicalPersonQueryString
 from project.resources.person.schemas.physical_person import PhysicalPersonResponse
 from project.resources.person.schemas.physical_person import PhysicalPersonModified
@@ -19,24 +20,27 @@ router = APIRouter()
 )
 async def get_by_id(id: str):
     """
-        ### Recurso que tem por objetivo buscar uma pessoa.
-        #### Usa como parametro de busca o seu identificador:
+        # Recurso que tem por objetivo buscar uma pessoa.
+        # Usa como parametro de busca o seu identificador:
             - id [str(ObjectId)] = "605dcc895dbd779d5e66bd90"
     """
-    manage_physical_person = ManagePhysicalPerson()
-    physical_person = await manage_physical_person.get_physical_person_by_id(id)
-    return physical_person.dict()
+    try:
+        manage_physical_person = ManagePhysicalPerson()
+        physical_person = await manage_physical_person.get_physical_person_by_id(id)
+        return physical_person.dict()
+    except Exception:
+        raise HTTPException(status_code=500, detail="error to fetch data")
 
 
 @router.get(
-    "by/qs",
+    "/by/qs",
     response_model=List[PhysicalPersonResponse],
     responses={204: {"model": None}},
 )
 async def get_by_query(filter: PhysicalPersonQueryString = Depends(PhysicalPersonQueryString)):
     """
-        ### Recurso que tem por objetivo buscar uma lista de pessoas.
-        #### A lista poderá ser filtrada por uma, ou pelo agrupamento das seguintes propriedades:
+        # Recurso que tem por objetivo buscar uma lista de pessoas.
+        # A lista poderá ser filtrada por uma, ou pelo agrupamento das seguintes propriedades:
             - name: [str] = joao
             - last_name: [str] = da silva
             - status: [str] =
@@ -55,14 +59,19 @@ async def get_by_query(filter: PhysicalPersonQueryString = Depends(PhysicalPerso
             - email: [str] = email@email.com
             - phone: [str] = +5534911112222
     """
-    input_filter = filter.dict(exclude_none=True)
+    try:
+        input_filter = filter.dict(exclude_none=True)
 
-    manage_physical_person = ManagePhysicalPerson()
-    list_of_physical_person = await manage_physical_person.get_physical_person_by_query(input_filter)
+        manage_physical_person = ManagePhysicalPerson()
+        list_of_physical_person = await manage_physical_person.get_physical_person_by_query(input_filter)
 
-    if len(list_of_physical_person):
-        return list_of_physical_person
-    return Response(status_code=204)
+        if len(list_of_physical_person):
+            return list_of_physical_person
+        return Response(status_code=204)
+
+    except Exception as error:
+        errors = list(error.args)
+        return JSONResponse(status_code=500, content=errors)
 
 
 @router.post(
@@ -71,12 +80,16 @@ async def get_by_query(filter: PhysicalPersonQueryString = Depends(PhysicalPerso
 )
 async def save_physical_person(request: PhysicalPersonInput):
     """
-        ### Recurso que tem por objetivo salvar uma pessoa fisica.
+        # Recurso que tem por objetivo salvar uma pessoa fisica.
     """
-    manage_physical_person = ManagePhysicalPerson()
-    physical_person = PhysicalPerson(**request.dict())
-    physical_person = await manage_physical_person.save_physical_person(physical_person)
-    return physical_person.dict()
+    try:
+        manage_physical_person = ManagePhysicalPerson()
+        physical_person = PhysicalPerson(**request.dict())
+        physical_person = await manage_physical_person.save_physical_person(physical_person)
+        return physical_person.dict()
+    except RuntimeError as error:
+        errors = list(error.args)
+        return JSONResponse(status_code=400, content=errors)
 
 
 @router.put(
@@ -85,8 +98,8 @@ async def save_physical_person(request: PhysicalPersonInput):
 )
 async def update_physical_person(id: str, request: PhysicalPersonQueryString):
     """
-        ### Recurso que tem por objetivo modificar os dados de uma pessoa.
-        #### Os atributos que poderão ser modificados são:
+        # Recurso que tem por objetivo modificar os dados de uma pessoa.
+        # Os atributos que poderão ser modificados são:
             - name: [str] = joao
             - last_name: [str] = da silva
             - status: [str] =
@@ -105,11 +118,14 @@ async def update_physical_person(id: str, request: PhysicalPersonQueryString):
             - email: [str] = email@email.com
             - phone: [str] = +5534911112222
     """
-
-    update_object = request.dict(exclude_none=True)
-    manage_physical_person = ManagePhysicalPerson()
-    itens_modified = await manage_physical_person.update_physical_person(id, update_object)
-    return itens_modified
+    try:
+        update_object = request.dict(exclude_none=True)
+        manage_physical_person = ManagePhysicalPerson()
+        itens_modified = await manage_physical_person.update_physical_person(id, update_object)
+        return itens_modified
+    except Exception as error:
+        errors = list(error.args)
+        return JSONResponse(status_code=500, content=errors)
 
 
 @router.delete(
@@ -118,10 +134,14 @@ async def update_physical_person(id: str, request: PhysicalPersonQueryString):
 )
 async def delete(id: str):
     """
-        ### Recurso que tem por objetivo deletar os dados de uma pessoa.
-        #### Usa como parametro de busca o seu identificador:
+        # Recurso que tem por objetivo deletar os dados de uma pessoa.
+        # Usa como parametro de busca o seu identificador:
             - id [str(ObjectId)] = "605dcc895dbd779d5e66bd90"
     """
-    manage_physical_person = ManagePhysicalPerson()
-    physical_person = await manage_physical_person.delete_physical_person(id)
-    return physical_person
+    try:
+        manage_physical_person = ManagePhysicalPerson()
+        physical_person = await manage_physical_person.delete_physical_person(id)
+        return physical_person
+    except Exception as error:
+        errors = list(error.args)
+        return JSONResponse(status_code=500, content=errors)

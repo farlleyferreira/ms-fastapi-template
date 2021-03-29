@@ -1,3 +1,4 @@
+from project.infrastructure.data_layer.data_layer_general import DataLayer
 import pytest
 from bson.objectid import ObjectId
 from project.repositories.person.business_rules.manage_address import ManageAddress
@@ -16,18 +17,19 @@ base_data = {
     "street": "str",
     "district": "str",
     "zip_code": "str",
+    "number": "str",
     "type": "billing"
 }
 
 
-legal_person = Address(**base_data)
+address = Address(**base_data)
 
 output_data = {}
 
 
 @pytest.mark.asyncio
-async def test_save_legal_person():
-    save_result = await manage_address.save_address(legal_person)
+async def test_save_address():
+    save_result = await manage_address.save_address(address)
     assert save_result.id
     output_data["id"] = str(save_result.id)
 
@@ -46,58 +48,67 @@ def test_compose_response_whithout_id():
 
 
 @pytest.mark.asyncio
-async def test_save_legal_person_has_exist():
+async def test_save_address_has_exist():
     with pytest.raises(Exception):
-        same_legal_person = Address(**base_data)
-        await manage_address.save_address(same_legal_person)
+        same_address = Address(**base_data)
+        await manage_address.save_address(same_address)
 
 
 @pytest.mark.asyncio
-async def test_update_legal_person():
+async def test_update_address():
     await manage_address.update_address(output_data["id"], {"status": "active"})
 
 
 @pytest.mark.asyncio
-async def test_update_legal_person_type_error():
-    with pytest.raises(TypeError):
+async def test_update_address_type_error():
+    with pytest.raises(Exception):
         await manage_address.update_address("0", {"person_id": ""})
 
 
 @pytest.mark.asyncio
 @pytest.mark.asyncio
-async def test_get_by_id_legal_person():
+async def test_get_by_id_address():
     get_result = await manage_address.get_address_by_id(output_data["id"])
     assert output_data["id"] == str(get_result.id)
 
 
 @pytest.mark.asyncio
-async def test_get_by_id_legal_person_type_error():
+async def test_get_by_id_address_type_error():
     with pytest.raises(Exception):
         await manage_address.get_address_by_id("0")
 
 
 @pytest.mark.asyncio
 @pytest.mark.asyncio
-async def test_get_by_query_legal_person():
+async def test_get_by_query_address():
     get_result = await manage_address.get_address_by_query({"person_id": base_data["person_id"]})
     assert len(get_result) == 1
 
 
 @pytest.mark.asyncio
-async def test_get_by_query_legal_person_type_error():
+async def test_get_by_query_address_type_error():
     get_result = await manage_address.get_address_by_query({"color": (1, 2, 3)})
     assert len(get_result) == 0
 
 
 @pytest.mark.asyncio
 @pytest.mark.asyncio
-async def test_delete_legal_person():
+async def test_get_by_query_address_error():
+    with pytest.raises(Exception):
+        manage_address_error = ManageAddress()
+        manage_address_error.dao = DataLayer("")
+        await manage_address_error.get_address_by_query({"color": (1, 2, 3)})
+
+
+@pytest.mark.asyncio
+@pytest.mark.asyncio
+async def test_delete_address():
     delete_result = await manage_address.delete_address(output_data["id"])
     assert delete_result
 
 
 @pytest.mark.asyncio
 @pytest.mark.asyncio
-async def test_delete_legal_person_error():
-    with pytest.raises(TypeError):
+async def test_delete_address_error():
+    with pytest.raises(Exception):
         await manage_address.delete_address("0")

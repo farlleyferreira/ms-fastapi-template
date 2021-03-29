@@ -49,6 +49,6 @@ class RabbitMq:
                 "RabbitMQ connection error, check your server and configurations",
                 exc_info=error
             )
-            Monitor.send_kpi_message("RabbitMQ client error", str(error))
+            Monitor.send_kpi_message("RabbitMQ client error")
 
             raise error

@@ -33,7 +33,7 @@ class ManageBillingData:
             _error = traceback.format_exc()
             _message = "error to fetching billing data"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -57,7 +57,7 @@ class ManageBillingData:
             _error = traceback.format_exc()
             _message = "error to fetching list of billing data"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -82,7 +82,7 @@ class ManageBillingData:
             _error = traceback.format_exc()
             _message = "error to save billing data"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -105,7 +105,7 @@ class ManageBillingData:
             _error = traceback.format_exc()
             _message = "error to update billing data"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 
@@ -127,7 +127,7 @@ class ManageBillingData:
             _error = traceback.format_exc()
             _message = "error to delete billing data"
             log.record.error(_message, exc_info=_error)
-            Monitor.send_kpi_message(_message, _error)
+            Monitor.send_kpi_message(_message)
 
             raise error
 

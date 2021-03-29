@@ -15,27 +15,27 @@ class DataLayer(MongoAdapter):
         collection = database[self.collection]
         return collection
 
-    async def get_by_id(self, id: ObjectId):
+    async def get_by_id(self, _id: ObjectId):
         collection = self.get_collection()
-        object_result = await collection.find_one({"_id": id})
+        object_result = await collection.find_one({"_id": _id})
         return object_result
 
-    async def get_by_filter(self, filter: dict):
+    async def get_by_filter(self, _filter: dict):
         collection = self.get_collection()
-        cursor = collection.find(filter)
+        cursor = collection.find(_filter)
         object_result = await cursor.to_list(None)
         await cursor.close()
         return object_result
 
-    async def save(self, object: dict):
+    async def save(self, _object: dict):
         collection = self.get_collection()
-        save_result = await collection.insert_one(object)
+        save_result = await collection.insert_one(_object)
         object_result = await self.get_by_id(save_result.inserted_id)
         return object_result
 
-    async def update(self, criteria: dict, object: dict) -> UpdateResult:
+    async def update(self, criteria: dict, _object: dict) -> UpdateResult:
         collection = self.get_collection()
-        object_result = await collection.update_one(criteria, {'$set': object})
+        object_result = await collection.update_one(criteria, {'$set': _object})
         return object_result
 
     async def delete(self, criteria: dict):

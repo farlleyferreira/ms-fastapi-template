@@ -4,6 +4,9 @@ from project.infrastructure.open_api.open_api_schema import Schema
 from project.infrastructure.drivers.apm.adapter import ApmAdapter
 from project.resources.lifecheck.controller import router as life_check_api
 from project.resources.person.physical_person_controller import router as physical_person_api
+from project.resources.person.legal_person_controller import router as legal_person_api
+from project.resources.person.billing_data_controller import router as billing_data_api
+from project.resources.person.address_controller import router as address_api
 
 
 app = FastAPI()
@@ -14,10 +17,10 @@ app.add_middleware(ElasticAPM, client=apm)
 
 # app routes
 app.include_router(life_check_api, prefix="/health", tags=["health"])
+app.include_router(legal_person_api, prefix="/person/legal", tags=["legal"])
 app.include_router(physical_person_api, prefix="/person/physical", tags=["physical"])
-app.include_router(physical_person_api, prefix="/person/legal", tags=["legal"])
-app.include_router(physical_person_api, prefix="/person/billing_data", tags=["billing_data"])
-app.include_router(physical_person_api, prefix="/person/address", tags=["address"])
+app.include_router(billing_data_api, prefix="/person/billing_data", tags=["billing_data"])
+app.include_router(address_api, prefix="/person/address", tags=["address"])
 
 
 schema = Schema(

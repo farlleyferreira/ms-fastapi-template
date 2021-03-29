@@ -13,6 +13,7 @@ class Address(BaseModel):
     city: str
     street: str
     district: str
+    number: str
     zip_code: str
     type: str
 

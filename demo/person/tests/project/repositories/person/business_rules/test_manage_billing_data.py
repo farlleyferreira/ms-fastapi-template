@@ -1,3 +1,4 @@
+from project.infrastructure.data_layer.data_layer_general import DataLayer
 import pytest
 from bson.objectid import ObjectId
 from project.repositories.person.business_rules.manage_billing_data import ManageBillingData
@@ -55,7 +56,7 @@ async def test_update_legal_person():
 
 @pytest.mark.asyncio
 async def test_update_legal_person_type_error():
-    with pytest.raises(TypeError):
+    with pytest.raises(Exception):
         await manage_billing_data.update_billing_data("0", {"person_id": ""})
 
 
@@ -87,6 +88,15 @@ async def test_get_by_query_legal_person_type_error():
 
 @pytest.mark.asyncio
 @pytest.mark.asyncio
+async def test_get_by_query_legal_person_error():
+    with pytest.raises(Exception):
+        manage_billing_data_error = ManageBillingData()
+        manage_billing_data_error.dao = DataLayer("")
+        await manage_billing_data_error.get_billing_data_by_query({"0": 0})
+
+
+@pytest.mark.asyncio
+@pytest.mark.asyncio
 async def test_delete_legal_person():
     delete_result = await manage_billing_data.delete_billing_data(output_data["id"])
     assert delete_result
@@ -95,5 +105,5 @@ async def test_delete_legal_person():
 @pytest.mark.asyncio
 @pytest.mark.asyncio
 async def test_delete_legal_person_error():
-    with pytest.raises(TypeError):
+    with pytest.raises(Exception):
         await manage_billing_data.delete_billing_data("0")

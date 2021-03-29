@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 
 
-class Schema:
+class Schema:  # pragma: no cover
 
     def __init__(
         self,
