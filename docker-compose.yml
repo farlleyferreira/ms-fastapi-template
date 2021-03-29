@@ -108,19 +108,19 @@ services:
     networks:
       - app-tier
 
-  web:
-    build: ./api
-    volumes:
-      - .:/code
-    ports:
-      - "5000:5000"
-    depends_on:
-      - elasticsearch
-      - mongo
-      - redis
-      - rabbit
-    networks:
-      - app-tier
+  # web:
+  #   build: ./api
+  #   volumes:
+  #     - .:/code
+  #   ports:
+  #     - "5000:5000"
+  #   depends_on:
+  #     - elasticsearch
+  #     - mongo
+  #     - redis
+  #     - rabbit
+  #   networks:
+  #     - app-tier
 
 networks:
   app-tier:
