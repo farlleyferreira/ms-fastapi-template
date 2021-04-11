@@ -8,7 +8,7 @@ import sys
 log = Log()
 
 
-class Elk:
+class Elk(object):
 
     def __init__(self) -> None:
         """

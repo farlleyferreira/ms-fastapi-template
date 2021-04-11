@@ -13,10 +13,6 @@ def test_mongo_connection_success():
 
 
 def test_mongo_connection_error():
-    """
-        when: Crio uma conexão com o Apm
-        Then: Obtenho falha
-    """
     mongo = Mongo()
     mongo.mongo_config = {"unknow": ""}
 

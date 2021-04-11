@@ -7,7 +7,7 @@ from project.infrastructure.monitoring_layer.aplication_kpi import Monitor
 log = Log()
 
 
-class Redis:
+class Redis(object):
 
     def __init__(self):
         """

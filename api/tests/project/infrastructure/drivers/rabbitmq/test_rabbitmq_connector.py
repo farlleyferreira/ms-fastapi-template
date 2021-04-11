@@ -15,10 +15,6 @@ async def test_rabbitmq_connection_success():
 
 
 def test_rabbitmq_connection_error():
-    """
-            when: Crio uma conexão com o Apm
-            Then: Obtenho falha
-        """
     with pytest.raises(Exception):
         rabbitmq = RabbitMq()
         rabbitmq.rabbit_mq_config = {"port": -5000}

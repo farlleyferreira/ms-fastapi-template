@@ -12,12 +12,15 @@ services:
       - setup.template.settings.index.number_of_shards=1
       - setup.template.settings.index.codec=best_compression
       - output.elasticsearch.hosts=["elasticsearch:9200"]
-    command: [
-        "apm-server", 
-        "-e", 
-        "-E", "output.elasticsearch.username=elastic", 
-        "-E", "output.elasticsearch.password=mstemplate123", 
-    ]
+    command:
+      [
+        "apm-server",
+        "-e",
+        "-E",
+        "output.elasticsearch.username=elastic",
+        "-E",
+        "output.elasticsearch.password=mstemplate123",
+      ]
     networks:
       - app-tier
     depends_on:
@@ -101,10 +104,11 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: mstemplate123
+      MONGO_INITDB_DATABASE: ms-template
     ports:
       - "27017:27017"
     volumes:
-      - /home/renatogroffe/Desenvolvimento/Docker/Volumes/MongoDB:/data/db
+      - mongodb_data_container:/data/db
     networks:
       - app-tier
 
@@ -121,6 +125,9 @@ services:
   #     - rabbit
   #   networks:
   #     - app-tier
+
+volumes:
+  mongodb_data_container:
 
 networks:
   app-tier:

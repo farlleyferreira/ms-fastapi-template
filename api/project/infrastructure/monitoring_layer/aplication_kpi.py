@@ -1,7 +1,7 @@
 from project.infrastructure.drivers.apm.adapter import ApmAdapter
 
 
-class Monitor:
+class Monitor(object):
 
     @staticmethod
     def send_kpi_message(message: str) -> None:

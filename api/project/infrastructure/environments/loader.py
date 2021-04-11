@@ -9,7 +9,7 @@ log = Log()
 base_path = "./project/infrastructure/environments/config.yaml"
 
 
-class Configs:
+class Configs(object):
     @staticmethod
     def get_by_key(key, config_path: str = base_path) -> dict:
         """

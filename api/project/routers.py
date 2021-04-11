@@ -8,10 +8,8 @@ from project.resources.lifecheck.controller import router as lifecheckapi
 app = FastAPI()
 apm = ApmAdapter().client()
 
-# app middlewares
 app.add_middleware(ElasticAPM, client=apm)
 
-# app routes
 app.include_router(lifecheckapi, prefix="/health",)
 
 

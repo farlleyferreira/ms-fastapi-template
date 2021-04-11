@@ -6,7 +6,7 @@ from project.infrastructure.monitoring_layer.aplication_general_log import Log
 log = Log()
 
 
-class Apm:
+class Apm(object):
 
     def __init__(self) -> None:
         """
