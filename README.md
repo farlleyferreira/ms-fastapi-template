@@ -35,7 +35,6 @@
 </br>
 
 > <ol>
-> <li> Criação e ajuste das documentações de utilização e design. </li>
 > <li> Criação do manual de requisitos para PR. </li>
 > <li> Implantação de caso de uso. </li>
 > <li> Ajuste e melhoria da arquitetura. </li>
@@ -120,7 +119,7 @@
 >    <li> Crie um ambiente virtual utilizando gerenciador de sua preferência > (pyenv, virtualenv, anaconda...).</li>
 >    <li> Dentro deste diretório será possivel verificar a criação da pasta: <i><b>ms-fastapi-template</b></i></li>
 >    <li> No arqruivo docker-compose.yml, dentro deste diretório deverá ser comentado o item referente ao serviço da com tag: <i><b>web</b></i>.</li>
->    <li> Aponte seu terminal para o diretório api, dessa mesma aplicação e execute o comando:</b></i></li>
+>    <li> Aponte seu terminal para o diretório <b>api</b>, dessa mesma aplicação e execute o comando:</b></i></li>
 >   </ol>
 > </p>
 >
@@ -192,6 +191,29 @@
 > Ou ainda, de acordo com a prferencia do desenvolvedor, os testes poderão ser executados via plugin da sua IDE
 > ou editor de códigos preferida, recomendo a [Python Test Explorer for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=LittleFoxTeam.vscode-python-test-adapter) ou ainda [Test Explorer UI](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer). Já para os testes do tipo BDD que utilizaremos nos casos de uso, recomendo [Pytest BDD](https://marketplace.visualstudio.com/items?itemName=vtenentes.bdd)
 
+### Ops
+
+#### Sonar Qube
+
+> Para garantir a qualidade de código e boas práticas foi adicionado ao projeto uma imagem do SonarQube, a qual pode ser executada através dos seguintes comandos:
+>
+> ```bash
+> cd ops
+>
+> docker-compose up
+> ```
+>
+> Feito isso, será necessário realizar o download do sonar scanner adequado ao seu sistema operacional, como este projeto foi desenvolvido em um ambiente windows (#mejulgue), você encontrará neste mesmo diretório, a versão para este sistema operacional.
+>
+> Volte a raiz do projeto, e novamente aponte para o diretório <b>api</b> e execute o comando:
+>
+> ```bash
+> make sonar-scaner
+> ```
+>
+> Este comando executará todas as análises pertinentes e realizará o upload do relatório para o servidor do sonar, que poderá ser acessado em: http://localhost:9000.
+> Você poderá observar que dentro do diretório <b>api</b>, será possivel encontrar um arquivo denominado <b>sonar-project.properties</b>, que deverá ser alterado de acordo com seu objetivo e a documentação do <a href="https://docs.sonarqube.org/latest/">SonarQube</a>
+
 ## <a id="patterns">Estrutura e padrões adotados</a> :european_castle:
 
 > ### Estrutura: :mag:
@@ -227,19 +249,18 @@
 >   |   |   - makefile
 >   |   |   - requirements.txt
 >   |   |   - setup
+>   |   - ops
 >   |   - worker
 >   |   - volumes
 >   |   - docker-compose.yml
 >
 > ```
 >
+> ### Diagrama geral da aplicação: :construction_worker:
+>
+> ![alt text](diagram.png "Title")
+>
 > ### Padrões adotados: :chart_with_upwards_trend:
->
-> #### Api :electric_plug:
->
-> #### Workers :construction_worker:
->
-> #### Tests :hammer:
 >
 > #### Observações: :information_source:
 >
