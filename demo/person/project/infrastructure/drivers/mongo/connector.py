@@ -6,7 +6,7 @@ from project.infrastructure.monitoring_layer.aplication_kpi import Monitor
 log = Log()
 
 
-class Mongo:
+class Mongo(object):
 
     def __init__(self) -> None:
         """

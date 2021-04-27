@@ -1,17 +1,17 @@
 from project.repositories.lifecheck.business_rules.health_status import Lifecheck
-from project.infrastructure.constants.HealthCheckStatus import SystemStatus as status
-from project.infrastructure.constants.HealthCheckStatus import ApiHealth as health
+from project.infrastructure.constants.health_check_status import Status
+from project.infrastructure.constants.health_check_status import Health
 
 life_check = Lifecheck({})
 
 
 def test_get_api_status_danger():
-    list_status = [status.RED, status.RED, status.RED, status.RED, ]
+    list_status = [Status.RED, Status.RED, Status.RED, Status.RED, ]
     api_status = life_check.get_api_status(list_status)
-    assert api_status == health.danger.value
+    assert api_status == Health.danger.value
 
 
 def test_get_api_status_warning():
-    list_status = [status.GREEN, status.RED, status.RED, status.RED, ]
+    list_status = [Status.GREEN, Status.RED, Status.RED, Status.RED, ]
     api_status = life_check.get_api_status(list_status)
-    assert api_status == health.warning.value
+    assert api_status == Health.warning.value

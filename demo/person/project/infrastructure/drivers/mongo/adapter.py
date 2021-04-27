@@ -2,6 +2,9 @@ from project.infrastructure.drivers.mongo.connector import Mongo
 
 
 class MongoAdapter(Mongo):
+    """
+        Mongo adapter class
+    """
 
     def __init__(self) -> None:
         super().__init__()

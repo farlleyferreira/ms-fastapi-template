@@ -1,0 +1,6 @@
+projectKey=ms-person
+serverUrl=http://localhost:9000
+serverVersion=8.5.1.38104
+dashboardUrl=http://localhost:9000/dashboard?id=ms-person
+ceTaskId=AXkQv4ao4FH8__EqP94M
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXkQv4ao4FH8__EqP94M

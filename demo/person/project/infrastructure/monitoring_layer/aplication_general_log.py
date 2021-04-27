@@ -2,9 +2,11 @@ import logging
 import logzero
 
 
-class Log:  # pragma: no cover
+class Log(object):
     def __init__(self):
-        """[summary]
+        """
+            Custom log class implementation
+            this class implement a logzero custom log
         """
         logzero.logfile(
             filename="./project/logs/logfile.log",
@@ -12,4 +14,5 @@ class Log:  # pragma: no cover
                 '%(filename)s - %(asctime)s - %(levelname)s: %(message)s'
             )
         )
+
         self.record = logzero.logger
