@@ -6,7 +6,7 @@
 > Este projeto foi construído como resultado de um aprofundamento dos estudos discutidos no blog 
 > <a href="https://farlley.com">farlley.com</a> com foco maior na arquitetura <i><b>Domain Driven Design (DDD)</b></i>. 
 > Neste trabalho você encontrará um template simples para criação de microsserviços, bem como um caso de uso (que ainda 
-> será implementado de acordo com o Roadmap que se encontra neste mesmo documento) aplicando as torias e estudos apresentados 
+> será implementado de acordo com o Roadmap que se encontra neste mesmo documento) aplicando as teorias e estudos apresentados 
 > nos livros <i><b>Implementando Domain-Driven Design - Vaughn Vernon</b></i>, <i><b>Domain-Driven Design: Atacando as 
 > Complexidades no Coração do Software - Eric Evans</b></i>, e <i><b>Building Microservices: Designing Fine-Grained Systems
 >  - Sam Newman</b></i>, a bibliografia consultada será adicionada ao final deste documento em acordo com o roadmap da aplicação. 
@@ -25,7 +25,7 @@
 >
 > <p style="text-align: justify">
 > Ao longo do desenvolvimento do projeto, outras integrações poderão ser adicionadas, desde que, sejam feitas respeitando as diretrizes
-> e arquitetura adotadas neste projeto base, com a finalidade de manter a integridade do mesmo. Todos os itens pertinentes a arquitetura
+> e arquitetura adotadas neste projeto base, com a finalidade de manter sua integridade. Todos os itens pertinentes a arquitetura
 > e estrutura do projeto serão extensivamente discutidos nos itens que estão contidos neste mesmo documento. Sinta-se a vontade para
 > contribuir com o mesmo.
 > </p>
@@ -38,7 +38,7 @@
 > <li> Criação do manual de requisitos para PR. </li>
 > <li> Implantação de caso de uso. </li>
 > <li> Ajuste e melhoria da arquitetura. </li>
-> <li> Criação da bibliografia de referencia do projeto</li>
+> <li> Criação da bibliografia de referência do projeto</li>
 > </ol>
 
 ### Setup
@@ -54,9 +54,9 @@
 > <p>
 >   <ol>
 >    <li> Realize o clone desta aplicação para seu diretório de projetos</li>
->    <li> Dentro deste diretório será possivel verificar a criação da pasta: <i><b>ms-fastapi-template</b></i></li>
+>    <li> Dentro deste diretório será possível verificar a criação da pasta: <i><b>ms-fastapi-template</b></i></li>
 >    <li> Abra o diretório <i><b>ms-fastapi-template/api/project/infrastructure/environments</b></i></li>
->    <li> Neeste diretório você encontrará o arquivo <i><b>config.yaml d</b></i></li>
+>    <li> Neste diretório você encontrará o arquivo <i><b>config.yaml d</b></i></li>
 >    <li> Para cada serviço contido neste arquivo, altere o host: localhost para o nome do serviço desejado (nome do serviço no arquivo docker-compose).</li>
 >   </ol>
 >   <p style="text-align: justify">
@@ -117,8 +117,8 @@
 >    <li> Realize o clone desta aplicação para seu diretório de projetos</li>
 >    <li> Certifique-se de possuir o make instalado em seu OS</li>
 >    <li> Crie um ambiente virtual utilizando gerenciador de sua preferência > (pyenv, virtualenv, anaconda...).</li>
->    <li> Dentro deste diretório será possivel verificar a criação da pasta: <i><b>ms-fastapi-template</b></i></li>
->    <li> No arqruivo docker-compose.yml, dentro deste diretório deverá ser comentado o item referente ao serviço da com tag: <i><b>web</b></i>.</li>
+>    <li> Dentro deste diretório será possível verificar a criação da pasta: <i><b>ms-fastapi-template</b></i></li>
+>    <li> No arquivo docker-compose.yml, dentro deste diretório deverá ser comentado o item referente ao serviço da com tag: <i><b>web</b></i>.</li>
 >    <li> Aponte seu terminal para o diretório <b>api</b>, dessa mesma aplicação e execute o comando:</b></i></li>
 >   </ol>
 > </p>
@@ -166,11 +166,11 @@
 > ```
 >
 > <p>
-> Nossa aplicação estará então disponivel para ser utilizada no endereço <i><b>http://localhost:5000</b></i>:
+> Nossa aplicação estará então disponível para ser utilizada no endereço <i><b>http://localhost:5000</b></i>:
 > e sua documentação via swagger estará ativa via <i><b>http://localhost:5000/docs</b></i>
 > </p>
 >
-> <i><b>Para rodar a suite de testes:</b></i>
+> <i><b>Para rodar a suíte de testes:</b></i>
 >
 > <p>
 >   <ol start="9">
@@ -188,7 +188,7 @@
 > pytest --cov-report term-missing --cov=project/
 > ```
 >
-> Ou ainda, de acordo com a prferencia do desenvolvedor, os testes poderão ser executados via plugin da sua IDE
+> Ou ainda, de acordo com a preferência do desenvolvedor, os testes poderão ser executados via plugin da sua IDE
 > ou editor de códigos preferida, recomendo a [Python Test Explorer for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=LittleFoxTeam.vscode-python-test-adapter) ou ainda [Test Explorer UI](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer). Já para os testes do tipo BDD que utilizaremos nos casos de uso, recomendo [Pytest BDD](https://marketplace.visualstudio.com/items?itemName=vtenentes.bdd)
 
 ### Ops
@@ -212,7 +212,7 @@
 > ```
 >
 > Este comando executará todas as análises pertinentes e realizará o upload do relatório para o servidor do sonar, que poderá ser acessado em: http://localhost:9000.
-> Você poderá observar que dentro do diretório <b>api</b>, será possivel encontrar um arquivo denominado <b>sonar-project.properties</b>, que deverá ser alterado de acordo com seu objetivo e a documentação do <a href="https://docs.sonarqube.org/latest/">SonarQube</a>
+> Você poderá observar que dentro do diretório <b>api</b>, será possível encontrar um arquivo denominado <b>sonar-project.properties</b>, que deverá ser alterado de acordo com seu objetivo e a documentação do <a href="https://docs.sonarqube.org/latest/">SonarQube</a>
 
 ## <a id="patterns">Estrutura e padrões adotados</a> :european_castle:
 
