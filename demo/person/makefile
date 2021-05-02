@@ -9,6 +9,7 @@ list-requirements:
 
 install-requirements:
 	pip install -r requirements.txt
+	pip install -r requirements-dev.txt
 
 run-aplication:
 	python setup.py
@@ -16,3 +17,5 @@ run-aplication:
 sonar-scan:
 	../../ops/sonar-scanner-4.6.0.2311-windows/bin/sonar-scanner.bat 
 
+radon-scan:
+	radon cc project/ -a
