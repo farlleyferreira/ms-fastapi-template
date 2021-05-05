@@ -1,4 +1,4 @@
-from project.repositories.person.models.address import Address
+from project.domain.person.repository.address import Address
 from typing import List
 from fastapi import APIRouter, HTTPException
 from fastapi.param_functions import Depends
@@ -7,7 +7,7 @@ from project.resources.person.schemas.address import AddressQueryString
 from project.resources.person.schemas.address import AddressResponse
 from project.resources.person.schemas.address import AddressModified
 from project.resources.person.schemas.address import AddressInput
-from project.repositories.person.business_rules.manage_address import ManageAddress
+from project.domain.person.business_rules.manage_address import ManageAddress
 
 
 router = APIRouter()

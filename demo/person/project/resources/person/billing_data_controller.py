@@ -1,4 +1,4 @@
-from project.repositories.person.models.billing_data import BillingData
+from project.domain.person.repository.billing_data import BillingData
 from typing import List
 from fastapi import APIRouter, HTTPException
 from fastapi.param_functions import Depends
@@ -8,7 +8,7 @@ from project.resources.person.schemas.billing_data import BillingDataUpdateData
 from project.resources.person.schemas.billing_data import BillingDataResponse
 from project.resources.person.schemas.billing_data import BillingDataModified
 from project.resources.person.schemas.billing_data import BillingDataInput
-from project.repositories.person.business_rules.manage_billing_data import ManageBillingData
+from project.domain.person.business_rules.manage_billing_data import ManageBillingData
 
 
 router = APIRouter()

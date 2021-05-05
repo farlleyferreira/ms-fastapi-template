@@ -891,7 +891,7 @@
 				</class>
 			</classes>
 		</package>
-		<package name="repositories.person.models" line-rate="1" branch-rate="1" complexity="0">
+		<package name="repositories.person.repository" line-rate="1" branch-rate="1" complexity="0">
 			<classes>
 				<class name="address.py" filename="repositories/person/models/address.py" complexity="0" line-rate="1" branch-rate="1">
 					<methods/>

@@ -1,8 +1,8 @@
 from project.infrastructure.data_layer.data_layer_general import DataLayer
 import pytest
 from bson.objectid import ObjectId
-from project.repositories.person.business_rules.manage_billing_data import ManageBillingData
-from project.repositories.person.models.billing_data import BillingData
+from project.domain.person.business_rules.manage_billing_data import ManageBillingData
+from project.domain.person.repository.billing_data import BillingData
 
 manage_billing_data = ManageBillingData()
 

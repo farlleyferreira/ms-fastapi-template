@@ -1,6 +1,6 @@
 import pytest
 from bson.objectid import ObjectId
-from project.repositories.person.models.billing_data import BillingData
+from project.domain.person.repository.billing_data import BillingData
 
 
 def test_instance_physical_person():

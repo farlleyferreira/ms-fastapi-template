@@ -1,6 +1,6 @@
 import pytest
 from bson.objectid import ObjectId
-from project.repositories.person.models.legal_person import LegalPerson
+from project.domain.person.repository.legal_person import LegalPerson
 
 
 def test_instance_physical_person():

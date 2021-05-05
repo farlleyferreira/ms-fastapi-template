@@ -5,8 +5,8 @@ from datetime import datetime
 from bson.objectid import ObjectId
 from project.infrastructure.constants.mongo_collections import Collections
 from project.infrastructure.data_layer.data_layer_general import DataLayer
-from project.repositories.person.models.physical_person import PhysicalPerson
-from project.repositories.person.valitations.physical_person import ValidatePhysicalPerson
+from project.domain.person.repository.physical_person import PhysicalPerson
+from project.domain.person.valitations.physical_person import ValidatePhysicalPerson
 
 from project.infrastructure.monitoring_layer.aplication_general_log import Log
 from project.infrastructure.monitoring_layer.aplication_kpi import Monitor

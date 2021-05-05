@@ -2,9 +2,9 @@ from bson.objectid import ObjectId
 import pytest
 from datetime import datetime
 from project.infrastructure.constants.mongo_collections import Collections
-from project.repositories.person.models.physical_person import PhysicalPerson
+from project.domain.person.repository.physical_person import PhysicalPerson
 from project.infrastructure.data_layer.data_layer_general import DataLayer
-from project.repositories.person.valitations.physical_person import ValidatePhysicalPerson
+from project.domain.person.valitations.physical_person import ValidatePhysicalPerson
 
 
 data_layer = DataLayer(Collections.physical_person)

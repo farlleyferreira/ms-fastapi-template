@@ -1,7 +1,7 @@
 from datetime import datetime
 from bson.objectid import ObjectId
 import pytest
-from project.repositories.person.models.physical_person import PhysicalPerson
+from project.domain.person.repository.physical_person import PhysicalPerson
 
 
 def test_instance_physical_person():

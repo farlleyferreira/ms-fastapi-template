@@ -1,4 +1,4 @@
-from project.repositories.person.models.legal_person import LegalPerson
+from project.domain.person.repository.legal_person import LegalPerson
 from typing import List
 from fastapi import APIRouter, HTTPException
 from fastapi.param_functions import Depends
@@ -7,7 +7,7 @@ from project.resources.person.schemas.legal_person import LegalPersonQueryString
 from project.resources.person.schemas.legal_person import LegalPersonResponse
 from project.resources.person.schemas.legal_person import LegalPersonModified
 from project.resources.person.schemas.legal_person import LegalPersonInput
-from project.repositories.person.business_rules.manage_legal_person import ManageLegalPerson
+from project.domain.person.business_rules.manage_legal_person import ManageLegalPerson
 
 
 router = APIRouter()

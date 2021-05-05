@@ -1,9 +1,9 @@
 from bson.objectid import ObjectId
 import pytest
 from project.infrastructure.constants.mongo_collections import Collections
-from project.repositories.person.models.address import Address
+from project.domain.person.repository.address import Address
 from project.infrastructure.data_layer.data_layer_general import DataLayer
-from project.repositories.person.valitations.address import ValidateAdress
+from project.domain.person.valitations.address import ValidateAdress
 
 
 data_layer = DataLayer(Collections.person_address)

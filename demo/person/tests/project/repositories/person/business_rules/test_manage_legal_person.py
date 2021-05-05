@@ -1,7 +1,7 @@
 from project.infrastructure.data_layer.data_layer_general import DataLayer
 import pytest
-from project.repositories.person.business_rules.manage_legal_person import ManageLegalPerson
-from project.repositories.person.models.legal_person import LegalPerson
+from project.domain.person.business_rules.manage_legal_person import ManageLegalPerson
+from project.domain.person.repository.legal_person import LegalPerson
 
 manage_legal_person = ManageLegalPerson()
 

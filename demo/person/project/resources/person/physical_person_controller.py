@@ -1,5 +1,5 @@
 import traceback
-from project.repositories.person.models.physical_person import PhysicalPerson
+from project.domain.person.repository.physical_person import PhysicalPerson
 from typing import List
 from fastapi.param_functions import Depends
 from starlette.responses import JSONResponse, Response
@@ -8,7 +8,7 @@ from project.resources.person.schemas.physical_person import PhysicalPersonQuery
 from project.resources.person.schemas.physical_person import PhysicalPersonResponse
 from project.resources.person.schemas.physical_person import PhysicalPersonModified
 from project.resources.person.schemas.physical_person import PhysicalPersonInput
-from project.repositories.person.business_rules.manage_physical_person import ManagePhysicalPerson
+from project.domain.person.business_rules.manage_physical_person import ManagePhysicalPerson
 
 
 router = APIRouter()

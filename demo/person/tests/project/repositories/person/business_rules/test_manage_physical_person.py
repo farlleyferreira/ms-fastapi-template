@@ -1,7 +1,7 @@
 import pytest
 from datetime import datetime
-from project.repositories.person.business_rules.manage_physical_person import ManagePhysicalPerson
-from project.repositories.person.models.physical_person import PhysicalPerson
+from project.domain.person.business_rules.manage_physical_person import ManagePhysicalPerson
+from project.domain.person.repository.physical_person import PhysicalPerson
 
 manage_physical_person = ManagePhysicalPerson()
 

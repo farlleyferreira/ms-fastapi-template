@@ -1,7 +1,7 @@
 import pytest
 
 from bson.objectid import ObjectId
-from project.repositories.person.models.address import Address
+from project.domain.person.repository.address import Address
 
 
 def test_instance_physical_person():
