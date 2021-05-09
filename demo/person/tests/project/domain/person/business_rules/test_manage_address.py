@@ -1,4 +1,4 @@
-from project.infrastructure.data_layer.data_layer_general import DataLayer
+from project.infrastructure.data_layer.data_access_adapter import MongoDataLayer
 import pytest
 from bson.objectid import ObjectId
 from project.domain.person.business_rules.manage_address import ManageAddress
@@ -96,7 +96,7 @@ async def test_get_by_query_address_type_error():
 async def test_get_by_query_address_error():
     with pytest.raises(Exception):
         manage_address_error = ManageAddress()
-        manage_address_error.dao = DataLayer("")
+        manage_address_error.dao = MongoDataLayer("")
         await manage_address_error.get_address_by_query({"color": (1, 2, 3)})
 
 

@@ -4,7 +4,7 @@ from pymongo.results import UpdateResult
 from project.infrastructure.drivers.mongo.adapter import MongoAdapter
 
 
-class DataLayer(MongoAdapter):
+class MongoDataLayer(MongoAdapter):
 
     def __init__(self, collection: str) -> None:
         """

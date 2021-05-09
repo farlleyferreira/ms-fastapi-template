@@ -2,11 +2,11 @@ from bson.objectid import ObjectId
 import pytest
 from project.infrastructure.constants.mongo_collections import Collections
 from project.domain.person.repository.legal_person import LegalPerson
-from project.infrastructure.data_layer.data_layer_general import DataLayer
+from project.infrastructure.data_layer.data_access_adapter import MongoDataLayer
 from project.domain.person.valitations.legal_person import ValidateLegalPerson
 
 
-data_layer = DataLayer(Collections.legal_person)
+data_layer = MongoDataLayer(Collections.legal_person)
 
 base_data = {
     "_id": ObjectId(),

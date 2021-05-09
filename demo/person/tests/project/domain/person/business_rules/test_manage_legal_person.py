@@ -1,4 +1,4 @@
-from project.infrastructure.data_layer.data_layer_general import DataLayer
+from project.infrastructure.data_layer.data_access_adapter import MongoDataLayer
 import pytest
 from project.domain.person.business_rules.manage_legal_person import ManageLegalPerson
 from project.domain.person.repository.legal_person import LegalPerson
@@ -109,7 +109,7 @@ async def test_get_by_query_legal_person_type_error():
 async def test_get_by_query_legal_person_error():
     with pytest.raises(Exception):
         manage_legal_person_error = ManageLegalPerson()
-        manage_legal_person_error.dao = DataLayer("")
+        manage_legal_person_error.dao = MongoDataLayer("")
         await manage_legal_person_error.get_legal_person_by_query({})
 
 

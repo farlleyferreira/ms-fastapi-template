@@ -4,7 +4,7 @@ import traceback
 from bson.objectid import ObjectId
 
 from project.infrastructure.constants.mongo_collections import Collections
-from project.infrastructure.data_layer.data_layer_general import DataLayer
+from project.infrastructure.data_layer.data_access_adapter import MongoDataLayer
 
 from project.domain.person.repository.address import Address
 from project.domain.person.valitations.address import ValidateAdress
@@ -18,7 +18,7 @@ log = Log()
 class ManageAddress:
 
     def __init__(self) -> None:
-        self.dao = DataLayer(Collections.person_address)
+        self.dao = MongoDataLayer(Collections.person_address)
 
     async def get_address_by_id(self, id: str) -> Address:
         try:

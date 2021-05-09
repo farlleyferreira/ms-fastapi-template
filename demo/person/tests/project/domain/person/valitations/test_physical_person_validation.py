@@ -3,11 +3,11 @@ import pytest
 from datetime import datetime
 from project.infrastructure.constants.mongo_collections import Collections
 from project.domain.person.repository.physical_person import PhysicalPerson
-from project.infrastructure.data_layer.data_layer_general import DataLayer
+from project.infrastructure.data_layer.data_access_adapter import MongoDataLayer
 from project.domain.person.valitations.physical_person import ValidatePhysicalPerson
 
 
-data_layer = DataLayer(Collections.physical_person)
+data_layer = MongoDataLayer(Collections.physical_person)
 
 base_data = {
     "status": "active",

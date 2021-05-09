@@ -78,7 +78,7 @@
 		</package>
 		<package name="infrastructure.data_layer" line-rate="1" branch-rate="1" complexity="0">
 			<classes>
-				<class name="data_layer_general.py" filename="infrastructure/data_layer/data_layer_general.py" complexity="0" line-rate="1" branch-rate="1">
+				<class name="data_access_adapter.py" filename="infrastructure/data_layer/data_access_adapter.py" complexity="0" line-rate="1" branch-rate="1">
 					<methods/>
 					<lines>
 						<line number="2" hits="1"/>

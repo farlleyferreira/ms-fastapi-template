@@ -4,7 +4,7 @@ import traceback
 from datetime import datetime
 from bson.objectid import ObjectId
 from project.infrastructure.constants.mongo_collections import Collections
-from project.infrastructure.data_layer.data_layer_general import DataLayer
+from project.infrastructure.data_layer.data_access_adapter import MongoDataLayer
 from project.domain.person.repository.legal_person import LegalPerson
 from project.domain.person.valitations.legal_person import ValidateLegalPerson
 
@@ -17,7 +17,7 @@ log = Log()
 class ManageLegalPerson:
 
     def __init__(self) -> None:
-        self.dao = DataLayer(Collections.legal_person)
+        self.dao = MongoDataLayer(Collections.legal_person)
 
     async def get_legal_person_by_id(self, id: str) -> LegalPerson:
         try:

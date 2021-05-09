@@ -4,7 +4,7 @@ import traceback
 from bson.objectid import ObjectId
 
 from project.infrastructure.constants.mongo_collections import Collections
-from project.infrastructure.data_layer.data_layer_general import DataLayer
+from project.infrastructure.data_layer.data_access_adapter import MongoDataLayer
 
 from project.domain.person.repository.billing_data import BillingData
 from project.domain.person.valitations.billing_data import ValidateBillingData
@@ -18,7 +18,7 @@ log = Log()
 class ManageBillingData:
 
     def __init__(self) -> None:
-        self.dao = DataLayer(Collections.person_billing_data)
+        self.dao = MongoDataLayer(Collections.person_billing_data)
 
     async def get_billing_data_by_id(self, id: str) -> BillingData:
         try:
