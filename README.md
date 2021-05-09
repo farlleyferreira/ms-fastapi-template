@@ -262,8 +262,73 @@
 >
 > ### Padrões adotados: :chart_with_upwards_trend:
 >
+> #### Resources.
+>
+> - <i>Schemas.</i>
+>
+> <p> 
+> Responsável por modelar os objetos de requisição e respostas expostos pela api. Deverão ser utilizadas de modo a não gerar qualquer tipo de dependência das camadas de modelo de dados, mesmo que em alguns casos possa exibir certo nível de semelhança com os modelos contidos no repositório, em função de isolar sua utilização.
+> </p>
+>
+> - <i>Controllers.</i>
+>
+> <p> Responsável por expor os recursos disponíveis ao serviço. Não devem em hipótese alguma possuir qualquer tipo de regra de negócio, sendo responsáveis apenas pelo controle do recurso, no contexto de repassar as requisições ao serviço e, retornar a devida resposta ao item solicitado.
+> </p>
+>
+> #### Domain.
+>
+> - <i>Business Rules.</i>
+>
+> <p> Responsável por processar uma determinada requisição e aplicar as regras de negócio ao dado co0ntexto da requisição, utilizando a ou as, modelos necessárias para executar os processos desejados, com suporte do modulo de validações (caso necessário).
+> </p>
+>
+> - <i>Repository.</i>
+>
+> <p> Responsável por conter a representação do domínio na forma de objetos que podem ser do tipo entidade ou objeto de valor. Em contextos específicos, poderão existir particularidades que implementem validações em banco de dados, ou mesmo, validações referentes a tipagem, formatação, entre outros. As validações poderão seguir o padrão do Pydantic, através de Field's, ou ainda métodos customizados assim como você poderá encontrar nos projetos contidos na pasta demo. Os modelos poderão ainda ser construidos utilizando o dataclasses vide documentação (<a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/">dataclass</a>).
+> </p>
+>
+> - <i>Validations.</i>
+>
+> <p> Responsável por conter todo e qualquer tipo de regra de validação a ser utilizada por um determinado objeto ou regra de negócio. Escolhemos separar as funcionalidades de validação de forma a tornar o código escrito na camada de regras de negócio mais limpo e desacoplado possivel.
+> </p>
+>
+> #### Infrastructure.
+>
+> - <i>Constants.</i>
+>
+> <p> Responsável por conter todas as variáveis constantes em relação ao projeto, tais como, nomes de recursos de bancos de dados (tabelas, collections, procedures), e outras constantes que poderão ser armazenadas.
+> </p>
+>
+> - <i>Data Layer.</i>
+>
+> <p> Responsável por expor na forma de adaptador, as funcionalidades de bancos de dados contidos no projeto, seja via ORM, ou execução direta de comandos. Esta camada não deverá conter qualquer tipo de regra negócio ou similar, servindo única e exclusivamente como uma interface que abstrai a comunicação com o banco de dados.
+> </p>
+>
+> - <i>Drivers.</i>
+>
+> <p> Responsável por expor mecanismos de comunicação através de um adaptador com qualquer tipo de serviço externo, via conector, seja a conexão com um banco de dados, api, serviço de mensageria, cache distribuído e etc. As conexões com as dependências externas deverão ser executadas única e exclusivamente através da classe connector do driver em contexto, e expostas através da classe adapter, onde poderão existir métodos de encapsulamento de funções especificas, assim como healthchecks.
+> </p>
+>
+> - <i>Environments.</i>
+>
+> <p> Responsável por conter as variaveis de ambiente do projeto, por padrão, está definida para um arquivo yaml, esta decisão foi tomada com a intenção de facilitar algumas integrações com kubernetes. Entretanto, pode ser facilmente movida para um arquivo ".env" de acordo com o contexto de utilização da api.
+> </p>
+>
+> - <i>Monitoring Layer.</i>
+>
+> <p> Responsável por abstrair as funcionalidades de log e monitoramento da aplicação. No caso de monitoramento temos a implementação de uma integração com o Elastic APM, Caso desejar, poderá realizar a integração com outros serviços, tais como new relic, dynatrace, entre outros.
+> </p>
+>
+> - <i>Open Api.</i>
+>
+> <p> Responsável por abstrair e estender as funcionalidades de customização e inicialização do Open Api Specification.
+> </p>
+>
+> #### Helpers.
+>
+> <p> Responsável por prover algoritmos de uso geral ao domninio (algoritmos de busca, strategy's, e outras estruturas), devendo ser consumido exclusivamente na camada Domain.
+> </p>
+>
 > #### Observações: :information_source:
 >
 > ### Bibliografia: :books:
-
-
