@@ -4,7 +4,6 @@ from project.infrastructure.open_api.open_api_schema import Schema
 from project.infrastructure.drivers.apm.adapter import ApmAdapter
 from project.resources.lifecheck.controller import router as life_check_api
 
-
 app = FastAPI()
 apm = ApmAdapter().client()
 
@@ -18,7 +17,7 @@ app.include_router(life_check_api, prefix="/health", tags=["health"])
 schema = Schema(
     app=app,
     title="Microservices template",
-    version="0.0.1",
+    version="0.0.6",
     url_logo="",
     description="""
 
