@@ -26,7 +26,7 @@ app.include_router(address_api, prefix="/person/address", tags=["address"])
 schema = Schema(
     app=app,
     title="Microservices template",
-    version="0.0.1",
+    version="0.0.0",
     url_logo="",
     description="""
 
