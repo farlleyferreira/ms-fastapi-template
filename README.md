@@ -262,6 +262,10 @@
 >
 > ### Padrões adotados: :chart_with_upwards_trend:
 >
+> <p style="text-align: justify">
+> O projeto foi concebido de forma a simplificar o de api's, tendo como base o cenário de microsserviços. Neste template, centralizamos em "infrastructure" todos os componentes que possam servir o domínio, seja conexões com bancos de dados, serviços de cache distribuído, APM, ou qualquer tipo de integração com serviços externos e suas derivações. Possibilitando maior liberdade para que o desenvolvedor trabalhe no que de fato importa, que é a implementação da camada de negocio.
+> </p>
+>
 > #### Resources.
 >
 > - <i>Schemas.</i>
@@ -283,7 +287,7 @@
 >
 > - <i>Repository.</i>
 >
->   <p style="text-align: justify"> Responsável por conter a representação do domínio na forma de objetos que podem ser do tipo entidade ou objeto de valor. Em contextos específicos, poderão existir particularidades que implementem validações em banco de dados, ou mesmo, validações referentes a tipagem, formatação, entre outros. As validações poderão seguir o padrão do Pydantic, através de Field's, ou ainda métodos customizados assim como você poderá encontrar nos projetos contidos na pasta demo. Os modelos poderão ainda ser construidos utilizando o dataclasses vide documentação (<a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/">dataclass</a>).
+>   <p style="text-align: justify"> Responsável por conter a representação do domínio na forma de objetos que podem ser do tipo entidade ou objeto de valor. Em contextos específicos, poderão existir particularidades que implementem validações em banco de dados, ou mesmo, validações referentes a tipagem, formatação, entre outros. As validações poderão seguir o padrão do Pydantic, através de Field's, ou ainda métodos customizados assim como você poderá encontrar nos projetos contidos na pasta demo. Os modelos poderão ainda ser construídos utilizando o dataclasses vide documentação (<a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/">dataclass</a>).
 > </p>
 >
 > - <i>Validations.</i>
@@ -325,9 +329,27 @@
 >
 > #### Helpers.
 >
->   <p style="text-align: justify"> Responsável por prover algoritmos de uso geral ao domninio (algoritmos de busca, strategy's, e outras estruturas), devendo ser consumido exclusivamente na camada Domain.
+>   <p style="text-align: justify"> Responsável por prover algoritmos de uso geral ao domínio (algoritmos de busca, strategy's, e outras estruturas), devendo ser consumido exclusivamente na camada Domain.
 > </p>
 >
-> #### Observações: :information_source:
+> ### Observações: :information_source:
+>
+> <i><b>Pontos importantes:</b></i>
+>
+> - <p style="text-align: justify"> 
+>   Este template foi construído para atender as necessidades de um ambiente de microsserviços, entretanto, poderá perfeitamente ser utilizado em uma arquitetura monolítica, sem alterações do padrão aqui apresentado.
+>   </p>
+> - <p style="text-align: justify">
+>     Toda e qualquer integração com serviços externos deverão ser feitas através da configuração de um driver, que deverá realizar a integração através de um connector e expor as funcionalidades desejadas através de um adapter. Está medida foi tomada de forma a simplificar a disposição destes recursos.
+>   </p>
+> - <p style="text-align: justify">
+>   Não deverão existir quaisquer regras de negócio fora da camada Domain, afinal, ela tem a finalidade de isolar e manter simples a implementação de novas funcionalidades, sem contaminar as camadas mais externas da aplicação.
+>   </p>
+> - <p style="text-align: justify">
+>   Todas as abstrações da camada Data Layer deverão ser implementações utilizando ORM, executores de procedimentos  encapsulados em banco de dados (os quais em teoria não deveriam conter regras de negocio, apenas de armazenamento), ou por fim implementações DSL para acesso a dados.
+>   </p>
+> - <p style="text-align: justify">
+>     Os métodos adicionados em Helpers deverão ser consumidos na camada Domain, não havendo necessidade do seu consumo em outros módulos do sistema, portanto deverá ser mantido o padrão de seu consumo apenas na camada indicada.
+>   </p>
 >
 > ### Bibliografia: :books:
