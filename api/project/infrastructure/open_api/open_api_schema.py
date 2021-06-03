@@ -21,7 +21,6 @@ class Schema(object):
             url_logo (str): url da logo
             description (str): descrição
         """
-
         self._app = app
         self._title = title
         self._version = version
@@ -34,7 +33,6 @@ class Schema(object):
         Returns:
             openapi_schema
         """
-
         if self._app.openapi_schema:
             return self._app.openapi_schema
 

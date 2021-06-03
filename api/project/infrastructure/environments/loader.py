@@ -28,7 +28,6 @@ class Configs(object):
         Returns:
             environments: dict
         """
-
         try:
 
             path_exists = path.exists(config_path)
