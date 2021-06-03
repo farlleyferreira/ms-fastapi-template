@@ -1,4 +1,4 @@
-# Microservices Template
+# FastApi Microservices Template
 
 ### Resumo
 
@@ -37,7 +37,6 @@
 > <ol>
 > <li> Criação do manual de requisitos para PR. </li>
 > <li> Implantação de mais casos de uso. </li>
-> <li> Expansão do modelo para a linguagem Node.js. </li>
 > </ol>
 
 ### Setup
