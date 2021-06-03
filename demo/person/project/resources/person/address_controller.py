@@ -59,7 +59,7 @@ async def get_by_query(filter: AddressQueryString = Depends(AddressQueryString))
         manage_address = ManageAddress()
         list_of_address = await manage_address.get_address_by_query(input_filter)
 
-        if len(list_of_address):
+        if list_of_address:
             return list_of_address
         return Response(status_code=204)
     except Exception as error:

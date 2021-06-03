@@ -55,7 +55,7 @@ async def get_by_query(filter: BillingDataQueryString = Depends(BillingDataQuery
         manage_billing_data = ManageBillingData()
         list_of_billing_data = await manage_billing_data.get_billing_data_by_query(input_filter)
 
-        if len(list_of_billing_data):
+        if list_of_billing_data:
             return list_of_billing_data
         return Response(status_code=204)
     except Exception as error:
