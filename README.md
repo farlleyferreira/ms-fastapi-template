@@ -1,4 +1,4 @@
-# :construction: [WIP] Microservices Fastapi Template :construction:
+# Microservices Template
 
 ### Resumo
 
@@ -36,8 +36,8 @@
 
 > <ol>
 > <li> Criação do manual de requisitos para PR. </li>
-> <li> Implantação de caso de uso. </li>
-> <li> Criação da bibliografia de referência do projeto</li>
+> <li> Implantação de mais casos de uso. </li>
+> <li> Expansão do modelo para a linguagem Node.js. </li>
 > </ol>
 
 ### Setup
@@ -351,15 +351,18 @@
 >     Os métodos adicionados em Helpers deverão ser consumidos na camada Domain, não havendo necessidade do seu consumo em outros módulos do sistema, portanto deverá ser mantido o padrão de seu consumo apenas na camada indicada.
 >   </p>
 >
-> ### Bibliografia: :books:
+> ### Bibliografia utilizada: :books:
 >
 > <p>
 >   <ol>
->    <li> Realize o clone desta aplicação para seu diretório de projetos</li>
->    <li> Certifique-se de possuir o make instalado em seu OS</li>
->    <li> Crie um ambiente virtual utilizando gerenciador de sua preferência > (pyenv, virtualenv, anaconda...).</li>
->    <li> Dentro deste diretório será possível verificar a criação da pasta: <i><b>ms-fastapi-template</b></i></li>
->    <li> No arquivo docker-compose.yml, dentro deste diretório deverá ser comentado o item referente ao serviço da com tag: <i><b>web</b></i>.</li>
->    <li> Aponte seu terminal para o diretório <b>api</b>, dessa mesma aplicação e execute o comando:</b></i></li>
+>    <li> COCKBURN, A. Hexagonal architecture. alistair.cockburn.us.</li>
+>    <li> EVANS, E. Domain-Driven Design: Tackling Complexity in the Heart of Software. Addison-Wesley.</li>
+>    <li> FOWLER, M; et al. Patterns of Enterprise Application Architecture. Addison-Wesley.</li>
+>    <li> FOWLER, S. J. Production-Ready Microservices: Building Standardized Systems Across an Engineering Organization. O'REILLY Media Inc.</li>
+>    <li> KLEPPMANN, M. Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems. O'REILLY Media Inc.</li>
+>    <li> MARTIN, R. C; HENNEY, K. Clean Architecture: A Craftsman's Guide to Software Structure and Design. Pearson.</li>
+>    <li> MARTIN, R. C; WAMPLER, D. Clean Code: A Handbook of Agile Software Craftsmanship. Pearson.</li>
+>    <li> NEWMAN, S. Building Microservices, Designing Fine-Grained Systems. O'REILLY Media Inc.</li>
+>    <li> VERNON, V. Implementing Domain-Driven Design. Addison-Wesley.</li>
 >   </ol>
 > </p>
