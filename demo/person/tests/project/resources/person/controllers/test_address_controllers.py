@@ -33,7 +33,8 @@ _output_data = {}
 async def test_save_address_200():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         response = await client.post(resource, json=base_data)
-        assert response.status_code == status.OK
+        if response.status_code != status.OK:
+            raise AssertionError
         _output_data["id"] = response.json()["id"]
 
 
@@ -41,14 +42,16 @@ async def test_save_address_200():
 async def test_save_address_400():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         response = await client.post(resource, json=base_data)
-        assert response.status_code == status.BAD_REQUEST
+        if response.status_code != status.BAD_REQUEST:
+            raise AssertionError
 
 
 @pytest.mark.asyncio
 async def test_save_address_422():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         response = await client.post(resource, json={})
-        assert response.status_code == status.UNPROCESSABLE_ENTITY
+        if response.status_code != status.UNPROCESSABLE_ENTITY:
+            raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -56,14 +59,16 @@ async def test_update_address_200():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         _id = _output_data["id"]
         response = await client.put(f"{resource}{_id}", json={"number": "42B"})
-        assert response.status_code == status.OK
+        if response.status_code != status.OK:
+            raise AssertionError
 
 
 @pytest.mark.asyncio
 async def test_update_address_500():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         response = await client.put(f"{resource}{_birthdate}", json={"email": "carlos.neto@teste.com"})
-        assert response.status_code == status.INTERNAL_SERVER_ERROR
+        if response.status_code != status.INTERNAL_SERVER_ERROR:
+            raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -71,28 +76,32 @@ async def test_get_address_by_id_200():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         _id = _output_data["id"]
         response = await client.get(f"{resource}by/id/{_id}")
-        assert response.status_code == status.OK
+        if response.status_code != status.OK:
+            raise AssertionError
 
 
 @pytest.mark.asyncio
 async def test_get_address_by_id_500():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         response = await client.get(f"{resource}by/id/{_birthdate}")
-        assert response.status_code == status.INTERNAL_SERVER_ERROR
+        if response.status_code != status.INTERNAL_SERVER_ERROR:
+            raise AssertionError
 
 
 @pytest.mark.asyncio
 async def test_get_address_qs_200():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         response = await client.get(f"{resource}by/qs", params={})
-        assert response.status_code == status.OK
+        if response.status_code != status.OK:
+            raise AssertionError
 
 
 @pytest.mark.asyncio
 async def test_get_address_qs_204():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         response = await client.get(f"{resource}by/qs", params={"street": "tony sterco"})
-        assert response.status_code == status.NO_CONTENT
+        if response.status_code != status.NO_CONTENT:
+            raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -100,11 +109,13 @@ async def test_delete_address_200():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         _id = _output_data["id"]
         response = await client.delete(f"{resource}by/{_id}")
-        assert response.status_code == status.OK
+        if response.status_code != status.OK:
+            raise AssertionError
 
 
 @pytest.mark.asyncio
 async def test_delete_address_500():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         response = await client.delete(f"{resource}by/{_birthdate}")
-        assert response.status_code == status.INTERNAL_SERVER_ERROR
+        if response.status_code != status.INTERNAL_SERVER_ERROR:
+            raise AssertionError

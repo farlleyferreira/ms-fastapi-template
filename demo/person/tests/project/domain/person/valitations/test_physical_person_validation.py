@@ -43,7 +43,8 @@ async def test_this_physical_person_has_exist():
     if result:
         await delete_mongo_object(physical_person["_id"])
 
-    assert result
+    if not result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -51,7 +52,8 @@ async def test_this_physical_person_has_not_exist():
 
     result = await ValidatePhysicalPerson.this_physical_person_has_exist({"name": "abacaxiazul"})
 
-    assert not result
+    if result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -63,7 +65,8 @@ async def test_this_physical_person_is_active():
     if result:
         await delete_mongo_object(physical_person["_id"])
 
-    assert result
+    if not result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -88,7 +91,8 @@ async def test_this_physical_person_is_inactive():
     if result:
         await delete_mongo_object(physical_person["_id"])
 
-    assert not result
+    if result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -100,7 +104,8 @@ async def test_this_email_exist_in_store():
     if result:
         await delete_mongo_object(physical_person["_id"])
 
-    assert result
+    if not result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -112,7 +117,8 @@ async def test_this_email_not_exist_in_store():
     if result:
         await delete_mongo_object(physical_person["_id"])
 
-    assert not result
+    if result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -124,7 +130,8 @@ async def test_this_document_id_exist_in_store():
     if result:
         await delete_mongo_object(physical_person["_id"])
 
-    assert result
+    if not result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -136,4 +143,5 @@ async def test_this_document_id_not_exist_in_store():
     if result:
         await delete_mongo_object(physical_person["_id"])
 
-    assert not result
+    if result:
+        raise AssertionError

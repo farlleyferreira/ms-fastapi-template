@@ -44,7 +44,8 @@ async def test_this_address_has_exist():
     if result:
         await delete_mongo_object(address["_id"])
 
-    assert result
+    if not result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -52,7 +53,8 @@ async def test_this_address_has_not_exist():
 
     result = await ValidateAdress.this_address_has_exist({"country": "abacaxiazul"})
 
-    assert not result
+    if result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -64,7 +66,8 @@ async def test_this_address_is_active():
     if result:
         await delete_mongo_object(address["_id"])
 
-    assert result
+    if not result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -90,4 +93,5 @@ async def test_this_address_is_inactive():
     if result:
         await delete_mongo_object(address["_id"])
 
-    assert not result
+    if result:
+        raise AssertionError

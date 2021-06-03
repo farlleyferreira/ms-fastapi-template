@@ -9,11 +9,13 @@ def test_mongo_connection_success():
         Then: Obtenho sucesso
     """
     mongo = Mongo()
-    assert mongo.client()
+    if not mongo.client():
+        raise AssertionError
 
 
 def test_mongo_connection_error():
     mongo = Mongo()
     mongo.mongo_config = {"unknow": ""}
 
-    assert pytest.raises(Exception, mongo.client)
+    if not pytest.raises(Exception, mongo.client):
+        raise AssertionError
