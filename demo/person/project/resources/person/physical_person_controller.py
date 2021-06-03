@@ -65,7 +65,7 @@ async def get_by_query(filter: PhysicalPersonQueryString = Depends(PhysicalPerso
         manage_physical_person = ManagePhysicalPerson()
         list_of_physical_person = await manage_physical_person.get_physical_person_by_query(input_filter)
 
-        if len(list_of_physical_person):
+        if list_of_physical_person:
             return list_of_physical_person
         return Response(status_code=204)
 

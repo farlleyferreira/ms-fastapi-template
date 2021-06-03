@@ -57,7 +57,7 @@ async def get_by_query(filter: LegalPersonQueryString = Depends(LegalPersonQuery
         manage_legal_person = ManageLegalPerson()
         list_of_legal_person = await manage_legal_person.get_legal_person_by_query(input_filter)
 
-        if len(list_of_legal_person):
+        if list_of_legal_person:
             return list_of_legal_person
         return Response(status_code=204)
 

@@ -6,6 +6,8 @@ test_patterns = [
   "test_*.py"
 ]
 
+exclude_patterns = ["**/tests/**"]
+
 [[analyzers]]
 name = "python"
 enabled = true

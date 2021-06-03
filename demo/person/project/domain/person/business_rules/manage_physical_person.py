@@ -57,7 +57,7 @@ class ManagePhysicalPerson:
             custom_filter.update(query)
             search_result: dict = await self.dao.get_by_filter(custom_filter)
 
-            if not len(search_result):
+            if not search_result:
                 return []
 
             list_of_physical_person = [

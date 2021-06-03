@@ -42,7 +42,7 @@ class ManageAddress:
 
             search_result: dict = await self.dao.get_by_filter(query)
 
-            if not len(search_result):
+            if not search_result:
                 return []
 
             list_of_address = [
