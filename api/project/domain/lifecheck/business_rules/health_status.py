@@ -26,7 +26,6 @@ class Lifecheck(object):
         Returns:
             life_status: dict
         """
-
         mongo_status = await self.get_mongo_database_status()
         queue_status = await self.get_queue_status()
         redis_status = self.get_redis_database_status()
@@ -64,7 +63,6 @@ class Lifecheck(object):
         Returns:
             health: tuple
         """
-
         is_ok = all(
             _status == Status.GREEN for _status in aplication_status
         )
