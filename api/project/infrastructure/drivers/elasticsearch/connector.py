@@ -9,7 +9,6 @@ log = Log()
 
 
 class Elk(object):
-
     def __init__(self) -> None:
         """
             Na inicialização da classe de conexão com o elasticsearch,
@@ -34,10 +33,7 @@ class Elk(object):
             username = self.elasticsearch_config["username"]
             password = self.elasticsearch_config["password"]
 
-            client = Elasticsearch(
-                hosts=hosts,
-                http_auth=(username, password)
-            )
+            client = Elasticsearch(hosts=hosts, http_auth=(username, password))
 
             return client
 
@@ -45,7 +41,7 @@ class Elk(object):
 
             log.record.error(
                 "ELK connection error, check your server and credentials",
-                exc_info=sys.exc_info()
+                exc_info=sys.exc_info(),
             )
             Monitor.send_kpi_message("elk client error")
 

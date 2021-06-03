@@ -4,7 +4,7 @@ from project.infrastructure.drivers.elasticsearch.connector import Elk
 
 class ElkAdapter(Elk):
     """
-        Elk adapter class
+    Elk adapter class
     """
 
     def __init__(self) -> None:

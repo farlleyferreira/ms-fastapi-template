@@ -8,7 +8,6 @@ log = Log()
 
 
 class Redis(object):
-
     def __init__(self):
         """
             Na inicialização da classe de conexão com o Redis,
@@ -42,7 +41,7 @@ class Redis(object):
 
             log.record.error(
                 "Redis connection error, check your server and credentials",
-                exc_info=error
+                exc_info=error,
             )
             Monitor.send_kpi_message("Redis client error")
 

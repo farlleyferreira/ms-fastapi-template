@@ -2,7 +2,6 @@ from project.infrastructure.drivers.apm.adapter import ApmAdapter
 
 
 class Monitor(object):
-
     @staticmethod
     def send_kpi_message(message: str) -> None:
         """
@@ -18,7 +17,7 @@ class Monitor(object):
         client.capture_exception()
         client.capture_message(message)
 
-    @ staticmethod
+    @staticmethod
     def begin_transaction(name: str) -> None:
         """
             Inicia captura de transação
@@ -28,7 +27,7 @@ class Monitor(object):
         """
         ApmAdapter().client().begin_transaction(name)
 
-    @ staticmethod
+    @staticmethod
     def end_transaction(name: str, status: str) -> None:
         """
             Finaliza captura de transação

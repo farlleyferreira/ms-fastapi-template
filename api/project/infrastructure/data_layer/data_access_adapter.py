@@ -1,14 +1,12 @@
-
 from bson.objectid import ObjectId
 from pymongo.results import UpdateResult
 from project.infrastructure.drivers.mongo.adapter import MongoAdapter
 
 
 class MongoDataLayer(MongoAdapter):
-
     def __init__(self, collection: str) -> None:
         """
-            Generic access data layer to MongoDB
+        Generic access data layer to MongoDB
         """
         super().__init__()
         self.collection = collection
@@ -71,7 +69,7 @@ class MongoDataLayer(MongoAdapter):
             object_result (UpdateResult)
         """
         collection = self.get_collection()
-        object_result = await collection.update_one(criteria, {'$set': _object})
+        object_result = await collection.update_one(criteria, {"$set": _object})
         return object_result
 
     async def delete(self, criteria: dict):

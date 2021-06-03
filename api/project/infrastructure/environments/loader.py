@@ -36,18 +36,16 @@ class Configs(object):
             if not path_exists:
 
                 error = FileNotFoundError(
-                    errno.ENOENT,
-                    strerror(errno.ENOENT),
-                    config_path
+                    errno.ENOENT, strerror(errno.ENOENT), config_path
                 )
 
                 log.record.error(
                     "environments connection error, check environments config",
-                    exc_info=error
+                    exc_info=error,
                 )
                 raise error
 
-            with open(config_path, 'r') as stream:
+            with open(config_path, "r") as stream:
                 config_dict = yaml.safe_load(stream)
                 environments = config_dict["environments"]
                 return environments[key] if key in environments else {}
@@ -55,6 +53,6 @@ class Configs(object):
         except Exception as error:
             log.record.error(
                 "environments connection error, check environments config",
-                exc_info=error
+                exc_info=error,
             )
             raise error

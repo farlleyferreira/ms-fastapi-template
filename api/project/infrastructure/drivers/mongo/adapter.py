@@ -3,7 +3,7 @@ from project.infrastructure.drivers.mongo.connector import Mongo
 
 class MongoAdapter(Mongo):
     """
-        Mongo adapter class
+    Mongo adapter class
     """
 
     def __init__(self) -> None:

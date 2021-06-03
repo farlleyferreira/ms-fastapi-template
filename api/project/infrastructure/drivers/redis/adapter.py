@@ -3,7 +3,7 @@ from project.infrastructure.drivers.redis.connector import Redis
 
 class RedisAdapter(Redis):
     """
-        Redis adapter class
+    Redis adapter class
     """
 
     def __init__(self) -> None:

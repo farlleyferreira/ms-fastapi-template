@@ -39,7 +39,7 @@ schema = Schema(
     - pytest-mock
     - pytest-asyncio
 
-    """
+    """,
 )
 
 app.openapi = schema.create

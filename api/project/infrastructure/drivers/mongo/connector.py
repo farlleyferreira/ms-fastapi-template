@@ -7,7 +7,6 @@ log = Log()
 
 
 class Mongo(object):
-
     def __init__(self) -> None:
         """
             Na inicialização da classe de conexão com o Mongo,
@@ -34,7 +33,7 @@ class Mongo(object):
             password: str = self.mongo_config["password"]
             database: str = self.mongo_config["database"]
 
-            uri: str = f'mongodb://{username}:{password}@{host}:{port}'
+            uri: str = f"mongodb://{username}:{password}@{host}:{port}"
 
             client = async_mongo.AsyncIOMotorClient(uri)
 
@@ -44,7 +43,7 @@ class Mongo(object):
 
             log.record.error(
                 "MongoDB connection error, check your server and credentials",
-                exc_info=error
+                exc_info=error,
             )
             Monitor.send_kpi_message("MongoDB client error")
 

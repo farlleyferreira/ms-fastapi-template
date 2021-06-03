@@ -7,7 +7,6 @@ log = Log()
 
 
 class Apm(object):
-
     def __init__(self) -> None:
         """
             Na inicialização da classe de conexão com o apm,
@@ -32,15 +31,15 @@ class Apm(object):
             environment = self.apm_config["environment"]
 
             settings = {
-                'SERVICE_NAME': service_name,
-                'SERVER_URL': server_url,
-                'ENVIRONMENT': environment,
-                'CAPTURE_BODY': 'all',
-                'SECRET_TOKEN': str(uuid.uuid4()),
-                'CAPTURE_HEADERS': True,
-                'DEBUG': True,
-                'COLLECT_LOCAL_VARIABLES': 'all',
-                'ELASTIC_APM_AUTO_LOG_STACKS': True
+                "SERVICE_NAME": service_name,
+                "SERVER_URL": server_url,
+                "ENVIRONMENT": environment,
+                "CAPTURE_BODY": "all",
+                "SECRET_TOKEN": str(uuid.uuid4()),
+                "CAPTURE_HEADERS": True,
+                "DEBUG": True,
+                "COLLECT_LOCAL_VARIABLES": "all",
+                "ELASTIC_APM_AUTO_LOG_STACKS": True,
             }
 
             client = Client(settings)
@@ -49,6 +48,6 @@ class Apm(object):
         except Exception as error:
             log.record.error(
                 "Apm connection error, check your server and credentials",
-                exc_info=error
+                exc_info=error,
             )
             raise error

@@ -3,14 +3,8 @@ from fastapi.openapi.utils import get_openapi
 
 
 class Schema(object):
-
     def __init__(
-        self,
-        app: FastAPI,
-        title: str,
-        version: str,
-        url_logo: str,
-        description: str
+        self, app: FastAPI, title: str, version: str, url_logo: str, description: str
     ) -> None:
         """[summary]
 
@@ -43,12 +37,9 @@ class Schema(object):
             version=self._version,
             routes=self._app.routes,
             description=self._description,
-
         )
 
-        openapi_schema["info"]["x-logo"] = {
-            "url": self._url_logo
-        }
+        openapi_schema["info"]["x-logo"] = {"url": self._url_logo}
 
         self._app.openapi_schema = openapi_schema
 

@@ -8,7 +8,6 @@ log = Log()
 
 
 class RabbitMq(object):
-
     def __init__(self) -> None:
         """
             Na inicialização da classe de conexão com o RabbitMQ,
@@ -35,10 +34,7 @@ class RabbitMq(object):
             password: str = self.rabbit_mq_config["password"]
 
             connection = await aio_pika.connect(
-                host=host,
-                port=port,
-                login=username,
-                password=password
+                host=host, port=port, login=username, password=password
             )
 
             return connection
@@ -47,7 +43,7 @@ class RabbitMq(object):
 
             log.record.error(
                 "RabbitMQ connection error, check your server and configurations",
-                exc_info=error
+                exc_info=error,
             )
             Monitor.send_kpi_message("RabbitMQ client error")
 

@@ -3,7 +3,7 @@ from project.infrastructure.drivers.rabbitmq.connector import RabbitMq
 
 class RabbitMqAdapter(RabbitMq):
     """
-        RabbitMQ adapter class
+    RabbitMQ adapter class
     """
 
     def __init__(self) -> None:
