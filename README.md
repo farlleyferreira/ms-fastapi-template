@@ -37,7 +37,6 @@
 > <ol>
 > <li> Criação do manual de requisitos para PR. </li>
 > <li> Implantação de caso de uso. </li>
-> <li> Ajuste e melhoria da arquitetura. </li>
 > <li> Criação da bibliografia de referência do projeto</li>
 > </ol>
 
@@ -353,3 +352,14 @@
 >   </p>
 >
 > ### Bibliografia: :books:
+>
+> <p>
+>   <ol>
+>    <li> Realize o clone desta aplicação para seu diretório de projetos</li>
+>    <li> Certifique-se de possuir o make instalado em seu OS</li>
+>    <li> Crie um ambiente virtual utilizando gerenciador de sua preferência > (pyenv, virtualenv, anaconda...).</li>
+>    <li> Dentro deste diretório será possível verificar a criação da pasta: <i><b>ms-fastapi-template</b></i></li>
+>    <li> No arquivo docker-compose.yml, dentro deste diretório deverá ser comentado o item referente ao serviço da com tag: <i><b>web</b></i>.</li>
+>    <li> Aponte seu terminal para o diretório <b>api</b>, dessa mesma aplicação e execute o comando:</b></i></li>
+>   </ol>
+> </p>
