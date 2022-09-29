@@ -1,5 +1,5 @@
 coverage:
-	python -m pytest -v --cov-report term-missing --cov=project/ --cov-report=xml
+	python -m pytest -v --cov-report term-missing --cov=project/ --cov-report=xml --disable-pytest-warnings
 
 test:
 	python -m pytest

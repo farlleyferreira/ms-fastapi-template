@@ -10,6 +10,6 @@ def test_elk_connection_success():
 
 def test_elk_connection_error():
     elk = Elk()
-    elk.elasticsearch_config = {"unknow": ""}
+    elk.hosts = {"unknow": ""}
 
     assert pytest.raises(Exception, elk.client)

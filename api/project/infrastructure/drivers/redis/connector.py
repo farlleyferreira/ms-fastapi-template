@@ -1,8 +1,7 @@
 import redis
+import os
 
-from project.infrastructure.environments.loader import Configs
 from project.infrastructure.monitoring_layer.aplication_general_log import Log
-from project.infrastructure.monitoring_layer.aplication_kpi import Monitor
 
 log = Log()
 
@@ -14,7 +13,9 @@ class Redis(object):
         as configurações de ambiente são carregadas em tempo de execução,
         e servidas sob o contexto da instancia.
         """
-        self.redis_config: dict = Configs.get_by_key("redis")
+        self.host: str = str(os.getenv("REDIS_HOST"))
+        self.port = int(str(os.getenv("REDIS_PORT")))
+        self.password: str = str(os.getenv("REDIS_PASSWORD"))
 
     def client(self):
         """
@@ -28,11 +29,7 @@ class Redis(object):
         """
         try:
 
-            host: str = self.redis_config["host"]
-            port: int = self.redis_config["port"]
-            password: str = self.redis_config["password"]
-
-            client = redis.Redis(host=host, port=port, password=password)
+            client = redis.Redis(host=self.host, port=self.port, password=self.password)
             client.ping()
 
             return client
@@ -43,6 +40,5 @@ class Redis(object):
                 "Redis connection error, check your server and credentials",
                 exc_info=error,
             )
-            Monitor.send_kpi_message("Redis client error")
 
             raise error

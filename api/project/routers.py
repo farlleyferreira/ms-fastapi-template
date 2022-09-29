@@ -1,14 +1,9 @@
 from fastapi import FastAPI
 from elasticapm.contrib.starlette import ElasticAPM
 from project.infrastructure.open_api.open_api_schema import Schema
-from project.infrastructure.drivers.apm.adapter import ApmAdapter
 from project.resources.lifecheck.controller import router as life_check_api
 
 app = FastAPI()
-apm = ApmAdapter().client()
-
-# app middlewares
-app.add_middleware(ElasticAPM, client=apm)
 
 # app routes
 app.include_router(life_check_api, prefix="/health", tags=["health"])

@@ -10,6 +10,7 @@ def test_mongo_connection_success():
 
 def test_mongo_connection_error():
     redis = Redis()
-    redis.redis_config = {"unknow": ""}
+    redis.host = ""
+    redis.password = ""
 
     assert pytest.raises(Exception, redis.client)

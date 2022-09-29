@@ -68,10 +68,10 @@ class Lifecheck(object):
 
         if is_ok:
             return Health.success.value
-        elif not is_ok and not its_danger:
-            return Health.warning.value
-        else:
+        elif its_danger:
             return Health.danger.value
+        else:
+            return Health.warning.value
 
     @staticmethod
     def get_redis_database_status():

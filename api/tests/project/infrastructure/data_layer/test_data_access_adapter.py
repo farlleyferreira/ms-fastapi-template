@@ -3,6 +3,9 @@ import pytest
 from project.infrastructure.constants.mongo_collections import Collections
 from project.infrastructure.data_layer.data_access_adapter import MongoDataLayer
 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 async def create_mongo_object(input_object: dict):
     data_layer = MongoDataLayer(Collections.general_collection)

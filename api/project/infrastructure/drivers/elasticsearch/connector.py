@@ -1,9 +1,9 @@
 from elasticsearch import Elasticsearch
-from project.infrastructure.environments.loader import Configs
-from project.infrastructure.monitoring_layer.aplication_general_log import Log
-from project.infrastructure.monitoring_layer.aplication_kpi import Monitor
-import sys
 
+from project.infrastructure.monitoring_layer.aplication_general_log import Log
+import sys
+import os
+import json
 
 log = Log()
 
@@ -14,8 +14,10 @@ class Elk(object):
             Na inicialização da classe de conexão com o elasticsearch,
         as configurações de ambiente são carregadas em tempo de execução,
         e servidas sob o contexto da instancia.
-        """
-        self.elasticsearch_config = Configs.get_by_key("elk")
+        """                
+        self.hosts = os.getenv("ELK_HOSTS")
+        self.username = os.getenv("ELK_USERNAME")
+        self.password = os.getenv("ELK_PASSWORD")   
 
     def client(self) -> Elasticsearch:
         """
@@ -29,9 +31,9 @@ class Elk(object):
         """
         try:
 
-            hosts = self.elasticsearch_config["hosts"]
-            username = self.elasticsearch_config["username"]
-            password = self.elasticsearch_config["password"]
+            hosts = json.loads(str(self.hosts))
+            username = self.username
+            password = self.password
 
             client = Elasticsearch(hosts=hosts, http_auth=(username, password))
 
@@ -42,7 +44,5 @@ class Elk(object):
             log.record.error(
                 "ELK connection error, check your server and credentials",
                 exc_info=sys.exc_info(),
-            )
-            Monitor.send_kpi_message("elk client error")
-
+            )            
             raise error

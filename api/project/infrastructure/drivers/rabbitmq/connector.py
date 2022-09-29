@@ -1,8 +1,7 @@
 import aio_pika
-
-from project.infrastructure.environments.loader import Configs
+import os
 from project.infrastructure.monitoring_layer.aplication_general_log import Log
-from project.infrastructure.monitoring_layer.aplication_kpi import Monitor
+
 
 log = Log()
 
@@ -13,8 +12,11 @@ class RabbitMq(object):
             Na inicialização da classe de conexão com o RabbitMQ,
         as configurações de ambiente são carregadas em tempo de execução,
         e servidas sob o contexto da instancia.
-        """
-        self.rabbit_mq_config: dict = Configs.get_by_key("rabbitmq")
+        """        
+        self.host: str = str(os.getenv("RABBITMQ_HOST"))
+        self.port = int(str(os.getenv("RABBITMQ_PORT")))
+        self.username: str = str(os.getenv("RABBITMQ_USERNAME"))
+        self.password: str = str(os.getenv("RABBITMQ_PASSWORD"))        
 
     async def connection(self):
         """
@@ -27,14 +29,9 @@ class RabbitMq(object):
             Coroutine[Any, Any, ConnectionType@connect]
         """
         try:
-
-            host: str = self.rabbit_mq_config["host"]
-            port: int = self.rabbit_mq_config["port"]
-            username: str = self.rabbit_mq_config["username"]
-            password: str = self.rabbit_mq_config["password"]
-
+            
             connection = await aio_pika.connect(
-                host=host, port=port, login=username, password=password
+                host=self.host, port=self.port, login=self.username, password=self.password
             )
 
             return connection
@@ -45,6 +42,4 @@ class RabbitMq(object):
                 "RabbitMQ connection error, check your server and configurations",
                 exc_info=error,
             )
-            Monitor.send_kpi_message("RabbitMQ client error")
-
             raise error
