@@ -1,6 +1,6 @@
 pytest-cov==2.11.1
 pytest-bdd==4.0.2
-httpx==0.17.0
+httpx==0.23.0
 flake8==3.8.4
 pep8==1.7.1
 pytest-mock==3.5.1
