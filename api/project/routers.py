@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from elasticapm.contrib.starlette import ElasticAPM
 from project.infrastructure.open_api.open_api_schema import Schema
 from project.resources.lifecheck.controller import router as life_check_api
 
@@ -12,7 +11,7 @@ app.include_router(life_check_api, prefix="/health", tags=["health"])
 schema = Schema(
     app=app,
     title="Microservices template",
-    version="0.0.6",
+    version="0.1.0",
     url_logo="",
     description="""
 
@@ -25,7 +24,6 @@ schema = Schema(
     - Mongo
     - Rabbit MQ
     - Elasticsearc
-    - Elastic APM
 
     Como framework de testes utilizamos o Pytest bem como, os seguintes pluggins:
 

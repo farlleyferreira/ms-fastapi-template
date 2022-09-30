@@ -8,6 +8,9 @@ from project.infrastructure.drivers.redis.adapter import RedisAdapter
 from project.infrastructure.drivers.rabbitmq.adapter import RabbitMqAdapter
 from project.infrastructure.drivers.elasticsearch.adapter import ElkAdapter
 
+from project.domain.lifecheck.repositories.life_check import Metadata
+from project.domain.lifecheck.validations.life_check import ValidationLifeCheck
+
 
 class Lifecheck(object):
     def __init__(self, request_headers):
@@ -24,11 +27,11 @@ class Lifecheck(object):
         Returns:
             life_status: dict
         """
-
-        mongo_status = await self.get_mongo_database_status()
-        queue_status = await self.get_queue_status()
-        redis_status = self.get_redis_database_status()
-        elk_status = self.get_elk_database_status()
+        validation = ValidationLifeCheck()
+        mongo_status = validation.validate_status(await self.get_mongo_database_status())
+        queue_status = validation.validate_status(await self.get_queue_status())
+        redis_status = validation.validate_status(self.get_redis_database_status())
+        elk_status = validation.validate_status(self.get_elk_database_status())
 
         api_status, api_message = self.get_api_status(
             [mongo_status, queue_status, redis_status, elk_status]
@@ -42,7 +45,7 @@ class Lifecheck(object):
             "aplication_message": api_message,
             "aplication_name": "FastApi microservice template",
             "response_at": datetime.now(),
-            "api_status": api_status,
+            "api_status": api_status.value,
             "referer": referer,
             "details": {
                 "rabbit_mq_status": queue_status,
@@ -51,7 +54,9 @@ class Lifecheck(object):
                 "elk_status": elk_status,
             },
         }
-        return life_status
+
+        result = Metadata(**life_status)
+        return result
 
     @staticmethod
     def get_api_status(aplication_status: list):
@@ -75,44 +80,20 @@ class Lifecheck(object):
 
     @staticmethod
     def get_redis_database_status():
-        """
-            Verifica o status de vida do Redis
-
-        Returns:
-            status:Literal (GREEN, RED)
-        """
         is_ok_database = RedisAdapter().get_buildinfo()
-        return Status.GREEN if is_ok_database else Status.RED
+        return is_ok_database
 
     @staticmethod
     def get_elk_database_status():
-        """
-            Verifica o status de vida do Elk
-
-        Returns:
-            status:Literal (GREEN, RED)
-        """
         is_ok_database = ElkAdapter().get_buildinfo()
-        return Status.GREEN if is_ok_database else Status.RED
+        return is_ok_database
 
     @staticmethod
-    async def get_mongo_database_status():
-        """
-            Verifica o status de vida do Mongo
-
-        Returns:
-            status:Literal (GREEN, RED)
-        """
+    async def get_mongo_database_status():       
         is_ok_database = await MongoAdapter().get_buildinfo()
-        return Status.GREEN if is_ok_database else Status.RED
+        return is_ok_database
 
     @staticmethod
     async def get_queue_status():
-        """
-            Verifica o status de vida do Rabbit MQ
-
-        Returns:
-            status:Literal (GREEN, RED)
-        """
         is_ok_queue = await RabbitMqAdapter().get_buildinfo()
-        return Status.GREEN if is_ok_queue else Status.RED
+        return is_ok_queue
