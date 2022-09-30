@@ -5,11 +5,13 @@ from project.infrastructure.drivers.elasticsearch.connector import Elk
 
 def test_elk_connection_success():
     elk = Elk()
-    assert elk.client()
+    if not elk.client():
+        raise AssertionError
 
 
 def test_elk_connection_error():
     elk = Elk()
     elk.hosts = {"unknow": ""}
 
-    assert pytest.raises(Exception, elk.client)
+    if not pytest.raises(Exception, elk.client):
+        raise AssertionError

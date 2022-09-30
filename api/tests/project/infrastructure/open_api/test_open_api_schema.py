@@ -7,8 +7,10 @@ def test_open_api():
 
     schema = Schema(app=app, title="teste", version="0.0.0", url_logo="", description="")
     oas = schema.create()
-    assert 'info' in oas
+    if 'info' not in oas:
+        raise AssertionError
     schema._app.openapi_schema = oas
 
     new_oas = schema.create()
-    assert oas == new_oas
+    if oas != new_oas:
+        raise AssertionError

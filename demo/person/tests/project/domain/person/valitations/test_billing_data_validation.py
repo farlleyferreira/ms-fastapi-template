@@ -39,7 +39,8 @@ async def test_this_billing_data_has_exist():
     if result:
         await delete_mongo_object(billing_data["_id"])
 
-    assert result
+    if not result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -47,7 +48,8 @@ async def test_this_billing_data_has_not_exist():
 
     result = await ValidateBillingData.this_billing_data_has_exist({"name": "abacaxiazul"})
 
-    assert not result
+    if result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -59,7 +61,8 @@ async def test_this_billing_data_is_active():
     if result:
         await delete_mongo_object(billing_data["_id"])
 
-    assert result
+    if not result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -81,4 +84,5 @@ async def test_this_billing_data_is_inactive():
     if result:
         await delete_mongo_object(billing_data["_id"])
 
-    assert not result
+    if result:
+        raise AssertionError

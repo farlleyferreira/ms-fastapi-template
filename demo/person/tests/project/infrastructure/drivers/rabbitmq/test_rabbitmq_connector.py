@@ -11,7 +11,8 @@ async def test_rabbitmq_connection_success():
         Then: Obtenho sucesso
     """
     rabbitmq = RabbitMq()
-    assert await rabbitmq.connection()
+    if not await rabbitmq.connection():
+        raise AssertionError
 
 
 def test_rabbitmq_connection_error():
