@@ -18,7 +18,6 @@
 > <ul>
 > <li> Mongo DB </li>
 > <li> Elasticsearch </li>
-> <li> Elastic APM </li>
 > <li> Rabbit MQ </li>
 > <li> Redis </li>
 > </ul>
@@ -261,7 +260,7 @@
 > ### Padrões adotados: :chart_with_upwards_trend:
 >
 > <p style="text-align: justify">
-> O projeto foi concebido de forma a simplificar o de api's, tendo como base o cenário de microsserviços. Neste template, centralizamos em "infrastructure" todos os componentes que possam servir o domínio, seja conexões com bancos de dados, serviços de cache distribuído, APM, ou qualquer tipo de integração com serviços externos e suas derivações. Possibilitando maior liberdade para que o desenvolvedor trabalhe no que de fato importa, que é a implementação da camada de negocio.
+> O projeto foi concebido de forma a simplificar o de api's, tendo como base o cenário de microsserviços. Neste template, centralizamos em "infrastructure" todos os componentes que possam servir o domínio, seja conexões com bancos de dados, serviços de cache distribuído ou qualquer tipo de integração com serviços externos e suas derivações. Possibilitando maior liberdade para que o desenvolvedor trabalhe no que de fato importa, que é a implementação da camada de negocio.
 > </p>
 >
 > #### Resources.
@@ -317,7 +316,7 @@
 >
 > - <i>Monitoring Layer.</i>
 >
->   <p style="text-align: justify"> Responsável por abstrair as funcionalidades de log e monitoramento da aplicação. No caso de monitoramento temos a implementação de uma integração com o Elastic APM, Caso desejar, poderá realizar a integração com outros serviços, tais como new relic, dynatrace, entre outros.
+>   <p style="text-align: justify"> Responsável por abstrair as funcionalidades de log e monitoramento da aplicação. No caso de monitoramento. Caso desejar, poderá realizar a integração com outros serviços, tais como new relic, dynatrace, entre outros.
 > </p>
 >
 > - <i>Open Api.</i>
