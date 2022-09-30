@@ -25,7 +25,8 @@ output_data = {}
 @pytest.mark.asyncio
 async def test_save_legal_person():
     save_result = await manage_billing_data.save_billing_data(legal_person)
-    assert save_result.id
+    if not save_result.id:
+        raise AssertionError
     output_data["id"] = str(save_result.id)
 
 
@@ -33,13 +34,15 @@ def test_compose_response():
     data = base_data.copy()
     data["_id"] = output_data["id"]
     save_result = manage_billing_data.compose_response_billing_data(data)
-    assert save_result.id
+    if not save_result.id:
+        raise AssertionError
 
 
 def test_compose_response_whithout_id():
     data = base_data.copy()
     save_result = manage_billing_data.compose_response_billing_data(data)
-    assert save_result
+    if not save_result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -64,7 +67,8 @@ async def test_update_legal_person_type_error():
 @pytest.mark.asyncio
 async def test_get_by_id_legal_person():
     get_result = await manage_billing_data.get_billing_data_by_id(output_data["id"])
-    assert output_data["id"] == str(get_result.id)
+    if output_data["id"] != str(get_result.id):
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -77,13 +81,15 @@ async def test_get_by_id_legal_person_type_error():
 @pytest.mark.asyncio
 async def test_get_by_query_legal_person():
     get_result = await manage_billing_data.get_billing_data_by_query({"person_id": base_data["person_id"]})
-    assert len(get_result) == 1
+    if len(get_result) != 1:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
 async def test_get_by_query_legal_person_type_error():
     get_result = await manage_billing_data.get_billing_data_by_query({"color": (1, 2, 3)})
-    assert len(get_result) == 0
+    if len(get_result) != 0:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -99,7 +105,8 @@ async def test_get_by_query_legal_person_error():
 @pytest.mark.asyncio
 async def test_delete_legal_person():
     delete_result = await manage_billing_data.delete_billing_data(output_data["id"])
-    assert delete_result
+    if not delete_result:
+        raise AssertionError
 
 
 @pytest.mark.asyncio

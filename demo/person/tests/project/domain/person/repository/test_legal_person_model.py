@@ -16,7 +16,8 @@ def test_instance_physical_person():
         "phone": "+5534988887777",
     }
     physical_person = LegalPerson(**input_data)
-    assert input_data["_id"] == physical_person.dict()["id"]
+    if input_data["_id"] != physical_person.dict()["id"]:
+        raise AssertionError
 
 
 def test_instance_physical_person_errors():

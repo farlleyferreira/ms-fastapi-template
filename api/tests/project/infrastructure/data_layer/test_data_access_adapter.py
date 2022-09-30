@@ -15,14 +15,16 @@ async def create_mongo_object(input_object: dict):
 
 def test_data_layer_instance():
     data_layer = MongoDataLayer(Collections.general_collection)
-    assert data_layer
+    if not data_layer:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
 async def test_data_layer_creation():
     input_object = {"key": "value"}
     document = await create_mongo_object(input_object)
-    assert document == input_object
+    if document != input_object:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -35,7 +37,8 @@ async def test_data_layer_update():
     data_layer = MongoDataLayer(Collections.general_collection)
     result = await data_layer.update(criteria, {"key": "value2"})
 
-    assert result.raw_result == {'n': 1, 'nModified': 1, 'ok': 1.0, 'updatedExisting': True}
+    if result.raw_result != {'n': 1, 'nModified': 1, 'ok': 1.0, 'updatedExisting': True}:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -48,7 +51,8 @@ async def test_data_layer_delete():
     data_layer = MongoDataLayer(Collections.general_collection)
     result = await data_layer.delete(criteria)
 
-    assert result.raw_result == {'n': 1, 'ok': 1.0}
+    if result.raw_result != {'n': 1, 'ok': 1.0}:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -60,7 +64,8 @@ async def test_data_layer_get_by_id():
     data_layer = MongoDataLayer(Collections.general_collection)
     result = await data_layer.get_by_id(document["_id"])
 
-    assert result == document
+    if result != document:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -70,4 +75,5 @@ async def test_data_layer_get_by_filter():
     data_layer = MongoDataLayer(Collections.general_collection)
     result = await data_layer.get_by_filter(custom_filter)
 
-    assert len(result) >= 2
+    if len(result) < 2:
+        raise AssertionError
