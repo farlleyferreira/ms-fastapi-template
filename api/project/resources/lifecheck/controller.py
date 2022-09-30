@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request
-from project.domain.lifecheck.business_rules.health_status import Lifecheck
+from project.domain.lifecheck.business_rules.life_check import Lifecheck
 
 router = APIRouter()
 

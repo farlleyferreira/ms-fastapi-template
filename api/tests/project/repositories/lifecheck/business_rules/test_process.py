@@ -1,4 +1,4 @@
-from project.domain.lifecheck.business_rules.health_status import Lifecheck
+from project.domain.lifecheck.business_rules.life_check import Lifecheck
 from project.infrastructure.constants.health_check_status import Status
 from project.infrastructure.constants.health_check_status import Health
 

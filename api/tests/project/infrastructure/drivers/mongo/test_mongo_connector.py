@@ -6,7 +6,7 @@ from project.infrastructure.drivers.mongo.connector import Mongo
 
 def test_mongo_connection_success():
     """
-        when: Crio uma conexão com o Apm
+        when: Crio uma conexão com o Mongo DB
         Then: Obtenho sucesso
     """
     mongo = Mongo()
