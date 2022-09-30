@@ -12,7 +12,7 @@ from project.domain.lifecheck.repositories.life_check import Metadata
 from project.domain.lifecheck.validations.life_check import ValidationLifeCheck
 
 
-class Lifecheck(object):
+class Lifecheck:
     def __init__(self, request_headers):
         """
         Regras de negocio para o processo de verificação de status do projeto
@@ -73,10 +73,9 @@ class Lifecheck(object):
 
         if is_ok:
             return Health.success.value
-        elif its_danger:
+        if its_danger:
             return Health.danger.value
-        else:
-            return Health.warning.value
+        return Health.warning.value
 
     @staticmethod
     def get_redis_database_status():
