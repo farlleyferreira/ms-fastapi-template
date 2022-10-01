@@ -14,10 +14,10 @@ class Elk(object):
             Na inicialização da classe de conexão com o elasticsearch,
         as configurações de ambiente são carregadas em tempo de execução,
         e servidas sob o contexto da instancia.
-        """                
+        """
         self.hosts = os.getenv("ELK_HOSTS")
         self.username = os.getenv("ELK_USERNAME")
-        self.password = os.getenv("ELK_PASSWORD")   
+        self.password = os.getenv("ELK_PASSWORD")
 
     def client(self) -> Elasticsearch:
         """
@@ -44,5 +44,5 @@ class Elk(object):
             log.record.error(
                 "ELK connection error, check your server and credentials",
                 exc_info=sys.exc_info(),
-            )            
+            )
             raise error

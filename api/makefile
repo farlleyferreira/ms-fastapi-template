@@ -1,8 +1,8 @@
 coverage:
-	python -m pytest -v --cov-report term-missing --cov=project/ --cov-report=xml --disable-pytest-warnings
+	python  -m pytest -v --cov-report term-missing --cov=project/ --cov-report=xml 
 
 test:
-	python -m pytest
+	python -m pytest 
 
 list-requirements:
 	pip freeze

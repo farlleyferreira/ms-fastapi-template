@@ -12,11 +12,11 @@ class RabbitMq(object):
             Na inicialização da classe de conexão com o RabbitMQ,
         as configurações de ambiente são carregadas em tempo de execução,
         e servidas sob o contexto da instancia.
-        """        
+        """
         self.host: str = str(os.getenv("RABBITMQ_HOST"))
         self.port = int(str(os.getenv("RABBITMQ_PORT")))
         self.username: str = str(os.getenv("RABBITMQ_USERNAME"))
-        self.password: str = str(os.getenv("RABBITMQ_PASSWORD"))        
+        self.password: str = str(os.getenv("RABBITMQ_PASSWORD"))
 
     async def connection(self):
         """
@@ -29,9 +29,12 @@ class RabbitMq(object):
             Coroutine[Any, Any, ConnectionType@connect]
         """
         try:
-            
+
             connection = await aio_pika.connect(
-                host=self.host, port=self.port, login=self.username, password=self.password
+                host=self.host,
+                port=self.port,
+                login=self.username,
+                password=self.password,
             )
 
             return connection
