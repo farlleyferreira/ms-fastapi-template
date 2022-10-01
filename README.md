@@ -18,7 +18,6 @@
 > <ul>
 > <li> Mongo DB </li>
 > <li> Elasticsearch </li>
-> <li> Elastic APM </li>
 > <li> Rabbit MQ </li>
 > <li> Redis </li>
 > </ul>
@@ -53,8 +52,8 @@
 >   <ol>
 >    <li> Realize o clone desta aplicação para seu diretório de projetos</li>
 >    <li> Dentro deste diretório será possível verificar a criação da pasta: <i><b>ms-fastapi-template</b></i></li>
->    <li> Abra o diretório <i><b>ms-fastapi-template/api/project/infrastructure/environments</b></i></li>
->    <li> Neste diretório você encontrará o arquivo <i><b>config.yaml d</b></i></li>
+>    <li> Abra o diretório <i><b>ms-fastapi-template/api/</b></i></li>
+>    <li> Neste diretório você encontrará o arquivo <i><b>.env</b></i></li>
 >    <li> Para cada serviço contido neste arquivo, altere o host: localhost para o nome do serviço desejado (nome do serviço no arquivo docker-compose).</li>
 >   </ol>
 >   <p style="text-align: justify">
@@ -225,7 +224,6 @@
 >   |   |   |   - infrastructure
 >   |   |   |   |   - constants
 >   |   |   |   |   - drivers
->   |   |   |   |   - environments
 >   |   |   |   |   - monitoring_layer
 >   |   |   |   |   - open_api
 >   |   |   |   |   - logs
@@ -237,8 +235,6 @@
 >   |   |   |   - infrastructure
 >   |   |   |   |   - constants
 >   |   |   |   |   - drivers
->   |   |   |   |   - environments
->   |   |   |   |   - monitoring_layer
 >   |   |   |   |   - open_api
 >   |   |   |   |   - logs
 >   |   |   |   - domain
@@ -261,7 +257,7 @@
 > ### Padrões adotados: :chart_with_upwards_trend:
 >
 > <p style="text-align: justify">
-> O projeto foi concebido de forma a simplificar o de api's, tendo como base o cenário de microsserviços. Neste template, centralizamos em "infrastructure" todos os componentes que possam servir o domínio, seja conexões com bancos de dados, serviços de cache distribuído, APM, ou qualquer tipo de integração com serviços externos e suas derivações. Possibilitando maior liberdade para que o desenvolvedor trabalhe no que de fato importa, que é a implementação da camada de negocio.
+> O projeto foi concebido de forma a simplificar o de api's, tendo como base o cenário de microsserviços. Neste template, centralizamos em "infrastructure" todos os componentes que possam servir o domínio, seja conexões com bancos de dados, serviços de cache distribuído ou qualquer tipo de integração com serviços externos e suas derivações. Possibilitando maior liberdade para que o desenvolvedor trabalhe no que de fato importa, que é a implementação da camada de negocio.
 > </p>
 >
 > #### Resources.
@@ -310,14 +306,14 @@
 >   <p style="text-align: justify"> Responsável por expor mecanismos de comunicação através de um adaptador com qualquer tipo de serviço externo, via conector, seja a conexão com um banco de dados, api, serviço de mensageria, cache distribuído e etc. As conexões com as dependências externas deverão ser executadas única e exclusivamente através da classe connector do driver em contexto, e expostas através da classe adapter, onde poderão existir métodos de encapsulamento de funções especificas, assim como healthchecks.
 > </p>
 >
-> - <i>Environments.</i>
+> - <i>dotenv.</i>
 >
->   <p style="text-align: justify"> Responsável por conter as variaveis de ambiente do projeto, por padrão, está definida para um arquivo yaml, esta decisão foi tomada com a intenção de facilitar algumas integrações com kubernetes. Entretanto, pode ser facilmente movida para um arquivo ".env" de acordo com o contexto de utilização da api.
+>   <p style="text-align: justify"> Responsável por conter as variaveis de ambiente do projeto, por padrão, está definida para um arquivo yaml, esta decisão foi tomada com a intenção de facilitar algumas integrações com kubernetes.
 > </p>
 >
 > - <i>Monitoring Layer.</i>
 >
->   <p style="text-align: justify"> Responsável por abstrair as funcionalidades de log e monitoramento da aplicação. No caso de monitoramento temos a implementação de uma integração com o Elastic APM, Caso desejar, poderá realizar a integração com outros serviços, tais como new relic, dynatrace, entre outros.
+>   <p style="text-align: justify"> Responsável por abstrair as funcionalidades de log e monitoramento da aplicação. Caso desejar, poderá realizar a integração com outros serviços, tais como new relic, dynatrace, entre outros.
 > </p>
 >
 > - <i>Open Api.</i>
