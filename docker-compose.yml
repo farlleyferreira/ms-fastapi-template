@@ -1,30 +1,6 @@
 version: "3.3"
 
 services:
-  apm-server:
-    image: docker.elastic.co/apm/apm-server:7.11.1
-    ports:
-      - "8200:8200"
-      - "8201:8200"
-    environment:
-      - apm-server.host=0.0.0.0
-      - apm-server.frontend.enabled=true
-      - setup.template.settings.index.number_of_shards=1
-      - setup.template.settings.index.codec=best_compression
-      - output.elasticsearch.hosts=["elasticsearch:9200"]
-    command:
-      [
-        "apm-server",
-        "-e",
-        "-E",
-        "output.elasticsearch.username=elastic",
-        "-E",
-        "output.elasticsearch.password=mstemplate123",
-      ]
-    networks:
-      - app-tier
-    depends_on:
-      - elasticsearch
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
@@ -52,24 +28,24 @@ services:
       retries: 10
       test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.11.1
-    depends_on:
-      elasticsearch:
-        condition: service_healthy
-    environment:
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
-      - ELASTICSEARCH_USERNAME="elastic"
-      - ELASTICSEARCH_PASSWORD="mstemplate123"
-      - xpack.monitoring.ui.container.elasticsearch.enabled=true
-    ports:
-      - 5601:5601
-    networks:
-      - app-tier
-    healthcheck:
-      interval: 10s
-      retries: 20
-      test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:5601/api/status
+  # kibana:
+  #   image: docker.elastic.co/kibana/kibana:7.11.1
+  #   depends_on:
+  #     elasticsearch:
+  #       condition: service_healthy
+  #   environment:
+  #     - ELASTICSEARCH_URL=http://elasticsearch:9200
+  #     - ELASTICSEARCH_USERNAME="elastic"
+  #     - ELASTICSEARCH_PASSWORD="mstemplate123"
+  #     - xpack.monitoring.ui.container.elasticsearch.enabled=true
+  #   ports:
+  #     - 5601:5601
+  #   networks:
+  #     - app-tier
+  #   healthcheck:
+  #     interval: 10s
+  #     retries: 20
+  #     test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:5601/api/status
 
   rabbit:
     image: rabbitmq:3-management

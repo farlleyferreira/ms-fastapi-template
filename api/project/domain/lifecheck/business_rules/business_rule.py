@@ -17,6 +17,7 @@ class Lifecheck(object):
 
     async def get_life_status(self) -> LifeStatus:
         validate = ValidateHelth()
+        
         mongo_status = validate.validate_specific_status(
             await self.get_mongo_database_status()
         )

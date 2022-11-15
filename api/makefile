@@ -1,3 +1,6 @@
+create-log-folder:
+	mkdir ./project/logs/
+
 coverage:
 	python  -m pytest -v --cov-report term-missing --cov=project/ --cov-report=xml 
 
@@ -14,7 +17,7 @@ install-requirements:
 	pip install -r requirements.txt
 	pip install -r requirements-dev.txt
 
-run-aplication:
+run:
 	python setup.py
 
 sonar-scan:

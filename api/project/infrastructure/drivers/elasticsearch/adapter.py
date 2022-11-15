@@ -19,4 +19,5 @@ class ElkAdapter(Elk):
             bool
         """
         client: Elasticsearch = self.client()
-        return client.ping()
+        ping_result = client.ping()
+        return ping_result
