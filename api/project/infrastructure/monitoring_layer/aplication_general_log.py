@@ -1,9 +1,8 @@
 import logging
 import logzero
-import os
 
 
-class Log(object):
+class Log:
 
     def __init__(self):
         """

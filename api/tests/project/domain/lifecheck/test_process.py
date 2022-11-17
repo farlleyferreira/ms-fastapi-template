@@ -9,8 +9,7 @@ def test_get_api_status_danger():
 
     result_status, result_message = api_status
     expected_result_status, expected_result_message = Health.danger.value
-    assert result_status == expected_result_status
-    assert result_message == expected_result_message
+    assert result_status == expected_result_status and result_message == expected_result_message    
 
 
 def test_get_api_status_warning():
@@ -19,5 +18,4 @@ def test_get_api_status_warning():
     
     result_status, result_message = api_status
     expected_result_status, expected_result_message = Health.warning.value
-    assert result_status == expected_result_status
-    assert result_message == expected_result_message
+    assert result_status == expected_result_status and result_message == expected_result_message
