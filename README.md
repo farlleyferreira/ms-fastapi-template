@@ -153,7 +153,7 @@
 > </p>
 >
 > ```bash
-> make run-aplication
+> make run
 > ```
 >
 > <i> &nbsp;&nbsp;&nbsp; ou caso não possua o make, poderá rodar o comando:</i>
