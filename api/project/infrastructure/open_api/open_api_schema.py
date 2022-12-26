@@ -3,9 +3,7 @@ from fastapi.openapi.utils import get_openapi
 
 
 class Schema(object):
-    def __init__(
-        self, app: FastAPI, title: str, version: str, url_logo: str, description: str
-    ) -> None:
+    def __init__(self, app: FastAPI, title: str) -> None:
         """[summary]
 
         Args:
@@ -18,9 +16,6 @@ class Schema(object):
 
         self._app = app
         self._title = title
-        self._version = version
-        self._url_logo = url_logo
-        self._description = description
 
     def create(self):
         """
@@ -32,14 +27,37 @@ class Schema(object):
         if self._app.openapi_schema:
             return self._app.openapi_schema
 
+        version = "0.0.6"
+        url_logo = ""
+        description = """
+
+        Template base para criação de projetos de microsserviços, o projeto foi criado
+        tendo como base a linguagem python 3.9.x, utilizando o framework FastApi
+
+        Neste projeto, existem integrações prontas para consumo, sendo estas:
+
+        - Redis
+        - Mongo
+        - Rabbit MQ
+        - Elasticsearc
+
+        Como framework de testes utilizamos o Pytest bem como, os seguintes pluggins:
+
+        - pytest-cov
+        - pytest-bdd
+        - pytest-mock
+        - pytest-asyncio
+
+        """
+
         openapi_schema = get_openapi(
             title=self._title,
-            version=self._version,
+            version=version,
             routes=self._app.routes,
-            description=self._description,
+            description=description,
         )
 
-        openapi_schema["info"]["x-logo"] = {"url": self._url_logo}
+        openapi_schema["info"]["x-logo"] = {"url": url_logo}
 
         self._app.openapi_schema = openapi_schema
 
