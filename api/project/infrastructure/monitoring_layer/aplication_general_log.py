@@ -3,7 +3,6 @@ import logzero
 
 
 class Log:
-
     def __init__(self):
         """
         Custom log class implementation
@@ -11,7 +10,7 @@ class Log:
         """
 
         logzero.logfile(
-            filename= "logfile.log",
+            filename="logfile.log",
             formatter=logging.Formatter(
                 "%(filename)s - %(asctime)s - %(levelname)s: %(message)s"
             ),
