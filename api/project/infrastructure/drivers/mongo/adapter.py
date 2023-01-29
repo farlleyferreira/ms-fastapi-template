@@ -78,7 +78,9 @@ class MongoAdapter(Mongo):
         Returns:
            object_result (Document)
         """
-        object_result = await self.client()[self.collection].update_one(criteria, {"$set": _object})
+        object_result = await self.client()[self.collection].update_one(
+            criteria, {"$set": _object}
+        )
         return object_result
 
     async def update_many(self, criteria: dict, data: dict):
@@ -90,7 +92,9 @@ class MongoAdapter(Mongo):
         Returns:
            object_result (Document)
         """
-        object_result = await self.client()[self.collection].update_many(criteria, {"$set": _object})
+        object_result = await self.client()[self.collection].update_many(
+            criteria, {"$set": _object}
+        )
         return object_result
 
     async def delete(self, criteria: dict):

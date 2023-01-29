@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 
-class DataLayer(ABC):
 
+class DataLayer(ABC):
     @abstractmethod
     async def get_buildinfo(self) -> bool:
-        '''
-            Return ping database 
-        '''
+        """
+        Return ping database
+        """
 
     # @abstractmethod
     # async def get_one(self) -> object:

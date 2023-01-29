@@ -1,14 +1,11 @@
 from fastapi import APIRouter, Request
-from project.domain.lifecheck.business_rules.business_rule import Lifecheck
+from project.domain.lifecheck.business_rules.status import Lifecheck
 from project.services.lifecheck.schema import ResponseLifeStatus
 
 router = APIRouter()
 
 
-@router.get(
-    "/",
-    response_model=ResponseLifeStatus
-)
+@router.get("/", response_model=ResponseLifeStatus)
 async def health_check(request: Request):
     """
     ### Recurso que tem por objetivo verificar a saude da aplicação.

@@ -3,8 +3,8 @@ from project.infrastructure.drivers.redis.adapter import RedisAdapter
 from project.infrastructure.drivers.rabbitmq.adapter import RabbitMqAdapter
 from project.infrastructure.drivers.elasticsearch.adapter import ElkAdapter
 
-from project.domain.lifecheck.repositories.repository import LifeStatus, Details
-from project.domain.lifecheck.validations.validation import ValidateHelth
+from project.domain.lifecheck.repositories.model_status import LifeStatus, Details
+from project.domain.lifecheck.validations.status import ValidateHelth
 
 
 from project.infrastructure.data_layer.concrete_datalayer import DataLayer
@@ -32,12 +32,7 @@ class Lifecheck(object):
         elk_status = validate.specific_status(elk_result)
 
         api_status, api_message = validate.general_status(
-            [
-                mongo_status,
-                queue_status,
-                redis_status,
-                elk_status
-            ]
+            [mongo_status, queue_status, redis_status, elk_status]
         )
 
         referer = (
@@ -74,7 +69,7 @@ class Lifecheck(object):
 
     @staticmethod
     async def get_mongo_database_status() -> bool:
-        client = DataLayer().get_client('healthcheck')
+        client = DataLayer().get_client("healthcheck")
         is_ok_database = await client.get_buildinfo()
         return is_ok_database
 
