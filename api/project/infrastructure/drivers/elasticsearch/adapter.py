@@ -10,6 +10,9 @@ class ElkAdapter(Elk):
     def __init__(self) -> None:
         super().__init__()
 
+    def elk_client(self, index: str):
+        pass
+
     def get_buildinfo(self) -> bool:
         """
             Verifica se a conexão está ou não

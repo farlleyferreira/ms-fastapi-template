@@ -5,10 +5,10 @@ class ValidateHelth(object):
     def __init__(self):
         super().__init__()
 
-    def validate_specific_status(self, is_ok_status: bool) -> Status:
+    def specific_status(self, is_ok_status: bool) -> Status:
         return Status.GREEN if is_ok_status else Status.RED
 
-    def validate_general_status(self, status_list: list[Status]) -> Status:
+    def general_status(self, status_list: list[Status]) -> Status:
 
         is_ok = all(_status == Status.GREEN for _status in status_list)
 

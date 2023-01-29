@@ -1,11 +1,13 @@
 from datetime import datetime
-from project.infrastructure.drivers.mongo.adapter import MongoAdapter
 from project.infrastructure.drivers.redis.adapter import RedisAdapter
 from project.infrastructure.drivers.rabbitmq.adapter import RabbitMqAdapter
 from project.infrastructure.drivers.elasticsearch.adapter import ElkAdapter
 
 from project.domain.lifecheck.repositories.repository import LifeStatus, Details
 from project.domain.lifecheck.validations.validation import ValidateHelth
+
+
+from project.infrastructure.data_layer.concrete_datalayer import DataLayer
 
 
 class Lifecheck(object):
@@ -16,19 +18,26 @@ class Lifecheck(object):
         self.request_headers = request_headers
 
     async def get_life_status(self) -> LifeStatus:
+
         validate = ValidateHelth()
 
-        mongo_status = validate.validate_specific_status(
-            await self.get_mongo_database_status()
-        )
-        queue_status = validate.validate_specific_status(await self.get_queue_status())
-        redis_status = validate.validate_specific_status(
-            self.get_redis_database_status()
-        )
-        elk_status = validate.validate_specific_status(self.get_elk_database_status())
+        mongo_result = await self.get_mongo_database_status()
+        queue_status = await self.get_queue_status()
+        mdb_result = self.get_redis_database_status()
+        elk_result = self.get_elk_database_status()
 
-        api_status, api_message = validate.validate_general_status(
-            [mongo_status, queue_status, redis_status, elk_status]
+        mongo_status = validate.specific_status(mongo_result)
+        queue_status = validate.specific_status(queue_status)
+        redis_status = validate.specific_status(mdb_result)
+        elk_status = validate.specific_status(elk_result)
+
+        api_status, api_message = validate.general_status(
+            [
+                mongo_status,
+                queue_status,
+                redis_status,
+                elk_status
+            ]
         )
 
         referer = (
@@ -65,7 +74,8 @@ class Lifecheck(object):
 
     @staticmethod
     async def get_mongo_database_status() -> bool:
-        is_ok_database = await MongoAdapter().get_buildinfo()
+        client = DataLayer().get_client('healthcheck')
+        is_ok_database = await client.get_buildinfo()
         return is_ok_database
 
     @staticmethod
