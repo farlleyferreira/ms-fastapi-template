@@ -19,7 +19,7 @@ class Health(enum.Enum):
     success = Status.GREEN, "It's all fine! Shine On You Crazy Diamond!!"
     warning = (
         Status.YELLOW,
-        "WARNING: We have one or more problem," + " check logfiles please!!!",
+        "WARNING: We have one or more problem, check logfiles please!!!",
     )
     danger = (
         Status.RED,

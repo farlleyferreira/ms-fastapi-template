@@ -23,8 +23,8 @@ class Lifecheck(object):
 
         mongo_result = await self.get_mongo_database_status()
         queue_status = await self.get_queue_status()
-        mdb_result = self.get_redis_database_status()
-        elk_result = self.get_elk_database_status()
+        mdb_result = await self.get_redis_database_status()
+        elk_result = await self.get_elk_database_status()
 
         mongo_status = validate.specific_status(mongo_result)
         queue_status = validate.specific_status(queue_status)
@@ -57,23 +57,19 @@ class Lifecheck(object):
 
         return life_status
 
-    @staticmethod
-    def get_redis_database_status() -> bool:
+    async def get_redis_database_status(self) -> bool:
         is_ok_database = RedisAdapter().get_buildinfo()
         return is_ok_database
 
-    @staticmethod
-    def get_elk_database_status() -> bool:
+    async def get_elk_database_status(self) -> bool:
         is_ok_database = ElkAdapter().get_buildinfo()
         return is_ok_database
 
-    @staticmethod
-    async def get_mongo_database_status() -> bool:
+    async def get_mongo_database_status(self) -> bool:
         client = DataLayer().get_client("healthcheck")
         is_ok_database = await client.get_buildinfo()
         return is_ok_database
 
-    @staticmethod
-    async def get_queue_status() -> bool:
+    async def get_queue_status(self) -> bool:
         is_ok_queue = await RabbitMqAdapter().get_buildinfo()
         return is_ok_queue
