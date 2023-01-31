@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class DataLayer(ABC):
+class AbstractDataLayer(ABC):
     @abstractmethod
     async def get_buildinfo(self) -> bool:
         """

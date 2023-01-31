@@ -1,8 +1,9 @@
 from project.helpers.pydantic_typo import ObjectId
 from project.infrastructure.drivers.mongo.connector import Mongo
+from project.infrastructure.data_layer.abstract_datalayer import AbstractDataLayer
 
 
-class MongoAdapter(Mongo):
+class MongoAdapter(AbstractDataLayer, Mongo):
     """
     Mongo adapter class
     """

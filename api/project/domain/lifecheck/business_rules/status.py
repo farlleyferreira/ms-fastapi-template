@@ -66,8 +66,7 @@ class Lifecheck(object):
         return is_ok_database
 
     async def get_mongo_database_status(self) -> bool:
-        client = DataLayer().get_client("healthcheck")
-        is_ok_database = await client.get_buildinfo()
+        is_ok_database = await DataLayer(technology="mongo").get_buildinfo()
         return is_ok_database
 
     async def get_queue_status(self) -> bool:

@@ -8,11 +8,6 @@ log = Log()
 
 class Redis(object):
     def __init__(self):
-        """
-            Na inicialização da classe de conexão com o Redis,
-        as configurações de ambiente são carregadas em tempo de execução,
-        e servidas sob o contexto da instancia.
-        """
         self.host: str = str(os.getenv("REDIS_HOST"))
         self.port = int(str(os.getenv("REDIS_PORT")))
         self.password: str = str(os.getenv("REDIS_PASSWORD"))

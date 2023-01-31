@@ -18,4 +18,5 @@ class RedisAdapter(Redis):
             bool
         """
         client = self.client()
-        return True if client.ping() else False
+        ping = client.ping()
+        return True if ping else False

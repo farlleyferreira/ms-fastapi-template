@@ -5,10 +5,6 @@ from project.infrastructure.constants.health_check_status import Status
 
 
 path_patch = "project.domain.lifecheck.business_rules.status.Lifecheck"
-path_patch_mongo = "project.domain.lifecheck.business_rules.status.Lifecheck"
-path_patch_redis = "project.domain.lifecheck.business_rules.status.Lifecheck"
-path_patch_queue = "project.domain.lifecheck.business_rules.status.Lifecheck"
-path_patch_elk = "project.domain.lifecheck.business_rules.status.Lifecheck"
 
 
 @pytest.mark.asyncio

@@ -8,11 +8,6 @@ log = Log()
 
 class RabbitMq(object):
     def __init__(self) -> None:
-        """
-            Na inicialização da classe de conexão com o RabbitMQ,
-        as configurações de ambiente são carregadas em tempo de execução,
-        e servidas sob o contexto da instancia.
-        """
         self.host: str = str(os.getenv("RABBITMQ_HOST"))
         self.port = int(str(os.getenv("RABBITMQ_PORT")))
         self.username: str = str(os.getenv("RABBITMQ_USERNAME"))

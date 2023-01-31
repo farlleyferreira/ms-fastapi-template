@@ -2,12 +2,17 @@ from project.infrastructure.drivers.mongo.adapter import MongoAdapter
 from project.infrastructure.drivers.elasticsearch.adapter import ElkAdapter
 
 
-class DataLayer(object):
-    def __init__(self, database_type: str = "mongo") -> None:
-        super().__init__()
-        self.database_type: str = database_type
+class DataLayer:
+    def __init__(self, technology: str = "mongo", resource_name="healthcheck") -> None:
 
-    def get_client(self, resource_name: str) -> MongoAdapter | None:
-        if self.database_type == "elasticsearch":
-            return None
-        return MongoAdapter(resource_name)
+        if technology == "elasticsearch":
+            self.instance = object
+        elif technology == "mongo":
+            self.instance = MongoAdapter(resource_name)
+        else:
+            self.instance = object
+
+        super().__init__()
+
+    def __getattr__(self, name):
+        return self.instance.__getattribute__(name)
