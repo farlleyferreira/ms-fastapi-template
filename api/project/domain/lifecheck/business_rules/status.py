@@ -11,10 +11,8 @@ from project.infrastructure.data_layer.concrete_datalayer import DataLayer
 
 
 class Lifecheck(object):
+    
     def __init__(self, request_headers):
-        """
-        Regras de negocio para o processo de verificação de status do projeto
-        """
         self.request_headers = request_headers
 
     async def get_life_status(self) -> LifeStatus:
