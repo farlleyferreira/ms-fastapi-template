@@ -1,5 +1,4 @@
 from project.infrastructure.drivers.mongo.adapter import MongoAdapter
-from project.infrastructure.drivers.elasticsearch.adapter import ElkAdapter
 
 
 class DataLayer:
