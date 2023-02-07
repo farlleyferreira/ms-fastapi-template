@@ -7,4 +7,3 @@ from project.infrastructure.drivers.rabbitmq.adapter import RabbitMqAdapter
 async def test_get_buildinfo():
     rabbitmq = RabbitMqAdapter()
     assert await rabbitmq.get_buildinfo() == True
-

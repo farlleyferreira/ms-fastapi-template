@@ -104,7 +104,9 @@ async def test_update_many_success():
     ]
     await mongo.insert_many(data)
 
-    acknowledged, modified_count = await mongo.update_many({"age": {"$gt": 30}}, {"age": 29})
+    acknowledged, modified_count = await mongo.update_many(
+        {"age": {"$gt": 30}}, {"age": 29}
+    )
     assert acknowledged == True
     assert modified_count == len(data)
 

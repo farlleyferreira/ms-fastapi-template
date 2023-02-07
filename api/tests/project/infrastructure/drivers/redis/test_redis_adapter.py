@@ -1,4 +1,3 @@
-
 import pytest
 from project.infrastructure.drivers.redis.adapter import RedisAdapter
 
