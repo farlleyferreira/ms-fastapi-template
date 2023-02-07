@@ -54,7 +54,8 @@ async def test_get_life_status_yellow(queue, redis, mongo, elk):
     if Status.YELLOW != result.api_status:
         raise AssertionError
     if (
-        "WARNING: We have one or more problem, check logfiles please!!!" != result.aplication_message
+        "WARNING: We have one or more problem, check logfiles please!!!"
+        != result.aplication_message
     ):
         raise AssertionError
 
@@ -81,6 +82,7 @@ async def test_get_life_status_red(queue, redis, mongo, elk):
     if Status.RED != result.api_status:
         raise AssertionError
     if (
-        "Ops!!! houston we have a problem!!! A huge problem!!! check all drivers connection!!!" != result.aplication_message
+        "Ops!!! houston we have a problem!!! A huge problem!!! check all drivers connection!!!"
+        != result.aplication_message
     ):
         raise AssertionError
