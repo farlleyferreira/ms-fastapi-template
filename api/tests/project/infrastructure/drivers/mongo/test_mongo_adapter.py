@@ -6,7 +6,8 @@ from project.infrastructure.drivers.mongo.adapter import MongoAdapter
 @pytest.mark.asyncio
 async def test_get_buildinfo():
     mongo_client = MongoAdapter("mstemplate")
-    assert await mongo_client.get_buildinfo() == True
+    if await mongo_client.get_buildinfo() != True:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -15,7 +16,8 @@ async def test_get_one_success():
     data: dict = {"key": "value", "key2": "value2"}
     id = await mongo.insert_one(data)
     result = await mongo.get_one(id=id)
-    assert result == data
+    if result != data:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -32,7 +34,8 @@ async def test_get_by_filter_success():
     data: dict = {"key": "value", "key2": "value2"}
     await mongo.insert_one(data)
     result = await mongo.get_by_filter(filter=data)
-    assert result == [data]
+    if result != [data]:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -46,7 +49,8 @@ async def test_get_by_filter_error():
 async def test_insert_one_success():
     mongo = MongoAdapter("mstemplate")
     result = await mongo.insert_one({"key": "value"})
-    assert type(result) == ObjectId
+    if type(result) != ObjectId:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -61,8 +65,10 @@ async def test_insert_many_success():
     list_of_itens = [{"key": "value"}]
     mongo = MongoAdapter("mstemplate")
     result = await mongo.insert_many(list_of_itens)
-    assert type(result) == list
-    assert len(result) == 1
+    if type(result) != list:
+        raise AssertionError
+    if len(result) != 1:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -78,8 +84,10 @@ async def test_update_one_success():
     data: dict = {"person": "jhon", "age": 32}
     id = await mongo.insert_one(data)
     acknowledged, modified_count = await mongo.update_one({"_id": id}, {"age": "35"})
-    assert acknowledged == True
-    assert modified_count == 1
+    if acknowledged != True:
+        raise AssertionError
+    if modified_count != 1:
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -107,8 +115,10 @@ async def test_update_many_success():
     acknowledged, modified_count = await mongo.update_many(
         {"age": {"$gt": 30}}, {"age": 29}
     )
-    assert acknowledged == True
-    assert modified_count == len(data)
+    if acknowledged != True:
+        raise AssertionError
+    if modified_count != len(data):
+        raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -124,8 +134,10 @@ async def test_delete_success():
     data: dict = {"person": "jhon", "age": 32}
     await mongo.insert_one(data)
     acknowledged, deleted_count = await mongo.delete({"age": {"$gt": 30}})
-    assert acknowledged == True
-    assert deleted_count == 1
+    if acknowledged != True:
+        raise AssertionError
+    if deleted_count != 1:
+        raise AssertionError
 
 
 @pytest.mark.asyncio

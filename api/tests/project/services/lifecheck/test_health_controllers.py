@@ -10,7 +10,10 @@ from project.routers import app
 async def test_ping():
     async with AsyncClient(app=app, base_url=API_URL) as client:
         response = await client.get("/health/")
-        assert response.status_code == status.OK
+        if response.status_code != status.OK:
+            raise AssertionError
         result = response.json()
-        assert "api_status" in result
-        assert result["api_status"] == "green"
+        if "api_status" not in result:
+            raise AssertionError
+        if result["api_status"] != "green":
+            raise AssertionError
