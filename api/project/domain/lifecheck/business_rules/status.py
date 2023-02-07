@@ -11,7 +11,6 @@ from project.infrastructure.data_layer.concrete_datalayer import DataLayer
 
 
 class Lifecheck(object):
-    
     def __init__(self, request_headers):
         self.request_headers = request_headers
 

@@ -12,7 +12,5 @@ class DataLayer:
         else:
             self.instance = object
 
-        super().__init__()
-
     def __getattr__(self, name):
         return self.instance.__getattribute__(name)

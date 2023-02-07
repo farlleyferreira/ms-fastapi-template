@@ -1,7 +1,7 @@
 from bson.objectid import ObjectId
 
 
-class MongoId(ObjectId):
+class MongoId(ObjectId):  # pragma: no cover
     """
         MongoId class
     Args:

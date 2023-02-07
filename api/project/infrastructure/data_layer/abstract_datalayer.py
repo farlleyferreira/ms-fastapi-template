@@ -1,57 +1,44 @@
 from abc import ABC, abstractmethod
+from project.helpers.pydantic_typo import ObjectId
 
 
-class AbstractDataLayer(ABC):
+class AbstractDataLayer(ABC):  # pragma: no cover
+    def __init__(self, resource_name: str):
+        self.resource_name: str = resource_name
+        super().__init__()
+
     @abstractmethod
     async def get_buildinfo(self) -> bool:
-        """
-        Return ping database
-        """
+        pass
 
-    # @abstractmethod
-    # async def get_one(self) -> object:
-    #     '''
-    #         Return one registry of context database by key
-    #     '''
+    @abstractmethod
+    async def get_one(self, id: ObjectId) -> dict:
+        pass
 
-    # @abstractmethod
-    # async def get_by_filter(self):
-    #     '''
-    #         Return a list of registrys of context database
-    #     '''
+    @abstractmethod
+    async def get_one(self, filter, *args: any, **kwargs: any) -> dict:
+        pass
 
-    # @abstractmethod
-    # async def insert_one(self):
-    #     '''
-    #         Insert one registry in context database
-    #     '''
+    @abstractmethod
+    async def insert_one(self, item) -> ObjectId:
+        pass
 
-    # @abstractmethod
-    # async def insert_many(self):
-    #     '''
-    #         Insert a list of registrys in context database by filter
-    #     '''
+    @abstractmethod
+    async def insert_one(self, item) -> ObjectId:
+        pass
 
-    # @abstractmethod
-    # async def update_one(self):
-    #     '''
-    #         Updade a registry in context database by id
-    #     '''
+    @abstractmethod
+    async def insert_many(self, itens: list[dict]) -> list[ObjectId]:
+        pass
 
-    # @abstractmethod
-    # async def update_many(self):
-    #     '''
-    #         Updade one or more registrys in context database by filter
-    #     '''
+    @abstractmethod
+    async def update_one(self, criteria: dict, data: dict) -> tuple:
+        pass
 
-    # @abstractmethod
-    # async def delete_one(self):
-    #     '''
-    #         Delete a registry in context database by id
-    #     '''
+    @abstractmethod
+    async def update_many(self, criteria: dict, data: dict) -> tuple:
+        pass
 
-    # @abstractmethod
-    # async def delete_many(self):
-    #     '''
-    #          one or more registrys in context database by filter
-    #     '''
+    @abstractmethod
+    async def delete(self, criteria: dict) -> tuple:
+        pass
