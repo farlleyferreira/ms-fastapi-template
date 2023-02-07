@@ -1,5 +1,4 @@
 import pytest
-import asyncio
 from project.infrastructure.drivers.rabbitmq.connector import RabbitMq
 
 

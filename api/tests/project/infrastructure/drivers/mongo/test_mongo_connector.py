@@ -1,5 +1,4 @@
 import pytest
-import asyncio
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from project.infrastructure.drivers.mongo.connector import Mongo
 
