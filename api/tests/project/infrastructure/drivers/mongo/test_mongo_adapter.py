@@ -6,7 +6,7 @@ from project.infrastructure.drivers.mongo.adapter import MongoAdapter
 @pytest.mark.asyncio
 async def test_get_buildinfo():
     mongo_client = MongoAdapter("mstemplate")
-    assert await mongo_client.get_buildinfo() == True
+    assert await mongo_client.get_buildinfo() is True
 
 
 @pytest.mark.asyncio
@@ -78,7 +78,7 @@ async def test_update_one_success():
     data: dict = {"person": "jhon", "age": 32}
     id = await mongo.insert_one(data)
     acknowledged, modified_count = await mongo.update_one({"_id": id}, {"age": "35"})
-    assert acknowledged == True
+    assert acknowledged is True
     assert modified_count == 1
 
 
@@ -107,7 +107,7 @@ async def test_update_many_success():
     acknowledged, modified_count = await mongo.update_many(
         {"age": {"$gt": 30}}, {"age": 29}
     )
-    assert acknowledged == True
+    assert acknowledged is True
     assert modified_count == len(data)
 
 
@@ -124,7 +124,7 @@ async def test_delete_success():
     data: dict = {"person": "jhon", "age": 32}
     await mongo.insert_one(data)
     acknowledged, deleted_count = await mongo.delete({"age": {"$gt": 30}})
-    assert acknowledged == True
+    assert acknowledged is True
     assert deleted_count == 1
 
 
