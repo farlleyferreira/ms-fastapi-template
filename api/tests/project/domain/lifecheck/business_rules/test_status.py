@@ -13,7 +13,7 @@ path_patch = "project.domain.lifecheck.business_rules.status.Lifecheck"
 @patch(f"{path_patch}.get_redis_database_status")
 @patch(f"{path_patch}.get_queue_status")
 async def test_get_life_status_green(queue, redis, mongo, elk):
-    
+
     _queue = queue
     _redis = redis
     _mongo = mongo
@@ -36,7 +36,7 @@ async def test_get_life_status_green(queue, redis, mongo, elk):
 @patch(f"{path_patch}.get_redis_database_status")
 @patch(f"{path_patch}.get_queue_status")
 async def test_get_life_status_yellow(queue, redis, mongo, elk):
-    
+
     _queue = queue
     _redis = redis
     _mongo = mongo
@@ -62,7 +62,7 @@ async def test_get_life_status_yellow(queue, redis, mongo, elk):
 @patch(f"{path_patch}.get_redis_database_status")
 @patch(f"{path_patch}.get_queue_status")
 async def test_get_life_status_red(queue, redis, mongo, elk):
-    
+
     _queue = queue
     _redis = redis
     _mongo = mongo
