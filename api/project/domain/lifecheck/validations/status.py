@@ -16,7 +16,6 @@ class ValidateHelth(object):
 
         if is_ok:
             return Health.success.value
-        elif its_danger:
+        if its_danger:
             return Health.danger.value
-        else:
-            return Health.warning.value
+        return Health.warning.value
