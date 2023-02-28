@@ -18,7 +18,6 @@ class MongoAdapter(AbstractDataLayer):
         return bool(buildinfo["ok"])
 
     async def get_one(self, id: ObjectId) -> dict:
-
         client = Mongo().client()
         result = await client[self.resource_name].find_one({"_id": id})
         if not result:
@@ -26,7 +25,6 @@ class MongoAdapter(AbstractDataLayer):
         return result
 
     async def get_many(self, filter, *args: any, **kwargs: any) -> dict:
-
         client = Mongo().client()
         cursor = client[self.resource_name].find(filter=filter)
         result = await cursor.to_list(None)

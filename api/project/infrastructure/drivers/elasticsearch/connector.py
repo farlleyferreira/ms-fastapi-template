@@ -16,7 +16,6 @@ class Elk(object):
 
     def client(self) -> Elasticsearch:
         try:
-
             hosts = json.loads(str(self.hosts))
             username = self.username
             password = self.password
@@ -26,7 +25,6 @@ class Elk(object):
             return client
 
         except Exception as error:
-
             log.record.error(
                 "ELK connection error, check your server and credentials",
                 exc_info=sys.exc_info(),

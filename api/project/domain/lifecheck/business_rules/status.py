@@ -15,7 +15,6 @@ class Lifecheck(object):
         self.request_headers = request_headers
 
     async def get_life_status(self) -> LifeStatus:
-
         validate = ValidateHelth()
 
         mongo_result = await self.get_mongo_database_status()
