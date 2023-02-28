@@ -25,7 +25,7 @@ class MongoAdapter(AbstractDataLayer):
             raise Exception("document not found!")
         return result
 
-    async def get_by_filter(self, filter, *args: any, **kwargs: any) -> dict:
+    async def get_many(self, filter, *args: any, **kwargs: any) -> dict:
 
         client = Mongo().client()
         cursor = client[self.resource_name].find(filter=filter)
@@ -53,11 +53,11 @@ class MongoAdapter(AbstractDataLayer):
         except Exception as error:
             raise error
 
-    async def update_one(self, criteria: dict, data: dict) -> tuple:
+    async def update_one(self, id: ObjectId, data: dict) -> tuple:
         try:
             client = Mongo().client()
             result = await client[self.resource_name].update_one(
-                criteria, {"$set": data}
+                {"_id": id}, {"$set": data}
             )
             acknowledged, modified_count = result.acknowledged, result.modified_count
             return acknowledged, modified_count

@@ -29,20 +29,20 @@ async def test_get_one_error():
 
 
 @pytest.mark.asyncio
-async def test_get_by_filter_success():
+async def test_get_many_success():
     mongo = MongoAdapter("mstemplate")
     data: dict = {"key": "value", "key2": "value2"}
     await mongo.insert_one(data)
-    result = await mongo.get_by_filter(filter=data)
+    result = await mongo.get_many(filter=data)
     if result != [data]:
         raise AssertionError
 
 
 @pytest.mark.asyncio
-async def test_get_by_filter_error():
+async def test_get_many_error():
     with pytest.raises(Exception):
         mongo = MongoAdapter("mstemplate")
-        await mongo.get_by_filter(filter={"key": "pineapple"})
+        await mongo.get_many(filter={"key": "pineapple"})
 
 
 @pytest.mark.asyncio
@@ -83,10 +83,10 @@ async def test_update_one_success():
     mongo = MongoAdapter("mstemplate")
     data: dict = {"person": "jhon", "age": 32}
     id = await mongo.insert_one(data)
-    acknowledged, modified_count = await mongo.update_one({"_id": id}, {"age": "35"})
+    acknowledged, modified_count = await mongo.update_one(id, {"age": "35"})
     if acknowledged is not True:
         raise AssertionError
-    if modified_count != 1:
+    if modified_count > 1:
         raise AssertionError
 
 

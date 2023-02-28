@@ -16,11 +16,7 @@ class AbstractDataLayer(ABC):  # pragma: no cover
         pass
 
     @abstractmethod
-    async def get_one(self, filter, *args: any, **kwargs: any) -> dict:
-        pass
-
-    @abstractmethod
-    async def insert_one(self, item) -> ObjectId:
+    async def get_many(self, filter, *args: any, **kwargs: any) -> list[dict]:
         pass
 
     @abstractmethod
@@ -32,7 +28,7 @@ class AbstractDataLayer(ABC):  # pragma: no cover
         pass
 
     @abstractmethod
-    async def update_one(self, criteria: dict, data: dict) -> tuple:
+    async def update_one(self, id: ObjectId, data: dict) -> tuple:
         pass
 
     @abstractmethod

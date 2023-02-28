@@ -10,25 +10,11 @@ log = Log()
 
 class Elk(object):
     def __init__(self) -> None:
-        """
-            Na inicialização da classe de conexão com o elasticsearch,
-        as configurações de ambiente são carregadas em tempo de execução,
-        e servidas sob o contexto da instancia.
-        """
         self.hosts = os.getenv("ELK_HOSTS")
         self.username = os.getenv("ELK_USERNAME")
         self.password = os.getenv("ELK_PASSWORD")
 
     def client(self) -> Elasticsearch:
-        """
-            Cria uma conexão com o elasticsearch
-
-        Raises:
-            error: Exception
-
-        Returns:
-            Elasticsearch
-        """
         try:
 
             hosts = json.loads(str(self.hosts))

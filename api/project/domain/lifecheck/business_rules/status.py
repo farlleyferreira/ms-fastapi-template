@@ -59,7 +59,7 @@ class Lifecheck(object):
         return is_ok_database
 
     async def get_elk_database_status(self) -> bool:
-        is_ok_database = ElkAdapter().get_buildinfo()
+        is_ok_database = ElkAdapter(resource_name="teste").get_buildinfo()
         return is_ok_database
 
     async def get_mongo_database_status(self) -> bool:
