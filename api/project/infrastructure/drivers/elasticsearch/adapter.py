@@ -92,7 +92,6 @@ class ElkAdapter(AbstractDataLayer):
             hits = result_search["hits"]["hits"]
 
             for item in hits:
-
                 action = {"update": {"_index": self.resource_name, "_id": item["_id"]}}
 
                 actions.append(action)
