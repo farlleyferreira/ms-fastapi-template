@@ -23,12 +23,7 @@ class ElkAdapter(AbstractDataLayer):
         try:
             client: Elasticsearch = Elk().client()
             result = client.get(index=self.resource_name, id=id)
-
-            if "_source" in result and result["_source"]:
-                return result["_source"]
-
-            raise Exception("Item not found")
-
+            return result["_source"]
         except Exception as error:
             raise error
 
@@ -36,10 +31,6 @@ class ElkAdapter(AbstractDataLayer):
         try:
             client: Elasticsearch = Elk().client()
             result = client.search(index=self.resource_name, body=filter)
-
-            if result["_shards"]["failed"] > 0:
-                raise Exception("Item not found")
-
             hits = result["hits"]["hits"]
             list_of_results = [hit["_source"] for hit in hits]
             return list_of_results
@@ -52,8 +43,6 @@ class ElkAdapter(AbstractDataLayer):
             client: Elasticsearch = Elk().client()
             new_id = ObjectId(secrets.token_hex(12))
             result = client.index(index=self.resource_name, id=new_id, body=item)
-            if result["_shards"]["failed"] > 0:
-                raise Exception("Document cannot be indexed")
             result_id = ObjectId(result["_id"])
             return result_id
         except Exception as error:
@@ -88,9 +77,6 @@ class ElkAdapter(AbstractDataLayer):
             result = client.update(
                 index=self.resource_name, id=new_id, body={"doc": data}
             )
-
-            if result["_shards"]["failed"] > 0:
-                raise Exception("Document cannot be indexed")
             acknowledged, modified_count = True, result["_shards"]["successful"]
             return acknowledged, modified_count
         except Exception as error:
@@ -103,9 +89,6 @@ class ElkAdapter(AbstractDataLayer):
             client: Elasticsearch = Elk().client()
             result_search = client.search(index=self.resource_name, body=criteria)
 
-            if result_search["_shards"]["failed"] > 0:
-                raise Exception("Item not found")
-
             hits = result_search["hits"]["hits"]
 
             for item in hits:
@@ -117,9 +100,6 @@ class ElkAdapter(AbstractDataLayer):
 
             result = client.bulk(index=self.resource_name, body=actions)
 
-            if result["errors"]:
-                raise Exception("Document cannot be indexed")
-
             acknowledged, modified_count = True, len(result["items"])
             return acknowledged, modified_count
 
@@ -127,5 +107,11 @@ class ElkAdapter(AbstractDataLayer):
             raise error
 
     async def delete(self, criteria: dict) -> tuple:
-        client: Elasticsearch = Elk().client()
-        pass
+        try:
+            client: Elasticsearch = Elk().client()
+            result = client.delete_by_query(index=self.resource_name, body=criteria)
+            acknowledged, modified_count = True, result["deleted"]
+            return acknowledged, modified_count
+
+        except Exception as error:
+            raise error

@@ -11,7 +11,8 @@ list-requirements:
 	pip freeze
 
 lint:
-	python -m black project\
+	python -m bandit project/
+	python -m black project/
 
 install-requirements:
 	pip install -r requirements.txt

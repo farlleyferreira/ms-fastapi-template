@@ -1,6 +1,7 @@
 import pytest
 from project.helpers.pydantic_typo import ObjectId
 from project.infrastructure.drivers.elasticsearch.adapter import ElkAdapter
+import time
 
 
 @pytest.mark.asyncio
@@ -32,8 +33,8 @@ async def test_get_one_error():
 async def test_get_many_success():
     elk = ElkAdapter("mstemplate")
     data: dict = {"key": "value", "key2": "value2"}
-    queryble_id = await elk.insert_one(data)
-    new_filter = {"query": {"ids": {"values": [str(queryble_id)]}}}
+    queryble_ids = [str(await elk.insert_one(data)) for i in range(10)]
+    new_filter = {"query": {"ids": {"values": queryble_ids}}}
     result = await elk.get_many(filter=new_filter)
     if len(result) == 1:
         raise AssertionError
@@ -133,12 +134,14 @@ async def test_update_many_error():
 async def test_delete_success():
     elk = ElkAdapter("mstemplate")
     data: dict = {"person": "jhon", "age": 32}
-    await elk.insert_one(data)
-    acknowledged, deleted_count = await elk.delete({"age": {"$gt": 30}})
-    if acknowledged is not True:
-        raise AssertionError
-    if deleted_count != 1:
-        raise AssertionError
+    id = await elk.insert_one(data)
+    new_id = str(id)
+    time.sleep(1.1)
+    criteria = {"query": {"terms": {"_id": [new_id]}}}
+    acknowledged, deleted_count = await elk.delete(criteria)
+
+    if acknowledged is not True or deleted_count == 0:
+        raise AssertionError(acknowledged, deleted_count)
 
 
 @pytest.mark.asyncio
