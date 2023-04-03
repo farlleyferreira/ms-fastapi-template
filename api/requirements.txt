@@ -3,7 +3,7 @@ uvicorn==0.18.3
 python-dotenv==0.21.0
 PyYAML==6.0.0
 motor==3.0.0
-redis==4.3.4
+redis==4.4.4
 aio-pika==8.2.3
 elasticsearch==7.11.0
 psutil==5.9.2
